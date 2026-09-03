@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_023b0a5fafe6ef6a14a4ecc9396a5a0e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position:fixed; bottom:24px; left:24px; z-index:9999; background:white; padding:10px 14px;
+     border:1px solid #DCE2E6; border-radius:6px; font-family:-apple-system,Arial,sans-serif; font-size:12.5px;">
+  <b>Revenue Tier</b> (color)<br>
+  <span style="color:#C0473F;">&#9679;</span> Top 10% ($78,801+)<br>
+  <span style="color:#D9992E;">&#9679;</span> Top 25% ($52,526-$78,801)<br>
+  <span style="color:#AAB4BC;">&#9679;</span> Other 75% (below $52,526)<br>
+  <hr style="margin:6px 0;">
+  <b>Clusters</b> (toggle in layer control, top right) -- Steele Creek / Lake Wylie excluded by design
+</div>
+    
+            <div class="folium-map" id="map_023b0a5fafe6ef6a14a4ecc9396a5a0e" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_023b0a5fafe6ef6a14a4ecc9396a5a0e = L.map(
+                "map_023b0a5fafe6ef6a14a4ecc9396a5a0e",
+                {
+                    center: [35.22021478313965, -80.81616144962932],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_023b0a5fafe6ef6a14a4ecc9396a5a0e);
+
+            
+
+        
+    
+            var tile_layer_584f3417f1f4eab3a21b63fc16d6a3d2 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_584f3417f1f4eab3a21b63fc16d6a3d2.addTo(map_023b0a5fafe6ef6a14a4ecc9396a5a0e);
+        
+    
+            var feature_group_43a1474c5b23f73d152f015fce7c0216 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_486ec564b0c001b1050551aa5e4553dc = L.circleMarker(
+                [35.1433, -80.7748],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_01b76e86816dc535b782d05c1b442459 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1bdc13b3b9b2c34ff7233ae5d6e4f2bd = $(`<div id="html_1bdc13b3b9b2c34ff7233ae5d6e4f2bd" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Private home, Hot Tub, Pool &amp; Game room</b><br>       <b>Revenue:</b> $130,991 &nbsp;|&nbsp; <b>ADR:</b> $1,149<br>       <b>Occupancy:</b> 33.0%<br>       <b>Size:</b> 6BR / Sleeps 16 / 5.5 baths<br>       <b>ZIP:</b> 28270<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/670311639848217167" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_01b76e86816dc535b782d05c1b442459.setContent(html_1bdc13b3b9b2c34ff7233ae5d6e4f2bd);
+            
+        
+
+        circle_marker_486ec564b0c001b1050551aa5e4553dc.bindPopup(popup_01b76e86816dc535b782d05c1b442459)
+        ;
+
+        
+    
+    
+            circle_marker_486ec564b0c001b1050551aa5e4553dc.bindTooltip(
+                `<div>
+                     Private home, Hot Tub, Pool &amp; Game room -- $130,991
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_36fa4e57cf50dbc32f14851a97bf91ea = L.circleMarker(
+                [35.15412, -80.76934],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_ea5a0d4d8aa164055214caead14570cb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_98a70d979e4d2bb2b5be6a627370e58d = $(`<div id="html_98a70d979e4d2bb2b5be6a627370e58d" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>5 bedroom South Charlotte Charmer</b><br>       <b>Revenue:</b> $96,081 &nbsp;|&nbsp; <b>ADR:</b> $522<br>       <b>Occupancy:</b> 47.7%<br>       <b>Size:</b> 5BR / Sleeps 12 / 4 baths<br>       <b>ZIP:</b> 28211<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/908212818788165468" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_ea5a0d4d8aa164055214caead14570cb.setContent(html_98a70d979e4d2bb2b5be6a627370e58d);
+            
+        
+
+        circle_marker_36fa4e57cf50dbc32f14851a97bf91ea.bindPopup(popup_ea5a0d4d8aa164055214caead14570cb)
+        ;
+
+        
+    
+    
+            circle_marker_36fa4e57cf50dbc32f14851a97bf91ea.bindTooltip(
+                `<div>
+                     5 bedroom South Charlotte Charmer -- $96,081
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_765d58006eca436aff9a9f900b95967c = L.circleMarker(
+                [35.13133, -80.86841],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_60aaf16f13decc479f8223e8268945de = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4a743615c29d2b670c76b0627a6d0ba6 = $(`<div id="html_4a743615c29d2b670c76b0627a6d0ba6" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Game Room, Balcony, Fire Pit, 5 Bed, 4 Bath, WFH</b><br>       <b>Revenue:</b> $95,303 &nbsp;|&nbsp; <b>ADR:</b> $350<br>       <b>Occupancy:</b> 74.7%<br>       <b>Size:</b> 5BR / Sleeps 10 / 4 baths<br>       <b>ZIP:</b> 28210<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/986971313523513594" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_60aaf16f13decc479f8223e8268945de.setContent(html_4a743615c29d2b670c76b0627a6d0ba6);
+            
+        
+
+        circle_marker_765d58006eca436aff9a9f900b95967c.bindPopup(popup_60aaf16f13decc479f8223e8268945de)
+        ;
+
+        
+    
+    
+            circle_marker_765d58006eca436aff9a9f900b95967c.bindTooltip(
+                `<div>
+                     Game Room, Balcony, Fire Pit, 5 Bed, 4 Bath, WFH -- $95,303
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_67a518735b0b8008f26701622e9231ca = L.circleMarker(
+                [35.1015, -80.7988],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_d15b3813b2613dbcaa64ac0b1492d96a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4c77c6260f92032b7efc1ffe38869e0b = $(`<div id="html_4c77c6260f92032b7efc1ffe38869e0b" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>GameRoom-3 King 4Full 5BedRooms-Grill-Fenced Yard</b><br>       <b>Revenue:</b> $95,166 &nbsp;|&nbsp; <b>ADR:</b> $306<br>       <b>Occupancy:</b> 85.0%<br>       <b>Size:</b> 5BR / Sleeps 12 / 2.5 baths<br>       <b>ZIP:</b> 28226<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/1287881788247171040" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_d15b3813b2613dbcaa64ac0b1492d96a.setContent(html_4c77c6260f92032b7efc1ffe38869e0b);
+            
+        
+
+        circle_marker_67a518735b0b8008f26701622e9231ca.bindPopup(popup_d15b3813b2613dbcaa64ac0b1492d96a)
+        ;
+
+        
+    
+    
+            circle_marker_67a518735b0b8008f26701622e9231ca.bindTooltip(
+                `<div>
+                     GameRoom-3 King 4Full 5BedRooms-Grill-Fenced Yard -- $95,166
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4c13f4cb240ca59b8d340b736dddefba = L.circleMarker(
+                [35.1640785552, -80.7746134184],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_064aea59229b95819f6830dee7b88c0f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c22f8361f44c3acbf91cae64622d5eaf = $(`<div id="html_c22f8361f44c3acbf91cae64622d5eaf" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Spacious/Luxe•Theatre Room•5 King•2 Master Suite!</b><br>       <b>Revenue:</b> $89,256 &nbsp;|&nbsp; <b>ADR:</b> $518<br>       <b>Occupancy:</b> 46.8%<br>       <b>Size:</b> 5BR / Sleeps 12 / 3.5 baths<br>       <b>ZIP:</b> 28211<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/1329652121626289901" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_064aea59229b95819f6830dee7b88c0f.setContent(html_c22f8361f44c3acbf91cae64622d5eaf);
+            
+        
+
+        circle_marker_4c13f4cb240ca59b8d340b736dddefba.bindPopup(popup_064aea59229b95819f6830dee7b88c0f)
+        ;
+
+        
+    
+    
+            circle_marker_4c13f4cb240ca59b8d340b736dddefba.bindTooltip(
+                `<div>
+                     Spacious/Luxe•Theatre Room•5 King•2 Master Suite! -- $89,256
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9c4e50f519525e1532658e46acf0c845 = L.circleMarker(
+                [35.11623, -80.79016],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_4073ef817c62a0da41d8f5de692624ab = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5cb2e88b39068e5384701d1886b74fce = $(`<div id="html_5cb2e88b39068e5384701d1886b74fce" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>LUXE•Cozy/Modern•Fireplace•2 Master en Suites!</b><br>       <b>Revenue:</b> $84,602 &nbsp;|&nbsp; <b>ADR:</b> $359<br>       <b>Occupancy:</b> 64.5%<br>       <b>Size:</b> 5BR / Sleeps 12 / 3 baths<br>       <b>ZIP:</b> 28226<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/817265956781923276" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_4073ef817c62a0da41d8f5de692624ab.setContent(html_5cb2e88b39068e5384701d1886b74fce);
+            
+        
+
+        circle_marker_9c4e50f519525e1532658e46acf0c845.bindPopup(popup_4073ef817c62a0da41d8f5de692624ab)
+        ;
+
+        
+    
+    
+            circle_marker_9c4e50f519525e1532658e46acf0c845.bindTooltip(
+                `<div>
+                     LUXE•Cozy/Modern•Fireplace•2 Master en Suites! -- $84,602
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8ef076767bb6dbf9b79160e0bf4569e9 = L.circleMarker(
+                [35.1731, -80.8554],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_9216bc1f9b27b675d7d7e27f85155de3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9dd20bf024d099c1d71a485d50600ca9 = $(`<div id="html_9dd20bf024d099c1d71a485d50600ca9" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Charm of SouthPark - 5 Bedrooms - 1 of a Kind Lot!</b><br>       <b>Revenue:</b> $83,526 &nbsp;|&nbsp; <b>ADR:</b> $317<br>       <b>Occupancy:</b> 72.4%<br>       <b>Size:</b> 5BR / Sleeps 13 / 3 baths<br>       <b>ZIP:</b> 28209<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/719531517632469472" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_9216bc1f9b27b675d7d7e27f85155de3.setContent(html_9dd20bf024d099c1d71a485d50600ca9);
+            
+        
+
+        circle_marker_8ef076767bb6dbf9b79160e0bf4569e9.bindPopup(popup_9216bc1f9b27b675d7d7e27f85155de3)
+        ;
+
+        
+    
+    
+            circle_marker_8ef076767bb6dbf9b79160e0bf4569e9.bindTooltip(
+                `<div>
+                     Charm of SouthPark - 5 Bedrooms - 1 of a Kind Lot! -- $83,526
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1fc7e450eb2fc352aa69cff036a3e61b = L.circleMarker(
+                [35.0745, -80.7464],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_e261b17ecb3ee297d05df6e988b2b6aa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5e3e813b7c355c4128c66cb397b91694 = $(`<div id="html_5e3e813b7c355c4128c66cb397b91694" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>McKee Manor 25Mins to CLT Airport Sleeps 12!</b><br>       <b>Revenue:</b> $80,503 &nbsp;|&nbsp; <b>ADR:</b> $372<br>       <b>Occupancy:</b> 59.2%<br>       <b>Size:</b> 5BR / Sleeps 12 / 3 baths<br>       <b>ZIP:</b> 28270<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/1279807585012879688" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_e261b17ecb3ee297d05df6e988b2b6aa.setContent(html_5e3e813b7c355c4128c66cb397b91694);
+            
+        
+
+        circle_marker_1fc7e450eb2fc352aa69cff036a3e61b.bindPopup(popup_e261b17ecb3ee297d05df6e988b2b6aa)
+        ;
+
+        
+    
+    
+            circle_marker_1fc7e450eb2fc352aa69cff036a3e61b.bindTooltip(
+                `<div>
+                     McKee Manor 25Mins to CLT Airport Sleeps 12! -- $80,503
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ab7b33eeab0f0ddcf16c00b20b56cbb4 = L.circleMarker(
+                [35.0711, -80.8345],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_a151601f2cacd938cf6e808cb61535d2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f81ed5c55c14199c1935595bfe669d7e = $(`<div id="html_f81ed5c55c14199c1935595bfe669d7e" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Fire Pit • BBQ • Outdoor Lounge • Near Hotspots</b><br>       <b>Revenue:</b> $77,026 &nbsp;|&nbsp; <b>ADR:</b> $473<br>       <b>Occupancy:</b> 43.9%<br>       <b>Size:</b> 5BR / Sleeps 12 / 2.5 baths<br>       <b>ZIP:</b> 28277<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/30376303" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_a151601f2cacd938cf6e808cb61535d2.setContent(html_f81ed5c55c14199c1935595bfe669d7e);
+            
+        
+
+        circle_marker_ab7b33eeab0f0ddcf16c00b20b56cbb4.bindPopup(popup_a151601f2cacd938cf6e808cb61535d2)
+        ;
+
+        
+    
+    
+            circle_marker_ab7b33eeab0f0ddcf16c00b20b56cbb4.bindTooltip(
+                `<div>
+                     Fire Pit • BBQ • Outdoor Lounge • Near Hotspots -- $77,026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_82f6fec6c070b7923082918b2976f290 = L.circleMarker(
+                [35.16799, -80.861],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_acd5d0b2143da835df1b4eb47c88bc97 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_057084257dc32816e4f108ee622bb3b7 = $(`<div id="html_057084257dc32816e4f108ee622bb3b7" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Premium Location in Charlotte! 5br/4ba- Sleeps 15</b><br>       <b>Revenue:</b> $73,948 &nbsp;|&nbsp; <b>ADR:</b> $439<br>       <b>Occupancy:</b> 46.1%<br>       <b>Size:</b> 5BR / Sleeps 15 / 4 baths<br>       <b>ZIP:</b> 28210<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/749443506689352697" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_acd5d0b2143da835df1b4eb47c88bc97.setContent(html_057084257dc32816e4f108ee622bb3b7);
+            
+        
+
+        circle_marker_82f6fec6c070b7923082918b2976f290.bindPopup(popup_acd5d0b2143da835df1b4eb47c88bc97)
+        ;
+
+        
+    
+    
+            circle_marker_82f6fec6c070b7923082918b2976f290.bindTooltip(
+                `<div>
+                     Premium Location in Charlotte! 5br/4ba- Sleeps 15 -- $73,948
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1119f7b6868e12f6153e2655b02b05e0 = L.circleMarker(
+                [35.15577, -80.76579],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_e2a6c24e8a2a6838c4fd5c3a403e7613 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8968d46cbc5b6886d8fefba7971d9525 = $(`<div id="html_8968d46cbc5b6886d8fefba7971d9525" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Spacious 5BR with Fenced Backyard and Fire Pit</b><br>       <b>Revenue:</b> $65,683 &nbsp;|&nbsp; <b>ADR:</b> $402<br>       <b>Occupancy:</b> 44.9%<br>       <b>Size:</b> 5BR / Sleeps 12 / 3.5 baths<br>       <b>ZIP:</b> 28211<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/635475747864491660" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_e2a6c24e8a2a6838c4fd5c3a403e7613.setContent(html_8968d46cbc5b6886d8fefba7971d9525);
+            
+        
+
+        circle_marker_1119f7b6868e12f6153e2655b02b05e0.bindPopup(popup_e2a6c24e8a2a6838c4fd5c3a403e7613)
+        ;
+
+        
+    
+    
+            circle_marker_1119f7b6868e12f6153e2655b02b05e0.bindTooltip(
+                `<div>
+                     Spacious 5BR with Fenced Backyard and Fire Pit -- $65,683
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eed11c73b7e0a6a35d07be3ce36c9d04 = L.circleMarker(
+                [35.1486, -80.8652],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_cc05ea1d8185b9a1e7f81af35de46c5a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d98c66a64714d4a857b39584d7b79f32 = $(`<div id="html_d98c66a64714d4a857b39584d7b79f32" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Tranquil Retreat: Game Room, Deck, &amp; Pet-Friendly</b><br>       <b>Revenue:</b> $59,903 &nbsp;|&nbsp; <b>ADR:</b> $311<br>       <b>Occupancy:</b> 52.7%<br>       <b>Size:</b> 5BR / Sleeps 14 / 2.5 baths<br>       <b>ZIP:</b> 28210<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/774042037686634835" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_cc05ea1d8185b9a1e7f81af35de46c5a.setContent(html_d98c66a64714d4a857b39584d7b79f32);
+            
+        
+
+        circle_marker_eed11c73b7e0a6a35d07be3ce36c9d04.bindPopup(popup_cc05ea1d8185b9a1e7f81af35de46c5a)
+        ;
+
+        
+    
+    
+            circle_marker_eed11c73b7e0a6a35d07be3ce36c9d04.bindTooltip(
+                `<div>
+                     Tranquil Retreat: Game Room, Deck, &amp; Pet-Friendly -- $59,903
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_07c3b15781c5c5bd60f52cc6bb9daf7f = L.circleMarker(
+                [35.1441, -80.8451],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#AAB4BC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_43a1474c5b23f73d152f015fce7c0216);
+        
+    
+        var popup_e9c58ef74c3e0fc3bed30545bdd43beb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_61d8bc0c59a808df118a8ee7834d53e8 = $(`<div id="html_61d8bc0c59a808df118a8ee7834d53e8" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>6 Mi to Spectrum Center: Spacious Getaway w/ Deck</b><br>       <b>Revenue:</b> $42,074 &nbsp;|&nbsp; <b>ADR:</b> $315<br>       <b>Occupancy:</b> 35.9%<br>       <b>Size:</b> 5BR / Sleeps 8 / 2 baths<br>       <b>ZIP:</b> 28210<br>       <b>Tier:</b> Other 75% &nbsp;|&nbsp; <b>Cluster:</b> Ballantyne / Matthews / SouthPark<br>       <a href="https://www.airbnb.com/rooms/1356673081184485142" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_e9c58ef74c3e0fc3bed30545bdd43beb.setContent(html_61d8bc0c59a808df118a8ee7834d53e8);
+            
+        
+
+        circle_marker_07c3b15781c5c5bd60f52cc6bb9daf7f.bindPopup(popup_e9c58ef74c3e0fc3bed30545bdd43beb)
+        ;
+
+        
+    
+    
+            circle_marker_07c3b15781c5c5bd60f52cc6bb9daf7f.bindTooltip(
+                `<div>
+                     6 Mi to Spectrum Center: Spacious Getaway w/ Deck -- $42,074
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_43a1474c5b23f73d152f015fce7c0216.addTo(map_023b0a5fafe6ef6a14a4ecc9396a5a0e);
+        
+    
+            var feature_group_a4e172857d717c8f757fa189a9e89f2a = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_21222d8f716d74d648bda030482cbeca = L.circleMarker(
+                [35.18257, -80.60426],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_54f7dc61d7b2d2adea4e3c376ee29e23 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_58e613b3ae9fac378824730f2597cc4e = $(`<div id="html_58e613b3ae9fac378824730f2597cc4e" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>HUGE Luxurious Villa for 20 ppl+Firepit | Events</b><br>       <b>Revenue:</b> $150,606 &nbsp;|&nbsp; <b>ADR:</b> $894<br>       <b>Occupancy:</b> 46.1%<br>       <b>Size:</b> 5BR / Sleeps 16 / 5 baths<br>       <b>ZIP:</b> 28227<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/608582331729156711" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_54f7dc61d7b2d2adea4e3c376ee29e23.setContent(html_58e613b3ae9fac378824730f2597cc4e);
+            
+        
+
+        circle_marker_21222d8f716d74d648bda030482cbeca.bindPopup(popup_54f7dc61d7b2d2adea4e3c376ee29e23)
+        ;
+
+        
+    
+    
+            circle_marker_21222d8f716d74d648bda030482cbeca.bindTooltip(
+                `<div>
+                     HUGE Luxurious Villa for 20 ppl+Firepit | Events -- $150,606
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d2afdcdb3ab17824adf4b2ff60d61df0 = L.circleMarker(
+                [35.2083869818, -80.6852601954],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_9daca71d3bf7acc74d11a1c458f44e62 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3201489c11a3804d59f64b484876b9fa = $(`<div id="html_3201489c11a3804d59f64b484876b9fa" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>NEW Luxury Pickleball + Hot Tub + Arcade + Karaoke</b><br>       <b>Revenue:</b> $126,933 &nbsp;|&nbsp; <b>ADR:</b> $682<br>       <b>Occupancy:</b> 50.6%<br>       <b>Size:</b> 5BR / Sleeps 16 / 3 baths<br>       <b>ZIP:</b> 28227<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/1390730637723217521" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_9daca71d3bf7acc74d11a1c458f44e62.setContent(html_3201489c11a3804d59f64b484876b9fa);
+            
+        
+
+        circle_marker_d2afdcdb3ab17824adf4b2ff60d61df0.bindPopup(popup_9daca71d3bf7acc74d11a1c458f44e62)
+        ;
+
+        
+    
+    
+            circle_marker_d2afdcdb3ab17824adf4b2ff60d61df0.bindTooltip(
+                `<div>
+                     NEW Luxury Pickleball + Hot Tub + Arcade + Karaoke -- $126,933
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9c4c9768b3388dc75a35ed336b5c077a = L.circleMarker(
+                [35.204, -80.714],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_5f4a3aa93c4ea02e084b887ed6ef63b4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1f54bf692735c8045bcafe565a71f231 = $(`<div id="html_1f54bf692735c8045bcafe565a71f231" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Queen City Game House | Hot Tub | Sleeps 16</b><br>       <b>Revenue:</b> $123,008 &nbsp;|&nbsp; <b>ADR:</b> $671<br>       <b>Occupancy:</b> 50.1%<br>       <b>Size:</b> 5BR / Sleeps 16 / 3.5 baths<br>       <b>ZIP:</b> 28227<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/1454572072497176113" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_5f4a3aa93c4ea02e084b887ed6ef63b4.setContent(html_1f54bf692735c8045bcafe565a71f231);
+            
+        
+
+        circle_marker_9c4c9768b3388dc75a35ed336b5c077a.bindPopup(popup_5f4a3aa93c4ea02e084b887ed6ef63b4)
+        ;
+
+        
+    
+    
+            circle_marker_9c4c9768b3388dc75a35ed336b5c077a.bindTooltip(
+                `<div>
+                     Queen City Game House | Hot Tub | Sleeps 16 -- $123,008
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f55bcc80a1b51fa9128bfa78c5825626 = L.circleMarker(
+                [35.29407, -80.70149],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_09fc9c77442b42a21bd3f68aa7ad664e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e57c3aac7190509cef956a1dfa992355 = $(`<div id="html_e57c3aac7190509cef956a1dfa992355" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>6min to UNCC: Large Group | 10 beds | Games | Yard</b><br>       <b>Revenue:</b> $111,296 &nbsp;|&nbsp; <b>ADR:</b> $428<br>       <b>Occupancy:</b> 71.3%<br>       <b>Size:</b> 5BR / Sleeps 13 / 3 baths<br>       <b>ZIP:</b> 28213<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/1112235176113914329" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_09fc9c77442b42a21bd3f68aa7ad664e.setContent(html_e57c3aac7190509cef956a1dfa992355);
+            
+        
+
+        circle_marker_f55bcc80a1b51fa9128bfa78c5825626.bindPopup(popup_09fc9c77442b42a21bd3f68aa7ad664e)
+        ;
+
+        
+    
+    
+            circle_marker_f55bcc80a1b51fa9128bfa78c5825626.bindTooltip(
+                `<div>
+                     6min to UNCC: Large Group | 10 beds | Games | Yard -- $111,296
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3c2f2ddf06064e559c0d5eb5cdcae18b = L.circleMarker(
+                [35.3005921432, -80.7139895603],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_f6fd0fca9a3272216c04dacceab11c55 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_541673b7148bceae829195328e8a12da = $(`<div id="html_541673b7148bceae829195328e8a12da" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Sleeps 16 · 5BR · Weddings · Crews · Near UNCC</b><br>       <b>Revenue:</b> $107,876 &nbsp;|&nbsp; <b>ADR:</b> $561<br>       <b>Occupancy:</b> 52.5%<br>       <b>Size:</b> 5BR / Sleeps 16 / 2.5 baths<br>       <b>ZIP:</b> 28213<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/1431748740901984499" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_f6fd0fca9a3272216c04dacceab11c55.setContent(html_541673b7148bceae829195328e8a12da);
+            
+        
+
+        circle_marker_3c2f2ddf06064e559c0d5eb5cdcae18b.bindPopup(popup_f6fd0fca9a3272216c04dacceab11c55)
+        ;
+
+        
+    
+    
+            circle_marker_3c2f2ddf06064e559c0d5eb5cdcae18b.bindTooltip(
+                `<div>
+                     Sleeps 16 · 5BR · Weddings · Crews · Near UNCC -- $107,876
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f9cd060af7110454608c512d95bb4e0a = L.circleMarker(
+                [35.2762613675, -80.7750333899],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_0a7544d96e84b12f15fd58282fe49507 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_aa90520cccf8214b36ec702f061b5efd = $(`<div id="html_aa90520cccf8214b36ec702f061b5efd" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Stylish 5br3ba Home 15 mins CLT downtown</b><br>       <b>Revenue:</b> $86,544 &nbsp;|&nbsp; <b>ADR:</b> $318<br>       <b>Occupancy:</b> 74.8%<br>       <b>Size:</b> 5BR / Sleeps 10 / 3 baths<br>       <b>ZIP:</b> 28213<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/1419652978687726964" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_0a7544d96e84b12f15fd58282fe49507.setContent(html_aa90520cccf8214b36ec702f061b5efd);
+            
+        
+
+        circle_marker_f9cd060af7110454608c512d95bb4e0a.bindPopup(popup_0a7544d96e84b12f15fd58282fe49507)
+        ;
+
+        
+    
+    
+            circle_marker_f9cd060af7110454608c512d95bb4e0a.bindTooltip(
+                `<div>
+                     Stylish 5br3ba Home 15 mins CLT downtown -- $86,544
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_781cdd06e10937fb4e13edf1d45c5900 = L.circleMarker(
+                [35.26686, -80.69403],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_4b6af1c59eb41d7604a7974746edbf09 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5a9c1c858ed4d3041b60b8dc3727d0da = $(`<div id="html_5a9c1c858ed4d3041b60b8dc3727d0da" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Spacious Private 5BR-Perfect for Family Gathering</b><br>       <b>Revenue:</b> $86,090 &nbsp;|&nbsp; <b>ADR:</b> $362<br>       <b>Occupancy:</b> 65.1%<br>       <b>Size:</b> 5BR / Sleeps 15 / 3.5 baths<br>       <b>ZIP:</b> 28215<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/50662088" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_4b6af1c59eb41d7604a7974746edbf09.setContent(html_5a9c1c858ed4d3041b60b8dc3727d0da);
+            
+        
+
+        circle_marker_781cdd06e10937fb4e13edf1d45c5900.bindPopup(popup_4b6af1c59eb41d7604a7974746edbf09)
+        ;
+
+        
+    
+    
+            circle_marker_781cdd06e10937fb4e13edf1d45c5900.bindTooltip(
+                `<div>
+                     Spacious Private 5BR-Perfect for Family Gathering -- $86,090
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ca9a6c606a6a9d4add05ef8d3fe7bc56 = L.circleMarker(
+                [35.21855, -80.7723],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_73435330987bf0d1aca6170eb72f05cb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4cc0c2135e010bafab5fe905147dbdd0 = $(`<div id="html_4cc0c2135e010bafab5fe905147dbdd0" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Casa QC | Stunning &amp; Spacious Family Friendly 5BR</b><br>       <b>Revenue:</b> $84,043 &nbsp;|&nbsp; <b>ADR:</b> $377<br>       <b>Occupancy:</b> 59.6%<br>       <b>Size:</b> 5BR / Sleeps 10 / 2.5 baths<br>       <b>ZIP:</b> 28205<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/1186870951078245447" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_73435330987bf0d1aca6170eb72f05cb.setContent(html_4cc0c2135e010bafab5fe905147dbdd0);
+            
+        
+
+        circle_marker_ca9a6c606a6a9d4add05ef8d3fe7bc56.bindPopup(popup_73435330987bf0d1aca6170eb72f05cb)
+        ;
+
+        
+    
+    
+            circle_marker_ca9a6c606a6a9d4add05ef8d3fe7bc56.bindTooltip(
+                `<div>
+                     Casa QC | Stunning &amp; Spacious Family Friendly 5BR -- $84,043
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b4c7170d63c566ae1d1894e249976706 = L.circleMarker(
+                [35.2229, -80.6644],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_9a7ca16d823dc55d40ac6706329b9497 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5a91790eac412b3af0935a2d76a019ff = $(`<div id="html_5a91790eac412b3af0935a2d76a019ff" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Stay &amp; Play in Charlotte: Family Home w/ Deck</b><br>       <b>Revenue:</b> $68,742 &nbsp;|&nbsp; <b>ADR:</b> $356<br>       <b>Occupancy:</b> 52.9%<br>       <b>Size:</b> 5BR / Sleeps 10 / 2.5 baths<br>       <b>ZIP:</b> 28215<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/1400136009613435217" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_9a7ca16d823dc55d40ac6706329b9497.setContent(html_5a91790eac412b3af0935a2d76a019ff);
+            
+        
+
+        circle_marker_b4c7170d63c566ae1d1894e249976706.bindPopup(popup_9a7ca16d823dc55d40ac6706329b9497)
+        ;
+
+        
+    
+    
+            circle_marker_b4c7170d63c566ae1d1894e249976706.bindTooltip(
+                `<div>
+                     Stay &amp; Play in Charlotte: Family Home w/ Deck -- $68,742
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ad369cebc8232fff68b758b56a88c185 = L.circleMarker(
+                [35.21348, -80.73334],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_6071f4452bb27b8cb1c31419bc728584 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c98c4b131ec3a14b6efff3895fd0ef95 = $(`<div id="html_c98c4b131ec3a14b6efff3895fd0ef95" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Carolina House - 5 Bedrooms &amp; 3 Full Bathrooms!</b><br>       <b>Revenue:</b> $55,995 &nbsp;|&nbsp; <b>ADR:</b> $279<br>       <b>Occupancy:</b> 55.0%<br>       <b>Size:</b> 5BR / Sleeps 10 / 3 baths<br>       <b>ZIP:</b> 28212<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/764701427075187378" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_6071f4452bb27b8cb1c31419bc728584.setContent(html_c98c4b131ec3a14b6efff3895fd0ef95);
+            
+        
+
+        circle_marker_ad369cebc8232fff68b758b56a88c185.bindPopup(popup_6071f4452bb27b8cb1c31419bc728584)
+        ;
+
+        
+    
+    
+            circle_marker_ad369cebc8232fff68b758b56a88c185.bindTooltip(
+                `<div>
+                     Carolina House - 5 Bedrooms &amp; 3 Full Bathrooms! -- $55,995
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_05000bfa9bd19afac5998644632f9074 = L.circleMarker(
+                [35.2698383744, -80.7757975145],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#AAB4BC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_5c88ea9de58cd7c59be4a43ed256928a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_46f772687b0eafb74f92696e24423f7a = $(`<div id="html_46f772687b0eafb74f92696e24423f7a" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Brick Haven Retreat</b><br>       <b>Revenue:</b> $43,858 &nbsp;|&nbsp; <b>ADR:</b> $448<br>       <b>Occupancy:</b> 28.7%<br>       <b>Size:</b> 5BR / Sleeps 10 / 2.5 baths<br>       <b>ZIP:</b> 28213<br>       <b>Tier:</b> Other 75% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/1141496198368464971" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_5c88ea9de58cd7c59be4a43ed256928a.setContent(html_46f772687b0eafb74f92696e24423f7a);
+            
+        
+
+        circle_marker_05000bfa9bd19afac5998644632f9074.bindPopup(popup_5c88ea9de58cd7c59be4a43ed256928a)
+        ;
+
+        
+    
+    
+            circle_marker_05000bfa9bd19afac5998644632f9074.bindTooltip(
+                `<div>
+                     Brick Haven Retreat -- $43,858
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1fbc6f34467b08163569fc24c0c06dd6 = L.circleMarker(
+                [35.28106, -80.74266],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#AAB4BC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_a4e172857d717c8f757fa189a9e89f2a);
+        
+    
+        var popup_b3cc4c114901b2a8035f134a3fb94344 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_389b31311ab15971074b54115b66e40d = $(`<div id="html_389b31311ab15971074b54115b66e40d" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Summer Escape: Cozy Private Cabin Near University</b><br>       <b>Revenue:</b> $42,898 &nbsp;|&nbsp; <b>ADR:</b> $528<br>       <b>Occupancy:</b> 22.9%<br>       <b>Size:</b> 5BR / Sleeps 16 / 3 baths<br>       <b>ZIP:</b> 28213<br>       <b>Tier:</b> Other 75% &nbsp;|&nbsp; <b>Cluster:</b> East Charlotte / Mint Hill<br>       <a href="https://www.airbnb.com/rooms/1004435337097148365" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_b3cc4c114901b2a8035f134a3fb94344.setContent(html_389b31311ab15971074b54115b66e40d);
+            
+        
+
+        circle_marker_1fbc6f34467b08163569fc24c0c06dd6.bindPopup(popup_b3cc4c114901b2a8035f134a3fb94344)
+        ;
+
+        
+    
+    
+            circle_marker_1fbc6f34467b08163569fc24c0c06dd6.bindTooltip(
+                `<div>
+                     Summer Escape: Cozy Private Cabin Near University -- $42,898
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_a4e172857d717c8f757fa189a9e89f2a.addTo(map_023b0a5fafe6ef6a14a4ecc9396a5a0e);
+        
+    
+            var feature_group_5e92288af33545b96784400d953f2ccd = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_d27d15041afd75bafb034fd69bc64f87 = L.circleMarker(
+                [35.18973, -80.88192],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_6f09f7ea7bd0dc3a80ee9d0520fdcc62 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7f7fbfda492911c89b636104dca9a49a = $(`<div id="html_7f7fbfda492911c89b636104dca9a49a" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Spacious 8BR Duplex, Sleeps 20, Walk to Breweries</b><br>       <b>Revenue:</b> $199,741 &nbsp;|&nbsp; <b>ADR:</b> $863<br>       <b>Occupancy:</b> 63.2%<br>       <b>Size:</b> 8BR / Sleeps 16 / 5 baths<br>       <b>ZIP:</b> 28217<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/825605026061987286" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_6f09f7ea7bd0dc3a80ee9d0520fdcc62.setContent(html_7f7fbfda492911c89b636104dca9a49a);
+            
+        
+
+        circle_marker_d27d15041afd75bafb034fd69bc64f87.bindPopup(popup_6f09f7ea7bd0dc3a80ee9d0520fdcc62)
+        ;
+
+        
+    
+    
+            circle_marker_d27d15041afd75bafb034fd69bc64f87.bindTooltip(
+                `<div>
+                     Spacious 8BR Duplex, Sleeps 20, Walk to Breweries -- $199,741
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6b73f8ef4d23fc18cb7ad5e1b1d15d97 = L.circleMarker(
+                [35.2224, -80.8031],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_bb92380a8720ecae8a639725853409c6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_87ed015fd59f315c736cff9a5522385e = $(`<div id="html_87ed015fd59f315c736cff9a5522385e" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Lux Farmhouse6 bedrooms, 6 baths, firepit, gym</b><br>       <b>Revenue:</b> $165,229 &nbsp;|&nbsp; <b>ADR:</b> $1,278<br>       <b>Occupancy:</b> 39.8%<br>       <b>Size:</b> 6BR / Sleeps 16 / 6 baths<br>       <b>ZIP:</b> 28205<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1217644555390940891" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_bb92380a8720ecae8a639725853409c6.setContent(html_87ed015fd59f315c736cff9a5522385e);
+            
+        
+
+        circle_marker_6b73f8ef4d23fc18cb7ad5e1b1d15d97.bindPopup(popup_bb92380a8720ecae8a639725853409c6)
+        ;
+
+        
+    
+    
+            circle_marker_6b73f8ef4d23fc18cb7ad5e1b1d15d97.bindTooltip(
+                `<div>
+                     Lux Farmhouse6 bedrooms, 6 baths, firepit, gym -- $165,229
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c9081634995730f4a437512bba1514a5 = L.circleMarker(
+                [35.23827, -80.81588],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_35d14529bd1aaf036a29303689109e61 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0b7fa8dc6cde49b2d64fe8748d4aae59 = $(`<div id="html_0b7fa8dc6cde49b2d64fe8748d4aae59" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Maison NoDa: Uptown Skyline Views w/Gym Sleeps 14</b><br>       <b>Revenue:</b> $158,929 &nbsp;|&nbsp; <b>ADR:</b> $699<br>       <b>Occupancy:</b> 69.4%<br>       <b>Size:</b> 5BR / Sleeps 14 / 4 baths<br>       <b>ZIP:</b> 28205<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1108803702700685352" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_35d14529bd1aaf036a29303689109e61.setContent(html_0b7fa8dc6cde49b2d64fe8748d4aae59);
+            
+        
+
+        circle_marker_c9081634995730f4a437512bba1514a5.bindPopup(popup_35d14529bd1aaf036a29303689109e61)
+        ;
+
+        
+    
+    
+            circle_marker_c9081634995730f4a437512bba1514a5.bindTooltip(
+                `<div>
+                     Maison NoDa: Uptown Skyline Views w/Gym Sleeps 14 -- $158,929
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_399360eeb52d610b10ab62c7442965ed = L.circleMarker(
+                [35.2042, -80.8444],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_ce620d61f76d7af9027e89a105911c0e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_515c97a12076c4d69829fcac8c6863b3 = $(`<div id="html_515c97a12076c4d69829fcac8c6863b3" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Fantastic Home, 6 Bedrooms, Walk to Shops &amp; Dining</b><br>       <b>Revenue:</b> $148,741 &nbsp;|&nbsp; <b>ADR:</b> $619<br>       <b>Occupancy:</b> 66.1%<br>       <b>Size:</b> 6BR / Sleeps 12 / 4 baths<br>       <b>ZIP:</b> 28203<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1004434640241073803" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_ce620d61f76d7af9027e89a105911c0e.setContent(html_515c97a12076c4d69829fcac8c6863b3);
+            
+        
+
+        circle_marker_399360eeb52d610b10ab62c7442965ed.bindPopup(popup_ce620d61f76d7af9027e89a105911c0e)
+        ;
+
+        
+    
+    
+            circle_marker_399360eeb52d610b10ab62c7442965ed.bindTooltip(
+                `<div>
+                     Fantastic Home, 6 Bedrooms, Walk to Shops &amp; Dining -- $148,741
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a3c5e01cf7686c18b3515a13ef018978 = L.circleMarker(
+                [35.2208, -80.8229],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_878ca29f3f8a86c863fcbf57aaa8cbb4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7a1c99e9516550053f328e21c230a5c9 = $(`<div id="html_7a1c99e9516550053f328e21c230a5c9" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Excellent Home Near Uptown, Walk to Shops &amp; Dining</b><br>       <b>Revenue:</b> $145,853 &nbsp;|&nbsp; <b>ADR:</b> $598<br>       <b>Occupancy:</b> 67.2%<br>       <b>Size:</b> 5BR / Sleeps 12 / 3 baths<br>       <b>ZIP:</b> 28204<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/705833574990204127" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_878ca29f3f8a86c863fcbf57aaa8cbb4.setContent(html_7a1c99e9516550053f328e21c230a5c9);
+            
+        
+
+        circle_marker_a3c5e01cf7686c18b3515a13ef018978.bindPopup(popup_878ca29f3f8a86c863fcbf57aaa8cbb4)
+        ;
+
+        
+    
+    
+            circle_marker_a3c5e01cf7686c18b3515a13ef018978.bindTooltip(
+                `<div>
+                     Excellent Home Near Uptown, Walk to Shops &amp; Dining -- $145,853
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6d793bc23ebbe9b8ee39f74c6777b20c = L.circleMarker(
+                [35.21761, -80.82121],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_ddbe144c0ed2fbc5289d5d964460d3bf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a095d3aad796ad2f39009f809b1679be = $(`<div id="html_a095d3aad796ad2f39009f809b1679be" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Downtown Bungalow 7 bedroom 4 bath</b><br>       <b>Revenue:</b> $135,842 &nbsp;|&nbsp; <b>ADR:</b> $675<br>       <b>Occupancy:</b> 55.8%<br>       <b>Size:</b> 7BR / Sleeps 16 / 4 baths<br>       <b>ZIP:</b> 28204<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/14473575" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_ddbe144c0ed2fbc5289d5d964460d3bf.setContent(html_a095d3aad796ad2f39009f809b1679be);
+            
+        
+
+        circle_marker_6d793bc23ebbe9b8ee39f74c6777b20c.bindPopup(popup_ddbe144c0ed2fbc5289d5d964460d3bf)
+        ;
+
+        
+    
+    
+            circle_marker_6d793bc23ebbe9b8ee39f74c6777b20c.bindTooltip(
+                `<div>
+                     Downtown Bungalow 7 bedroom 4 bath -- $135,842
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bbabc8142d10293e8365191dd7ee6f41 = L.circleMarker(
+                [35.2084, -80.7924],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_691505b6b99e2aebe8e2a4e80d5590bb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cf0646065e2f2847848322cacfef532a = $(`<div id="html_cf0646065e2f2847848322cacfef532a" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Luxury Charlotte Home with Heated Pool &amp; Hot Tub</b><br>       <b>Revenue:</b> $131,092 &nbsp;|&nbsp; <b>ADR:</b> $837<br>       <b>Occupancy:</b> 46.4%<br>       <b>Size:</b> 5BR / Sleeps 12 / 4 baths<br>       <b>ZIP:</b> 28205<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1390721869494706457" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_691505b6b99e2aebe8e2a4e80d5590bb.setContent(html_cf0646065e2f2847848322cacfef532a);
+            
+        
+
+        circle_marker_bbabc8142d10293e8365191dd7ee6f41.bindPopup(popup_691505b6b99e2aebe8e2a4e80d5590bb)
+        ;
+
+        
+    
+    
+            circle_marker_bbabc8142d10293e8365191dd7ee6f41.bindTooltip(
+                `<div>
+                     Luxury Charlotte Home with Heated Pool &amp; Hot Tub -- $131,092
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ef09e9f03ecca9f647da64af40352015 = L.circleMarker(
+                [35.2447, -80.8112],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_0756a6aa97bf638f963c11cb1a287eb2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_61478609586035a35a975d463b516d3b = $(`<div id="html_61478609586035a35a975d463b516d3b" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Modern Luxury/Walk to NoDa/Great for larger groups</b><br>       <b>Revenue:</b> $129,086 &nbsp;|&nbsp; <b>ADR:</b> $1,045<br>       <b>Occupancy:</b> 33.8%<br>       <b>Size:</b> 8BR / Sleeps 16 / 6.5 baths<br>       <b>ZIP:</b> 28205<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/51046236" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_0756a6aa97bf638f963c11cb1a287eb2.setContent(html_61478609586035a35a975d463b516d3b);
+            
+        
+
+        circle_marker_ef09e9f03ecca9f647da64af40352015.bindPopup(popup_0756a6aa97bf638f963c11cb1a287eb2)
+        ;
+
+        
+    
+    
+            circle_marker_ef09e9f03ecca9f647da64af40352015.bindTooltip(
+                `<div>
+                     Modern Luxury/Walk to NoDa/Great for larger groups -- $129,086
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c2c535593fcd932161985ffc9d5c1069 = L.circleMarker(
+                [35.21264, -80.85286],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_8801a69f5f76fe58ed6ac68f2d8ced5e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a3dbe417a58fa8cd120fbc13659c7608 = $(`<div id="html_a3dbe417a58fa8cd120fbc13659c7608" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>6BR Heart of Dilworth, 1 block to SouthEnd</b><br>       <b>Revenue:</b> $125,538 &nbsp;|&nbsp; <b>ADR:</b> $698<br>       <b>Occupancy:</b> 49.9%<br>       <b>Size:</b> 6BR / Sleeps 10 / 3.5 baths<br>       <b>ZIP:</b> 28203<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/554940316762261190" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_8801a69f5f76fe58ed6ac68f2d8ced5e.setContent(html_a3dbe417a58fa8cd120fbc13659c7608);
+            
+        
+
+        circle_marker_c2c535593fcd932161985ffc9d5c1069.bindPopup(popup_8801a69f5f76fe58ed6ac68f2d8ced5e)
+        ;
+
+        
+    
+    
+            circle_marker_c2c535593fcd932161985ffc9d5c1069.bindTooltip(
+                `<div>
+                     6BR Heart of Dilworth, 1 block to SouthEnd -- $125,538
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e90a929f8bef30c9f3afd4a815c04ea7 = L.circleMarker(
+                [35.2889, -80.9445],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_ff059436e55a557947809fabf5f3222c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c6e74a63ce8b65d7aa341c328bd637c4 = $(`<div id="html_c6e74a63ce8b65d7aa341c328bd637c4" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Hot tub, Sauna, Mini Golf, Game Room, &amp; Fire Pit</b><br>       <b>Revenue:</b> $110,701 &nbsp;|&nbsp; <b>ADR:</b> $441<br>       <b>Occupancy:</b> 68.8%<br>       <b>Size:</b> 5BR / Sleeps 15 / 2.5 baths<br>       <b>ZIP:</b> 28214<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1419974127398203477" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_ff059436e55a557947809fabf5f3222c.setContent(html_c6e74a63ce8b65d7aa341c328bd637c4);
+            
+        
+
+        circle_marker_e90a929f8bef30c9f3afd4a815c04ea7.bindPopup(popup_ff059436e55a557947809fabf5f3222c)
+        ;
+
+        
+    
+    
+            circle_marker_e90a929f8bef30c9f3afd4a815c04ea7.bindTooltip(
+                `<div>
+                     Hot tub, Sauna, Mini Golf, Game Room, &amp; Fire Pit -- $110,701
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_02ff105cd554637ff10c2643e0f40446 = L.circleMarker(
+                [35.19794, -80.84823],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_82908ef3e53e398118797213789dc97c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e46b119dae93ebf4a7698d606d98b324 = $(`<div id="html_e46b119dae93ebf4a7698d606d98b324" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>8 Bedrooms in Dilworth, Close to SouthEnd</b><br>       <b>Revenue:</b> $108,603 &nbsp;|&nbsp; <b>ADR:</b> $558<br>       <b>Occupancy:</b> 53.1%<br>       <b>Size:</b> 8BR / Sleeps 16 / 4 baths<br>       <b>ZIP:</b> 28203<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/22166407" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_82908ef3e53e398118797213789dc97c.setContent(html_e46b119dae93ebf4a7698d606d98b324);
+            
+        
+
+        circle_marker_02ff105cd554637ff10c2643e0f40446.bindPopup(popup_82908ef3e53e398118797213789dc97c)
+        ;
+
+        
+    
+    
+            circle_marker_02ff105cd554637ff10c2643e0f40446.bindTooltip(
+                `<div>
+                     8 Bedrooms in Dilworth, Close to SouthEnd -- $108,603
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ca2110c0d34219a55d8417170877f285 = L.circleMarker(
+                [35.24773, -80.85855],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_07be4eb2b7acbd05387002bffd08b691 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_023cb5c0d5fa3360ea98cf0d87030560 = $(`<div id="html_023cb5c0d5fa3360ea98cf0d87030560" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Game Room | Rooftop | Sleeps 16 | Mins to Downtown</b><br>       <b>Revenue:</b> $103,178 &nbsp;|&nbsp; <b>ADR:</b> $887<br>       <b>Occupancy:</b> 31.1%<br>       <b>Size:</b> 6BR / Sleeps 16 / 7 baths<br>       <b>ZIP:</b> 28216<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1162553981823667862" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_07be4eb2b7acbd05387002bffd08b691.setContent(html_023cb5c0d5fa3360ea98cf0d87030560);
+            
+        
+
+        circle_marker_ca2110c0d34219a55d8417170877f285.bindPopup(popup_07be4eb2b7acbd05387002bffd08b691)
+        ;
+
+        
+    
+    
+            circle_marker_ca2110c0d34219a55d8417170877f285.bindTooltip(
+                `<div>
+                     Game Room | Rooftop | Sleeps 16 | Mins to Downtown -- $103,178
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2ad605477a56c45b011161025f34b54e = L.circleMarker(
+                [35.32453, -80.80514],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_d44f817378e8520042cfcb7a7a5adde2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c5eb70279d24cf9967796ad3d9d44413 = $(`<div id="html_c5eb70279d24cf9967796ad3d9d44413" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Spacious Private Cabin</b><br>       <b>Revenue:</b> $102,323 &nbsp;|&nbsp; <b>ADR:</b> $431<br>       <b>Occupancy:</b> 65.0%<br>       <b>Size:</b> 6BR / Sleeps 10 / 3.5 baths<br>       <b>ZIP:</b> 28269<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1105924703738385790" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_d44f817378e8520042cfcb7a7a5adde2.setContent(html_c5eb70279d24cf9967796ad3d9d44413);
+            
+        
+
+        circle_marker_2ad605477a56c45b011161025f34b54e.bindPopup(popup_d44f817378e8520042cfcb7a7a5adde2)
+        ;
+
+        
+    
+    
+            circle_marker_2ad605477a56c45b011161025f34b54e.bindTooltip(
+                `<div>
+                     Spacious Private Cabin -- $102,323
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_aa9b10c106bce066639e7eabb0d83614 = L.circleMarker(
+                [35.2342, -80.8401],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_25dce9fdecf8062abd4b5693fcaf3aea = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b1d9eccfbe4a4c66a9da6930abfa77bc = $(`<div id="html_b1d9eccfbe4a4c66a9da6930abfa77bc" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>The Six Kings Estate in Uptown Charlotte</b><br>       <b>Revenue:</b> $99,590 &nbsp;|&nbsp; <b>ADR:</b> $650<br>       <b>Occupancy:</b> 42.5%<br>       <b>Size:</b> 6BR / Sleeps 12 / 4.5 baths<br>       <b>ZIP:</b> 28202<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/706052432853755958" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_25dce9fdecf8062abd4b5693fcaf3aea.setContent(html_b1d9eccfbe4a4c66a9da6930abfa77bc);
+            
+        
+
+        circle_marker_aa9b10c106bce066639e7eabb0d83614.bindPopup(popup_25dce9fdecf8062abd4b5693fcaf3aea)
+        ;
+
+        
+    
+    
+            circle_marker_aa9b10c106bce066639e7eabb0d83614.bindTooltip(
+                `<div>
+                     The Six Kings Estate in Uptown Charlotte -- $99,590
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6bbf9baea9f767b23fb322a870527711 = L.circleMarker(
+                [35.24232, -80.82954],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_9b7801d3f556145622493f146efed970 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_103a4600be119813b6704c6af4e69ce3 = $(`<div id="html_103a4600be119813b6704c6af4e69ce3" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Near BoA Stadium | 5BD w/ Games &amp; Backyard</b><br>       <b>Revenue:</b> $90,602 &nbsp;|&nbsp; <b>ADR:</b> $498<br>       <b>Occupancy:</b> 49.9%<br>       <b>Size:</b> 5BR / Sleeps 11 / 2.5 baths<br>       <b>ZIP:</b> 28206<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1356722586955514540" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_9b7801d3f556145622493f146efed970.setContent(html_103a4600be119813b6704c6af4e69ce3);
+            
+        
+
+        circle_marker_6bbf9baea9f767b23fb322a870527711.bindPopup(popup_9b7801d3f556145622493f146efed970)
+        ;
+
+        
+    
+    
+            circle_marker_6bbf9baea9f767b23fb322a870527711.bindTooltip(
+                `<div>
+                     Near BoA Stadium | 5BD w/ Games &amp; Backyard -- $90,602
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_52d9ce66f76c49f35773b765b6c07979 = L.circleMarker(
+                [35.30815, -80.80595],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_4b55cf477913b8b55860741bef8e9730 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cc5e815354f3a8dc8e33181a58a1184c = $(`<div id="html_cc5e815354f3a8dc8e33181a58a1184c" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Brand New Home w/ Sleeps 16, Game Room &amp; Hot Tub</b><br>       <b>Revenue:</b> $86,276 &nbsp;|&nbsp; <b>ADR:</b> $497<br>       <b>Occupancy:</b> 51.2%<br>       <b>Size:</b> 5BR / Sleeps 16 / 2.5 baths<br>       <b>ZIP:</b> 28269<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1465549456984877041" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_4b55cf477913b8b55860741bef8e9730.setContent(html_cc5e815354f3a8dc8e33181a58a1184c);
+            
+        
+
+        circle_marker_52d9ce66f76c49f35773b765b6c07979.bindPopup(popup_4b55cf477913b8b55860741bef8e9730)
+        ;
+
+        
+    
+    
+            circle_marker_52d9ce66f76c49f35773b765b6c07979.bindTooltip(
+                `<div>
+                     Brand New Home w/ Sleeps 16, Game Room &amp; Hot Tub -- $86,276
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8f8dca4520075c0ac81c68003dcb7a61 = L.circleMarker(
+                [35.2058, -80.901],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C0473F", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_f0d85c3e4439ff5d4411872a8407e9d0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fca90bfe2d756db88e5cbe575fbe9a68 = $(`<div id="html_fca90bfe2d756db88e5cbe575fbe9a68" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Perfect Getaway Prime Location w/Game Room &amp; HoTub</b><br>       <b>Revenue:</b> $83,732 &nbsp;|&nbsp; <b>ADR:</b> $407<br>       <b>Occupancy:</b> 56.6%<br>       <b>Size:</b> 5BR / Sleeps 14 / 2.5 baths<br>       <b>ZIP:</b> 28208<br>       <b>Tier:</b> Top 10% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1005664717717024113" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_f0d85c3e4439ff5d4411872a8407e9d0.setContent(html_fca90bfe2d756db88e5cbe575fbe9a68);
+            
+        
+
+        circle_marker_8f8dca4520075c0ac81c68003dcb7a61.bindPopup(popup_f0d85c3e4439ff5d4411872a8407e9d0)
+        ;
+
+        
+    
+    
+            circle_marker_8f8dca4520075c0ac81c68003dcb7a61.bindTooltip(
+                `<div>
+                     Perfect Getaway Prime Location w/Game Room &amp; HoTub -- $83,732
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e633dd79ec8a130f140dc80868467b30 = L.circleMarker(
+                [35.21594, -80.82223],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_4e59285c65cb8ce7e06a1e34183dbec6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4cd9b6807c20ff5e63b5db2ad725cd11 = $(`<div id="html_4cd9b6807c20ff5e63b5db2ad725cd11" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>3000 Sq Ft, 5 Bedroom, City with ♥ Parking (2)</b><br>       <b>Revenue:</b> $77,838 &nbsp;|&nbsp; <b>ADR:</b> $468<br>       <b>Occupancy:</b> 45.5%<br>       <b>Size:</b> 5BR / Sleeps 13 / 3.5 baths<br>       <b>ZIP:</b> 28204<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/33718219" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_4e59285c65cb8ce7e06a1e34183dbec6.setContent(html_4cd9b6807c20ff5e63b5db2ad725cd11);
+            
+        
+
+        circle_marker_e633dd79ec8a130f140dc80868467b30.bindPopup(popup_4e59285c65cb8ce7e06a1e34183dbec6)
+        ;
+
+        
+    
+    
+            circle_marker_e633dd79ec8a130f140dc80868467b30.bindTooltip(
+                `<div>
+                     3000 Sq Ft, 5 Bedroom, City with ♥ Parking (2) -- $77,838
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6214bf9b30a9a23689caf0538a3fc329 = L.circleMarker(
+                [35.2298, -80.8122],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_e54db265ea238579ac833b7afa9222c4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ce0a60216b099c484cfa6343f033c5ca = $(`<div id="html_ce0a60216b099c484cfa6343f033c5ca" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Beautiful Big Home (blocks from EVERYTHING UPTOWN)</b><br>       <b>Revenue:</b> $75,863 &nbsp;|&nbsp; <b>ADR:</b> $375<br>       <b>Occupancy:</b> 55.4%<br>       <b>Size:</b> 5BR / Sleeps 12 / 3.5 baths<br>       <b>ZIP:</b> 28205<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/609337242668044863" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_e54db265ea238579ac833b7afa9222c4.setContent(html_ce0a60216b099c484cfa6343f033c5ca);
+            
+        
+
+        circle_marker_6214bf9b30a9a23689caf0538a3fc329.bindPopup(popup_e54db265ea238579ac833b7afa9222c4)
+        ;
+
+        
+    
+    
+            circle_marker_6214bf9b30a9a23689caf0538a3fc329.bindTooltip(
+                `<div>
+                     Beautiful Big Home (blocks from EVERYTHING UPTOWN) -- $75,863
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_875b3067b9b1884847938e96803fec76 = L.circleMarker(
+                [35.2527, -80.8895],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_1c6f44545a75e5ff8280803689bc97a2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a57666601d2f77e5bed95ea06c29aaea = $(`<div id="html_a57666601d2f77e5bed95ea06c29aaea" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>6 Beds| Center City | Bank of America Stadium</b><br>       <b>Revenue:</b> $73,633 &nbsp;|&nbsp; <b>ADR:</b> $352<br>       <b>Occupancy:</b> 60.2%<br>       <b>Size:</b> 5BR / Sleeps 12 / 3.5 baths<br>       <b>ZIP:</b> 28208<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1453774238170437776" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_1c6f44545a75e5ff8280803689bc97a2.setContent(html_a57666601d2f77e5bed95ea06c29aaea);
+            
+        
+
+        circle_marker_875b3067b9b1884847938e96803fec76.bindPopup(popup_1c6f44545a75e5ff8280803689bc97a2)
+        ;
+
+        
+    
+    
+            circle_marker_875b3067b9b1884847938e96803fec76.bindTooltip(
+                `<div>
+                     6 Beds| Center City | Bank of America Stadium -- $73,633
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d249e58b4183048dee02c0dfed55e9c8 = L.circleMarker(
+                [35.23439, -80.84136],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_cbde75c8a8cbc4679ec135dcc76fff1a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fe25136c1a3c3adb6eb07c73b4e06e65 = $(`<div id="html_fe25136c1a3c3adb6eb07c73b4e06e65" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Charming Historic Charlotte Home</b><br>       <b>Revenue:</b> $66,142 &nbsp;|&nbsp; <b>ADR:</b> $534<br>       <b>Occupancy:</b> 38.7%<br>       <b>Size:</b> 5BR / Sleeps 11 / 3 baths<br>       <b>ZIP:</b> 28202<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1492847561370946959" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_cbde75c8a8cbc4679ec135dcc76fff1a.setContent(html_fe25136c1a3c3adb6eb07c73b4e06e65);
+            
+        
+
+        circle_marker_d249e58b4183048dee02c0dfed55e9c8.bindPopup(popup_cbde75c8a8cbc4679ec135dcc76fff1a)
+        ;
+
+        
+    
+    
+            circle_marker_d249e58b4183048dee02c0dfed55e9c8.bindTooltip(
+                `<div>
+                     Charming Historic Charlotte Home -- $66,142
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8babaaf592d3f9e3e9157920ef22f3da = L.circleMarker(
+                [35.15896, -80.93405],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_447c7057175c82b7a62a593d369f22ad = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0951cc2c0c2b5528318ab964689c3239 = $(`<div id="html_0951cc2c0c2b5528318ab964689c3239" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Oscar’s and Denisse’s Queen City Getaway</b><br>       <b>Revenue:</b> $65,678 &nbsp;|&nbsp; <b>ADR:</b> $347<br>       <b>Occupancy:</b> 51.8%<br>       <b>Size:</b> 5BR / Sleeps 10 / 3 baths<br>       <b>ZIP:</b> 28273<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/41296241" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_447c7057175c82b7a62a593d369f22ad.setContent(html_0951cc2c0c2b5528318ab964689c3239);
+            
+        
+
+        circle_marker_8babaaf592d3f9e3e9157920ef22f3da.bindPopup(popup_447c7057175c82b7a62a593d369f22ad)
+        ;
+
+        
+    
+    
+            circle_marker_8babaaf592d3f9e3e9157920ef22f3da.bindTooltip(
+                `<div>
+                     Oscar’s and Denisse’s Queen City Getaway -- $65,678
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a064f2d38b5a55528460530fd708aa23 = L.circleMarker(
+                [35.32607, -80.79817],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_b20b9fe840babaa7d73a5ba505c24325 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b308929752b6391c0521ca2912f380a3 = $(`<div id="html_b308929752b6391c0521ca2912f380a3" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>King Bed - RecRoom - Huge Cabin</b><br>       <b>Revenue:</b> $64,149 &nbsp;|&nbsp; <b>ADR:</b> $343<br>       <b>Occupancy:</b> 51.6%<br>       <b>Size:</b> 5BR / Sleeps 12 / 3 baths<br>       <b>ZIP:</b> 28269<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/990515806906303410" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_b20b9fe840babaa7d73a5ba505c24325.setContent(html_b308929752b6391c0521ca2912f380a3);
+            
+        
+
+        circle_marker_a064f2d38b5a55528460530fd708aa23.bindPopup(popup_b20b9fe840babaa7d73a5ba505c24325)
+        ;
+
+        
+    
+    
+            circle_marker_a064f2d38b5a55528460530fd708aa23.bindTooltip(
+                `<div>
+                     King Bed - RecRoom - Huge Cabin -- $64,149
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6b6e9494e119b8017eced217f4ba9c49 = L.circleMarker(
+                [35.27099, -80.78913],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_939f560c29a61941f3233599a5b49187 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c603c7a6a0d917e64e1e05bfc161e104 = $(`<div id="html_c603c7a6a0d917e64e1e05bfc161e104" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Book Now - Large Groups Welcome in Prime Location!</b><br>       <b>Revenue:</b> $64,066 &nbsp;|&nbsp; <b>ADR:</b> $277<br>       <b>Occupancy:</b> 63.1%<br>       <b>Size:</b> 6BR / Sleeps 14 / 2 baths<br>       <b>ZIP:</b> 28213<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/746553961470728836" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_939f560c29a61941f3233599a5b49187.setContent(html_c603c7a6a0d917e64e1e05bfc161e104);
+            
+        
+
+        circle_marker_6b6e9494e119b8017eced217f4ba9c49.bindPopup(popup_939f560c29a61941f3233599a5b49187)
+        ;
+
+        
+    
+    
+            circle_marker_6b6e9494e119b8017eced217f4ba9c49.bindTooltip(
+                `<div>
+                     Book Now - Large Groups Welcome in Prime Location! -- $64,066
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a733f0998b962b2e358bcb00f2acea80 = L.circleMarker(
+                [35.23256, -80.89426],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_e48c862be461401bbb228b12d7bed1c3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a73a9cb47c6e0fd18117eb4b8dc5f97d = $(`<div id="html_a73a9cb47c6e0fd18117eb4b8dc5f97d" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Dual Kitchens, Fire Pit, Parking | Near airport</b><br>       <b>Revenue:</b> $62,811 &nbsp;|&nbsp; <b>ADR:</b> $339<br>       <b>Occupancy:</b> 50.7%<br>       <b>Size:</b> 5BR / Sleeps 16 / 3.5 baths<br>       <b>ZIP:</b> 28208<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/51823657" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_e48c862be461401bbb228b12d7bed1c3.setContent(html_a73a9cb47c6e0fd18117eb4b8dc5f97d);
+            
+        
+
+        circle_marker_a733f0998b962b2e358bcb00f2acea80.bindPopup(popup_e48c862be461401bbb228b12d7bed1c3)
+        ;
+
+        
+    
+    
+            circle_marker_a733f0998b962b2e358bcb00f2acea80.bindTooltip(
+                `<div>
+                     Dual Kitchens, Fire Pit, Parking | Near airport -- $62,811
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9976208c2e910f424266f0b3acea9042 = L.circleMarker(
+                [35.2385, -80.8617],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_61167962f838c2f80eed4516ad3516c1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e16f064ab13d4abcda8ff671f6c75123 = $(`<div id="html_e16f064ab13d4abcda8ff671f6c75123" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Uptown Getaway</b><br>       <b>Revenue:</b> $62,720 &nbsp;|&nbsp; <b>ADR:</b> $322<br>       <b>Occupancy:</b> 53.0%<br>       <b>Size:</b> 5BR / Sleeps 9 / 3.5 baths<br>       <b>ZIP:</b> 28208<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1252337606479111653" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_61167962f838c2f80eed4516ad3516c1.setContent(html_e16f064ab13d4abcda8ff671f6c75123);
+            
+        
+
+        circle_marker_9976208c2e910f424266f0b3acea9042.bindPopup(popup_61167962f838c2f80eed4516ad3516c1)
+        ;
+
+        
+    
+    
+            circle_marker_9976208c2e910f424266f0b3acea9042.bindTooltip(
+                `<div>
+                     Uptown Getaway -- $62,720
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f2742f6c517123a5b9a2b79fff765d3a = L.circleMarker(
+                [35.26219, -80.91176],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_0c60d53de8c38728381716cd6198e7ff = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_45f71565bf46d6ee24775378072e9912 = $(`<div id="html_45f71565bf46d6ee24775378072e9912" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>5bd Vibrant Haven: Basketball | 10mins to Airport</b><br>       <b>Revenue:</b> $62,132 &nbsp;|&nbsp; <b>ADR:</b> $331<br>       <b>Occupancy:</b> 51.4%<br>       <b>Size:</b> 5BR / Sleeps 10 / 3 baths<br>       <b>ZIP:</b> 28208<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1101666466106679291" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_0c60d53de8c38728381716cd6198e7ff.setContent(html_45f71565bf46d6ee24775378072e9912);
+            
+        
+
+        circle_marker_f2742f6c517123a5b9a2b79fff765d3a.bindPopup(popup_0c60d53de8c38728381716cd6198e7ff)
+        ;
+
+        
+    
+    
+            circle_marker_f2742f6c517123a5b9a2b79fff765d3a.bindTooltip(
+                `<div>
+                     5bd Vibrant Haven: Basketball | 10mins to Airport -- $62,132
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cae1f51e6574674033f20c3e33500a70 = L.circleMarker(
+                [35.25864, -80.83415],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D9992E", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_665d362d31980d968665bd14af3b1d33 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_68b0d9f09c0463181a6134fc1ae9e171 = $(`<div id="html_68b0d9f09c0463181a6134fc1ae9e171" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Modern 5 Bdrm Uptown Home Perfect for Large Groups</b><br>       <b>Revenue:</b> $57,999 &nbsp;|&nbsp; <b>ADR:</b> $514<br>       <b>Occupancy:</b> 31.4%<br>       <b>Size:</b> 5BR / Sleeps 10 / 4 baths<br>       <b>ZIP:</b> 28206<br>       <b>Tier:</b> Top 25% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/639938483698933081" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_665d362d31980d968665bd14af3b1d33.setContent(html_68b0d9f09c0463181a6134fc1ae9e171);
+            
+        
+
+        circle_marker_cae1f51e6574674033f20c3e33500a70.bindPopup(popup_665d362d31980d968665bd14af3b1d33)
+        ;
+
+        
+    
+    
+            circle_marker_cae1f51e6574674033f20c3e33500a70.bindTooltip(
+                `<div>
+                     Modern 5 Bdrm Uptown Home Perfect for Large Groups -- $57,999
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8de41024e79f0ad11256ffce0ce4db88 = L.circleMarker(
+                [35.23368, -80.85426],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#AAB4BC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_9f27aace08339000b4df713c9981ef4f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_66c98b0093cfe29cc8f694fd1127dc8b = $(`<div id="html_66c98b0093cfe29cc8f694fd1127dc8b" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Uptown Hot Spot | Walk to Everything</b><br>       <b>Revenue:</b> $46,684 &nbsp;|&nbsp; <b>ADR:</b> $563<br>       <b>Occupancy:</b> 23.5%<br>       <b>Size:</b> 5BR / Sleeps 12 / 2 baths<br>       <b>ZIP:</b> 28202<br>       <b>Tier:</b> Other 75% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1005261131730210520" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_9f27aace08339000b4df713c9981ef4f.setContent(html_66c98b0093cfe29cc8f694fd1127dc8b);
+            
+        
+
+        circle_marker_8de41024e79f0ad11256ffce0ce4db88.bindPopup(popup_9f27aace08339000b4df713c9981ef4f)
+        ;
+
+        
+    
+    
+            circle_marker_8de41024e79f0ad11256ffce0ce4db88.bindTooltip(
+                `<div>
+                     Uptown Hot Spot | Walk to Everything -- $46,684
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c37ff44206c3995bd0474e8fd426d046 = L.circleMarker(
+                [35.33112, -80.95911],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#AAB4BC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_8b494f5383a6b0d2163f228a1feb0def = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_67e2e97f3b12f892f478afcb58d7d2da = $(`<div id="html_67e2e97f3b12f892f478afcb58d7d2da" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Spacious 5BR Home Near Airport &amp; Uptown Long Stays</b><br>       <b>Revenue:</b> $42,529 &nbsp;|&nbsp; <b>ADR:</b> $476<br>       <b>Occupancy:</b> 26.9%<br>       <b>Size:</b> 5BR / Sleeps 14 / 3 baths<br>       <b>ZIP:</b> 28214<br>       <b>Tier:</b> Other 75% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/48029811" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_8b494f5383a6b0d2163f228a1feb0def.setContent(html_67e2e97f3b12f892f478afcb58d7d2da);
+            
+        
+
+        circle_marker_c37ff44206c3995bd0474e8fd426d046.bindPopup(popup_8b494f5383a6b0d2163f228a1feb0def)
+        ;
+
+        
+    
+    
+            circle_marker_c37ff44206c3995bd0474e8fd426d046.bindTooltip(
+                `<div>
+                     Spacious 5BR Home Near Airport &amp; Uptown Long Stays -- $42,529
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c918aaacab6a735b29e9b461998c3279 = L.circleMarker(
+                [35.33439, -80.96021],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#AAB4BC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_c77f25bc9060468ae12d0aa076dda833 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f2b45d6459d64ef0afca58e414d0eb8b = $(`<div id="html_f2b45d6459d64ef0afca58e414d0eb8b" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Luxury 5BR Sleeps Free Parking &amp; Fast Wi-Fi</b><br>       <b>Revenue:</b> $39,818 &nbsp;|&nbsp; <b>ADR:</b> $464<br>       <b>Occupancy:</b> 26.5%<br>       <b>Size:</b> 5BR / Sleeps 16 / 3 baths<br>       <b>ZIP:</b> 28214<br>       <b>Tier:</b> Other 75% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/50892468" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_c77f25bc9060468ae12d0aa076dda833.setContent(html_f2b45d6459d64ef0afca58e414d0eb8b);
+            
+        
+
+        circle_marker_c918aaacab6a735b29e9b461998c3279.bindPopup(popup_c77f25bc9060468ae12d0aa076dda833)
+        ;
+
+        
+    
+    
+            circle_marker_c918aaacab6a735b29e9b461998c3279.bindTooltip(
+                `<div>
+                     Luxury 5BR Sleeps Free Parking &amp; Fast Wi-Fi -- $39,818
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8be7af40d5c3152862fd1690d47159a8 = L.circleMarker(
+                [35.25641, -80.85131],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#AAB4BC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_40852e82aafb6c51c9034fc48ca29801 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2c095d57c01d9750086e0118becbabcd = $(`<div id="html_2c095d57c01d9750086e0118becbabcd" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Cozy city cottage</b><br>       <b>Revenue:</b> $38,618 &nbsp;|&nbsp; <b>ADR:</b> $499<br>       <b>Occupancy:</b> 22.7%<br>       <b>Size:</b> 6BR / Sleeps 13 / 3 baths<br>       <b>ZIP:</b> 28216<br>       <b>Tier:</b> Other 75% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/968762804004766798" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_40852e82aafb6c51c9034fc48ca29801.setContent(html_2c095d57c01d9750086e0118becbabcd);
+            
+        
+
+        circle_marker_8be7af40d5c3152862fd1690d47159a8.bindPopup(popup_40852e82aafb6c51c9034fc48ca29801)
+        ;
+
+        
+    
+    
+            circle_marker_8be7af40d5c3152862fd1690d47159a8.bindTooltip(
+                `<div>
+                     Cozy city cottage -- $38,618
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3103a409dd47ce6ecb0668e4d9222e44 = L.circleMarker(
+                [35.24351, -80.91901],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#AAB4BC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 0.6}
+            ).addTo(feature_group_5e92288af33545b96784400d953f2ccd);
+        
+    
+        var popup_7e1f76f863391220d4fc5e9b52db71d6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cabf501ecf61996aad2c98fcee4f1cf7 = $(`<div id="html_cabf501ecf61996aad2c98fcee4f1cf7" style="width: 100.0%; height: 100.0%;">     <div style="font-family:-apple-system,Arial,sans-serif; font-size:12.5px; line-height:1.5; min-width:230px;">       <b>Large Groups Welcome| Spacious 5BR | Yard | Garage</b><br>       <b>Revenue:</b> $34,477 &nbsp;|&nbsp; <b>ADR:</b> $399<br>       <b>Occupancy:</b> 25.4%<br>       <b>Size:</b> 5BR / Sleeps 12 / 2.5 baths<br>       <b>ZIP:</b> 28208<br>       <b>Tier:</b> Other 75% &nbsp;|&nbsp; <b>Cluster:</b> Uptown / NoDa / South End<br>       <a href="https://www.airbnb.com/rooms/1098650697482395441" target="_blank" rel="noopener">Open listing &#8594;</a>     </div>     </div>`)[0];
+                popup_7e1f76f863391220d4fc5e9b52db71d6.setContent(html_cabf501ecf61996aad2c98fcee4f1cf7);
+            
+        
+
+        circle_marker_3103a409dd47ce6ecb0668e4d9222e44.bindPopup(popup_7e1f76f863391220d4fc5e9b52db71d6)
+        ;
+
+        
+    
+    
+            circle_marker_3103a409dd47ce6ecb0668e4d9222e44.bindTooltip(
+                `<div>
+                     Large Groups Welcome| Spacious 5BR | Yard | Garage -- $34,477
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_5e92288af33545b96784400d953f2ccd.addTo(map_023b0a5fafe6ef6a14a4ecc9396a5a0e);
+        
+    
+            var layer_control_43f585b0f40b6247effe11dcf9de81d4_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_584f3417f1f4eab3a21b63fc16d6a3d2,
+                },
+                overlays :  {
+                    "Ballantyne / Matthews / SouthPark (N=13)" : feature_group_43a1474c5b23f73d152f015fce7c0216,
+                    "East Charlotte / Mint Hill (N=12)" : feature_group_a4e172857d717c8f757fa189a9e89f2a,
+                    "Uptown / NoDa / South End (N=33)" : feature_group_5e92288af33545b96784400d953f2ccd,
+                },
+            };
+            let layer_control_43f585b0f40b6247effe11dcf9de81d4 = L.control.layers(
+                layer_control_43f585b0f40b6247effe11dcf9de81d4_layers.base_layers,
+                layer_control_43f585b0f40b6247effe11dcf9de81d4_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_023b0a5fafe6ef6a14a4ecc9396a5a0e);
+
+        
+</script>
+</html>
