@@ -238,7 +238,13 @@ const BUY_BOXES = [
       thesis:
         "Acquire a non-lake 5BR+ group house — sleeps 14+, 4+ bathrooms where possible — inside or near Uptown / NoDa / South End, built around a real outdoor-dining/backyard setup, and let group-trip demand do the work of driving occupancy.",
       whyItWorks:
-        "This size band is defined by group trips (64% group-trip share vs. 23% market-wide) and already clears the market's overall Top 10% bar at a 57% rate (N=33 of 58 non-lake listings) — far higher than 3BR (3%) or 4BR (22%). Sleeps and bathroom count both keep paying off across the whole range rather than acting as simple thresholds, and Outdoor Dining Area is the one amenity that climbs cleanly from the broader population toward the Top 10% (57% -> 76%).",
+        "This size band already clears the market's Top 10% bar at a 57% rate — the evidence, in brief:" +
+        "<ul>" +
+        "<li><strong>Group-trip market</strong> — 64% group-trip share vs. 23% market-wide; this is a party-house product, not a family-vacation one.</li>" +
+        "<li><strong>57% clear the market's Top 10%</strong> (N=33 of 58 non-lake) — far above 3BR (3%) or 4BR (22%).</li>" +
+        "<li><strong>Sleeps and bathrooms keep paying off</strong> across the whole range, not just as thresholds to clear.</li>" +
+        "<li><strong>Outdoor Dining Area</strong> is the one amenity that climbs cleanly toward the Top 10% (57% → 76%).</li>" +
+        "</ul>",
       heroImage: pendingPhoto("https://www.airbnb.com/rooms/825605026061987286", "Charlotte 5BR+ hero photo — not yet curated; linked to the market's highest-revenue 5BR+ listing"),
       chips: [
         { label: "5+ bedrooms" },
@@ -292,9 +298,19 @@ const BUY_BOXES = [
     },
 
     locationGuidance: {
-      recommended: "Uptown / NoDa / South End carries by far the most non-lake 5BR+ inventory (N=33 of 58) even though its Top 10% hit rate (52%) is the lowest of the three clusters — it's the volume base for this buy box. East Charlotte / Mint Hill posts the strongest Top 10% hit rate of the three (67%, N=12) — consistent with its characterization in the market overview as Charlotte's \"event-house\" cluster (lowest occupancy, tied-highest sleeps, listing titles that read as party-venue rentals for weddings/reunions). Ballantyne / Matthews / SouthPark sits in between (62%, N=13).",
-      caution: "Every cluster here clears a majority Top 10% hit rate — even the weakest of the three, Uptown / NoDa / South End, still reaches 52%. The gap between clusters is real but graded, not a hard geographic cutoff, and per-cluster N (12-33) is decent but not statistically deep the way the ZIP-level cuts are for the larger 3BR/4BR buy boxes once those are built out.",
-      diligence: "Steele Creek / Lake Wylie geography is deliberately NOT treated as a location advantage in this buy box — its strength in the market overview is driven by the lake/waterfront amenity flag, which this buy box removes by design (see Geo Considerations below and the bonus Lake buy box).",
+      recommended:
+        "Three non-lake clusters, ranked by Top 10% hit rate:" +
+        "<ul>" +
+        "<li>🥇 <strong>East Charlotte / Mint Hill</strong> — N=12, <strong>67%</strong> Top 10% hit rate. Charlotte's \"event-house\" cluster — lowest occupancy, tied-highest sleeps, party-venue listing titles (weddings, reunions).</li>" +
+        "<li>🥈 <strong>Ballantyne / Matthews / SouthPark</strong> — N=13, <strong>62%</strong> Top 10% hit rate. Sits in between on both counts.</li>" +
+        "<li>🥉 <strong>Uptown / NoDa / South End</strong> — N=33, <strong>52%</strong> Top 10% hit rate. The volume base (57% of this buy box's inventory), not the top performer.</li>" +
+        "</ul>",
+      caution:
+        "<ul>" +
+        "<li>Every cluster clears a <strong>majority</strong> Top 10% hit rate — even the weakest, Uptown / NoDa / South End, still reaches 52%. The gap is real but graded, not a hard geographic cutoff.</li>" +
+        "<li>Per-cluster N (12-33) is decent but not as statistically deep as the ZIP-level cuts planned for the 3BR/4BR buy boxes.</li>" +
+        "</ul>",
+      diligence: "<strong>Steele Creek / Lake Wylie geography is deliberately excluded</strong> as a location advantage here — its strength is driven by the lake/waterfront amenity flag, which this buy box screens out by design (see Geo Considerations and the bonus Lake buy box).",
       interactiveMapUrl: "assets/5br/charlotte_5br_interactive_map.html",
     },
 
@@ -329,15 +345,19 @@ const BUY_BOXES = [
     },
 
     travelerICP: {
-      primary: "Large groups — weddings, reunions, milestone-birthday parties, and multi-family group trips, not a family-vacation-first product.",
-      secondary: "Kids-share is present (20% market-wide within this buy box) but is not the defining traveler type at this size band.",
+      primary: "🎉 <strong>Large groups</strong> — weddings, reunions, milestone-birthday parties, and multi-family trips. Not a family-vacation-first product.",
+      secondary:
+        "<ul>" +
+        "<li>Kids-share is present (20%) but is <strong>not</strong> the defining traveler type at this size band.</li>" +
+        "<li>Group-trip share is a trait of the <strong>whole</strong> 5BR+ segment, not something that concentrates further at the very top (64% baseline → 62% at Top 10%, essentially flat).</li>" +
+        "</ul>",
       stats: [
         { label: "Group-trip share (non-lake 5BR+)", value: "64%", compare: "vs. 23% Charlotte market-wide" },
         { label: "Group-trip share (Top 10% of this buy box)", value: "62%", compare: "essentially flat vs. the 64% baseline" },
         { label: "Stayed-with-kids share", value: "20%", compare: "21% at Top 10% — present, not dominant" },
         { label: "Non-lake 5BR+ population", value: "N=58" },
       ],
-      note: "Group-trip orientation is a trait of the whole 5BR+ size band, not something that further concentrates at the very top — it's already the defining characteristic before you even get to the Top 10%.",
+      note: "Bottom line: this is already a group-trip product at every tier, not just at the top.",
     },
 
     // Amenity Stack — Fire Pit / Pack 'N Play / Outdoor Dining Area findings,

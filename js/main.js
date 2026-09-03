@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderRevenueDistributionChart();
   renderDemographicsPieChart();
   renderDemographicsStackedBarChart();
-  initMap();
+  renderLocationInterpretation();
   initNav();
   initLightbox();
 });

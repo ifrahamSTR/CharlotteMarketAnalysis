@@ -52,17 +52,55 @@ state/market, so:
   hardcoded `", VA "` in `render.js`/`map.js` was replaced with
   `", " + MAP_CONFIG.stateAbbr + " "`.
 - `MAP_CONFIG.marketInterpretation` was added in `data.js` (the actual
-  Charlotte cluster sentence), and `map.js`'s `mapInterpretationHtml()` now
-  reads it instead of a hardcoded sentence.
+  Charlotte cluster sentence).
+- `renderDeclarations()`/`renderDeepDiveTabs()` in `render.js` both assumed
+  `BUY_BOXES[0]` was always the "developed" entry (true for the reference
+  site, where every buy box was developed) — hardcoding "— Developed" on
+  every declaration card and defaulting tab-bar highlighting to index 0.
+  Once Charlotte had pending boxes ordered before its one developed box,
+  this became a real, visible bug (the active tab and the content shown
+  disagreed). Both functions now check `box.status` / compute the actual
+  default box instead of assuming index 0.
+- **Section 3's map was swapped out entirely.** The reference site's native
+  Leaflet market-wide tier map (`js/map.js`'s `initMap()`, reading
+  `data/listings.json`) has been replaced with an `<iframe>` embed of
+  `assets/overview/charlotte_overview_map.html` — the market-wide cluster +
+  landmark map already built in `charlotte_overview.ipynb` (Top 10% split
+  into 4 named clusters, plus toggleable Airport/Banking/Sports landmark
+  layers). It's a strictly richer map for the same market-wide purpose, and
+  it's real, already-verified content rather than something built fresh for
+  the page. `js/map.js`'s `initMap()` is consequently unused (the `#leaflet-
+  map` container it targets no longer exists in `index.html`, so it now
+  no-ops) — kept in place rather than deleted, in case a native filterable
+  map is wanted again later (see "How to extend"). A new tiny function,
+  `renderLocationInterpretation()` in `render.js`, prints
+  `MAP_CONFIG.marketInterpretation` under the embedded map; it's called from
+  `main.js` in place of the old `initMap()` call.
 
 No other line of `render.js`, `map.js`, `charts.js`, `main.js`, or
-`css/styles.css` was touched — they are byte-for-byte copies of the
-reference site's files. `js/render.js`'s `fourBrCompMapBlock()`/
+`css/styles.css` was touched beyond the above (one added `.embedded-map--tall`
+CSS rule for the taller Section-3 iframe) — everything else is a byte-for-byte
+copy of the reference site's files. `js/render.js`'s `fourBrCompMapBlock()`/
 `oneTwoBrCompMapBlock()` and `js/map.js`'s corresponding init/cleanup
 functions are Shenandoah-specific (4BR/1-2BR embedded Leaflet comp maps) and
 are unused dead code here — the 5BR+ deep dive embeds its own standalone
 map instead (see below), so nothing in `buyBoxSections` references those
 section keys.
+
+## Content style: compact, bulleted narrative fields
+
+Every narrative string in `data.js` (thesis, `whyItWorks`, `recommended`,
+`caution`, etc.) is rendered via `innerHTML`, not `textContent` — this was
+already true in the reference site, just not used for anything beyond plain
+paragraphs there. The 5BR+ buy box's `overview.whyItWorks`,
+`locationGuidance.recommended`/`caution`, and `travelerICP.secondary` fields
+embed real `<ul><li>` HTML directly in the string (bold lead-ins via
+`<strong>`, a medal emoji per cluster rank in `recommended`) instead of one
+dense paragraph each — no `render.js` change was needed for this, it's a
+content-only pattern. **This is the template going forward**: when 3BR/4BR/
+Lake get built out, write their Overview/Location/Traveler narrative fields
+the same way — a short lead-in sentence (if any) plus a tight 2-4 item
+bullet list, not a wall of text.
 
 ## Architecture
 
@@ -84,7 +122,10 @@ section keys.
 - **`js/map.js`** — Leaflet/OpenStreetMap map reading `data/listings.json`,
   filterable by revenue tier (top10/top25/bottom75, market-wide), plus a
   ZIP-area overlay toggle (approximate centroid+radius circles, same
-  documented limitation as the reference site — see below).
+  documented limitation as the reference site — see below). **Currently
+  unused** on this page — Section 3 embeds `charlotte_overview_map.html`
+  instead (see "Code changes from the reference site" above) — kept working
+  and in place as a documented fallback/extension point, not deleted.
 - **`js/main.js`** — bootstraps everything on `DOMContentLoaded`; nav
   scroll-spy; lightbox open/close wiring. Unmodified from the reference site.
 - **`css/styles.css`** — the whole design system. Unmodified from the

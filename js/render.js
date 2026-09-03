@@ -215,6 +215,21 @@ function renderMarketOverview() {
 }
 
 // ---------------------------------------------------------------------------
+// Section 3 — Location analysis interpretation. The map itself is now the
+// embedded, self-contained cluster+landmark map built in
+// charlotte_overview.ipynb (assets/overview/charlotte_overview_map.html,
+// via the <iframe> in index.html) rather than a native Leaflet map driven by
+// map.js/data/listings.json -- that map already carries its own legend and
+// layer-toggle controls, so all this needs to do is print the market-wide
+// takeaway sentence.
+// ---------------------------------------------------------------------------
+function renderLocationInterpretation() {
+  const host = document.getElementById("map-interpretation");
+  if (!host || !MAP_CONFIG.marketInterpretation) return;
+  host.innerHTML = "<p>" + MAP_CONFIG.marketInterpretation + "</p>";
+}
+
+// ---------------------------------------------------------------------------
 // Section 4 — Traveller Demographics prose (charts themselves live in charts.js)
 // ---------------------------------------------------------------------------
 function renderDemographics() {

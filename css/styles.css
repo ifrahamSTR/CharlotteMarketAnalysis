@@ -192,6 +192,7 @@ img { max-width: 100%; display: block; }
 
 /* ==== Embedded maps (in-page, not an external link) ==== */
 .embedded-map { width: 100%; height: 480px; border: 0; border-radius: var(--radius); box-shadow: var(--shadow); margin-top: 16px; }
+.embedded-map--tall { height: 640px; }
 
 /* ==== Acquisition candidate cards ==== */
 .candidate-card { background: color-mix(in srgb, var(--brand-forest) 3%, white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
