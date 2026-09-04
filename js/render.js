@@ -220,13 +220,18 @@ function renderMarketOverview() {
 // charlotte_overview.ipynb (assets/overview/charlotte_overview_map.html,
 // via the <iframe> in index.html) rather than a native Leaflet map driven by
 // map.js/data/listings.json -- that map already carries its own legend and
-// layer-toggle controls, so all this needs to do is print the market-wide
-// takeaway sentence.
+// layer-toggle controls, so this just prints the market-wide takeaway
+// sentence plus a compact one-line-per-cluster bullet list underneath.
 // ---------------------------------------------------------------------------
 function renderLocationInterpretation() {
   const host = document.getElementById("map-interpretation");
-  if (!host || !MAP_CONFIG.marketInterpretation) return;
-  host.innerHTML = "<p>" + MAP_CONFIG.marketInterpretation + "</p>";
+  if (!host) return;
+  let html = "";
+  if (MAP_CONFIG.marketInterpretation) html += "<p>" + MAP_CONFIG.marketInterpretation + "</p>";
+  if (MAP_CONFIG.clusterBullets && MAP_CONFIG.clusterBullets.length) {
+    html += "<ul>" + MAP_CONFIG.clusterBullets.map((b) => "<li>" + b + "</li>").join("") + "</ul>";
+  }
+  host.innerHTML = html;
 }
 
 // ---------------------------------------------------------------------------

@@ -147,7 +147,16 @@ const MAP_CONFIG = {
     bottom75: "Bottom 75%",
   },
   marketInterpretation:
-    "The market's top 10% (P90 = $78,801) clusters most heavily around Uptown / NoDa / South End, with additional concentrations in Steele Creek / Lake Wylie, Ballantyne / Matthews / SouthPark, and East Charlotte / Mint Hill (see the 5BR+ deep dive for the full 4-cluster breakdown); use this as market context while bedroom-specific comp sets live in their own deep-dive sections.",
+    "The market's top 10% (P90 = $78,801, N=72) splits into four geographic clusters, each with its own character:",
+  // One line per Top 10% cluster (N, median revenue, and the distinguishing
+  // trait from charlotte_overview.ipynb's cluster story text), rendered as a
+  // bullet list under the map by renderLocationInterpretation() in render.js.
+  clusterBullets: [
+    "🏙️ <strong>Uptown / NoDa / South End</strong> — the volume leader: N=36 (half of all Top 10% listings), median $100,956, 92% Superhosts.",
+    "🌊 <strong>Steele Creek / Lake Wylie</strong> — smallest by count, highest earner: N=9, median $126,895 — driven by the lake/waterfront amenity, not just geography.",
+    "🏡 <strong>Ballantyne / Matthews / SouthPark</strong> — the steadiest performer: highest occupancy (63%) but the lowest ADR ($404) of the four.",
+    "🎉 <strong>East Charlotte / Mint Hill</strong> — the event-house cluster: lowest occupancy (55%), tied-highest sleeps (12) — party-venue listings, not steady weekday demand.",
+  ],
   // No embedded per-buy-box Leaflet comp map is used on this page yet (the
   // 5BR+ deep dive below embeds its own standalone folium map instead, via
   // locationGuidance.interactiveMapUrl) -- kept as an empty object, not
