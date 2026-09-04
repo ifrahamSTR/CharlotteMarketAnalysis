@@ -228,8 +228,8 @@ function renderLocationInterpretation() {
   if (!host) return;
   let html = "";
   if (MAP_CONFIG.marketInterpretation) html += "<p>" + MAP_CONFIG.marketInterpretation + "</p>";
-  if (MAP_CONFIG.clusterBullets && MAP_CONFIG.clusterBullets.length) {
-    html += "<ul>" + MAP_CONFIG.clusterBullets.map((b) => "<li>" + b + "</li>").join("") + "</ul>";
+  if (MAP_CONFIG.regionBullets && MAP_CONFIG.regionBullets.length) {
+    html += "<ul>" + MAP_CONFIG.regionBullets.map((b) => "<li>" + b + "</li>").join("") + "</ul>";
   }
   host.innerHTML = html;
 }

@@ -90,11 +90,7 @@ function renderRevenueDistributionChart() {
       fmtCurrency(dist.p90) +
       ") pulls away sharply from the median (" +
       fmtCurrency(dist.medianRevenue) +
-      "). This buy box is built around that top band, not the median — the 4BR segment alone already runs hotter than the full market (4BR median " +
-      fmtCurrency(dist.bedroom4.median) +
-      ", 4BR P90 " +
-      fmtCurrency(dist.bedroom4.p90) +
-      "), and the core comp set inside this deep dive sits inside or above the 4BR top decile.";
+      "). All three of this market's buy boxes are built around that top band, not the median — see the map below for how it splits by region.";
   }
 }
 
