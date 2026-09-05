@@ -154,7 +154,7 @@ const MAP_CONFIG = {
     bottom75: "Bottom 75%",
   },
   marketInterpretation:
-    "The map shows two independent toggles: <strong>revenue tier</strong> (Top 10% / Top 25% / Other 75%, market-wide) and <strong>region</strong> — a geography-based split (Downtown / Uptown, Outskirts, Lakeside) from a teammate's independent analysis of the same 719 listings, now the basis for this market's buy-box structure:",
+    "The map combines two filters (check both a tier and a region to isolate a slice — e.g. Top 10% + Lakeside): <strong>revenue tier</strong> (Top 10% / Top 25% / Other 75%, market-wide) and <strong>region</strong> — a geography-based split (Downtown / Uptown, Outskirts, Lakeside) from a teammate's independent analysis of the same 719 listings, now the basis for this market's buy-box structure:",
   // One line per region (N, Top 10% hit rate, and the distinguishing trait
   // from charlotte_overview.ipynb's region story text), rendered as a bullet
   // list under the map by renderLocationInterpretation() in render.js.

@@ -71,29 +71,41 @@ state/market, so:
   first fixed — **all three current buy boxes are pending**, so this logic
   falls back to `BUY_BOXES[0]` (Downtown / Uptown) as the default tab, and
   does so correctly.
-- **Section 3's map was swapped out entirely**, twice. First, the
-  reference site's native Leaflet market-wide tier map (`js/map.js`'s
-  `initMap()`, reading `data/listings.json`) was replaced with an
-  `<iframe>` embed of `assets/overview/charlotte_overview_map.html` — a
-  folium map built in `charlotte_overview.ipynb`. That map originally split
-  only the Top 10% into four KMeans-derived micro-clusters (Uptown/NoDa/
-  South End, Steele Creek/Lake Wylie, Ballantyne/Matthews/SouthPark, East
-  Charlotte/Mint Hill); it was then rebuilt again to plot **all 719
-  listings** on **two independent toggle axes** — revenue tier (Top 10% /
-  Top 25% / Other 75%) and Walid's region classification (Downtown/Uptown,
-  Outskirts, Lakeside) — once the team adopted the region-based buy-box
-  structure. The two axes are independent overlays, not a combined filter:
-  each listing is plotted once per axis (twice total), sharing the same
-  tier-based color/size styling, so an overlapping pair reads as one marker
-  when both relevant layers are visible. `js/map.js`'s `initMap()` is
-  consequently unused (the `#leaflet-map` container it targets no longer
-  exists in `index.html`, so it now no-ops) — kept in place rather than
-  deleted, in case a native filterable map is wanted again later (see "How
-  to extend"). A small function, `renderLocationInterpretation()` in
-  `render.js`, prints `MAP_CONFIG.marketInterpretation` plus
-  `MAP_CONFIG.regionBullets` (renamed from `clusterBullets` when the map
-  pivoted to regions) under the embedded map; it's called from `main.js` in
-  place of the old `initMap()` call.
+- **Section 3's map was swapped out entirely**, and rebuilt twice more.
+  First, the reference site's native Leaflet market-wide tier map
+  (`js/map.js`'s `initMap()`, reading `data/listings.json`) was replaced
+  with an `<iframe>` embed of `assets/overview/charlotte_overview_map.html`
+  — a folium map built in `charlotte_overview.ipynb`. That map originally
+  split only the Top 10% into four KMeans-derived micro-clusters
+  (Uptown/NoDa/South End, Steele Creek/Lake Wylie, Ballantyne/Matthews/
+  SouthPark, East Charlotte/Mint Hill); it was then rebuilt to plot **all
+  719 listings**, first as two *independent* toggle axes (revenue tier and
+  Walid's region classification, each listing plotted twice), then rebuilt
+  again into a **combined AND filter**: one marker per listing (no
+  duplication), added directly to the map rather than into folium
+  `FeatureGroup`s, with a small custom JS panel (checkboxes for the 3 tiers
+  and 3 regions, bottom-left) that shows a listing only when *both* its
+  tier checkbox and its region checkbox are checked — e.g. checking only
+  "Top 10%" and "Lakeside" isolates exactly that region's top performers
+  (verified: 8 markers, matching the notebook's own count). Folium's native
+  `LayerControl` (top-right) still handles the 3 landmark overlays
+  independently, since those aren't part of the tier/region filter. Getting
+  this right took two passes: a first attempt referenced the map's JS
+  variable before it was defined on the page (a script-ordering bug, fixed
+  by deferring the filter setup to `window.addEventListener("load", ...)`),
+  and a second attempt had an f-string brace-escaping bug in the fix itself
+  (`});` instead of `}});`) — both caught by testing the actual filter
+  behavior in a browser (via `path.leaflet-interactive` DOM counts), not
+  just checking that the notebook executed without error. `js/map.js`'s
+  `initMap()` is consequently unused (the `#leaflet-map` container it
+  targets no longer exists in `index.html`, so it now no-ops) — kept in
+  place rather than deleted, in case a native filterable map is wanted
+  again later (see "How to extend"). A small function,
+  `renderLocationInterpretation()` in `render.js`, prints
+  `MAP_CONFIG.marketInterpretation` plus `MAP_CONFIG.regionBullets`
+  (renamed from `clusterBullets` when the map pivoted to regions) under the
+  embedded map; it's called from `main.js` in place of the old `initMap()`
+  call.
 
 No other line of `render.js`, `map.js`, `charts.js`, `main.js`, or
 `css/styles.css` was touched beyond the above (one added `.embedded-map--tall`
