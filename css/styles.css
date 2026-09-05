@@ -252,6 +252,18 @@ img { max-width: 100%; display: block; }
 .photo-figure--wide .photo-figure__trigger { aspect-ratio: auto; }
 .photo-figure--wide .photo-figure__trigger img { width: 100%; height: auto; object-fit: contain; }
 
+/* Nice-to-Have, Ranked (Clearwater's 5BR structure): a scored, ordered list. */
+.nice-ranked { margin-top: 20px; }
+.nice-ranked__item { background: var(--color-surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px 18px; margin-top: 12px; }
+.nice-ranked__item--thin { background: color-mix(in srgb, var(--color-text-muted) 6%, white); box-shadow: none; border: 1px dashed var(--color-border); }
+.nice-ranked__head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.nice-ranked__rank { font-weight: 700; color: var(--color-text-muted); min-width: 2em; }
+.nice-ranked__name { font-weight: 700; color: var(--color-primary); font-size: 1.05rem; }
+.nice-ranked__score { margin-left: auto; background: var(--color-primary); color: white; border-radius: 999px; padding: 3px 12px; font-size: 0.8rem; font-weight: 600; }
+.nice-ranked__badge { margin-left: auto; background: color-mix(in srgb, var(--color-text-muted) 15%, white); color: var(--color-text-muted); border-radius: 999px; padding: 3px 12px; font-size: 0.8rem; font-weight: 600; }
+.nice-ranked__stats { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 8px; font-size: 0.88rem; color: var(--color-text-muted); }
+.nice-ranked__stats strong { color: var(--color-text); }
+
 .lightbox { position: fixed; inset: 0; background: rgba(18,38,31,0.92); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; z-index: 100; padding: 24px; }
 .lightbox--open { opacity: 1; pointer-events: auto; }
 .lightbox__figure { max-width: 90vw; max-height: 90vh; margin: 0; text-align: center; }

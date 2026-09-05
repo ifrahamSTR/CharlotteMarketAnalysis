@@ -45,13 +45,23 @@ reference site" below for the functional edits made.
   those listings have neither flag set — which resolved the sample-size
   objection and is why Lake now sits alongside Downtown/Uptown and Outskirts
   as a core box rather than a cross-cutting bonus.
-- **Lake's bedroom/bathroom/sleeps capacity analysis is built**, even though
-  Lake is still a "pending" tab overall — see `../notebooks/
-  charlotte_lake_buybox.ipynb` and the "Pending boxes can show real partial
-  evidence" section below for how a pending box shows this without claiming
-  to be a full deep dive. Two real room photos (a bunk room and the comp
-  set's first property) and the capacity chart are the only images on this
-  page for Lake — comp-set-wide photography and amenity evidence are still
+- **Lake's bedroom/bathroom/sleeps capacity analysis AND amenity analysis
+  are both built**, even though Lake is still a "pending" tab overall — see
+  `../notebooks/charlotte_lake_buybox.ipynb` and the "Pending boxes can show
+  real partial evidence" section below for how a pending box shows this
+  without claiming to be a full deep dive. Capacity charts follow the same
+  2-part (median revenue, then Top 25%/10% hit rate) structure used for
+  Shenandoah's 3BR buy box; amenity prevalence-by-tier and the presence
+  heatmap likewise follow Shenandoah's 3BR comp-set amenity-analysis
+  structure (adapted to Lakeside's full 39-listing population and
+  market-wide tiers, since Lake doesn't have an analyst-curated, tiered comp
+  set yet); the ranked nice-to-have list (`niceToHaveRanked`) follows
+  Clearwater's 5BR structure (score / revenue uplift / hit-rate uplift / N
+  per item, thin-data items flagged rather than dropped). Two real room
+  photos (a bunk room and the comp set's first property) are the only
+  property photos on this page for Lake — every `niceToHaveRanked` item has
+  an empty `images: []` slot ready for reference photos once supplied;
+  analyst-reviewed, execution-tiered comp-set photo evidence is still
   pending.
 - **Curated property photography, design comps, and acquisition-candidate
   screening remain deferred for Downtown/Uptown and Outskirts**, and for
@@ -139,14 +149,28 @@ optional fields alongside the original `pendingNote` on a pending box:
   developed box's photos use (same 4:3-cropped grid, same click-to-enlarge).
   Right for property photos.
 - **`pendingCharts`** — same idea, but for wide analysis figures (e.g. a
-  2-panel matplotlib chart). The 4:3-cropped photo grid badly clips a wide
+  4-panel matplotlib chart). The 4:3-cropped photo grid badly clips a wide
   chart, so this renders through a new `renderWideImageBlock()` instead: one
   full-width, uncropped figure per row (`photo-figure--wide` in
   `styles.css`, a real, deliberately scoped CSS addition — `aspect-ratio:
   auto` and `object-fit: contain` instead of the 4:3 `cover` crop). Still
   goes through the same lightbox.
+- **`niceToHaveRanked`** — a fourth optional field, also read on a
+  *developed* box via `amenityStackBlock()` (so it isn't pending-only): a
+  scored, ordered amenity list matching Clearwater's 5BR structure. Each
+  item is `{ name, score, revenueUplift, p90Uplift, n, note, images }`, or
+  `{ name, n, thinData: true, note, images }` for an amenity too thin to
+  rank (still shown, not dropped — `.nice-ranked__item--thin` renders it
+  visually de-emphasized: dashed border, muted background, a "Thin data"
+  badge instead of a score). `note` alone carries the explanation for a
+  thin item — `niceToHaveRankedItem()` does not also auto-generate an N
+  line, to avoid saying the same thing twice (an early version of Lake's
+  page did exactly that; fixed by testing the actual rendered page, not
+  just re-reading the code). `images` is always present, even if empty —
+  Lake's 18 items all currently have `images: []`, ready for reference
+  photos to be dropped in per item later.
 
-All three are optional and additive — a box that only sets `pendingNote`
+All four are optional and additive — a box that only sets `pendingNote`
 (the common case: Downtown/Uptown, Outskirts) renders exactly as before.
 One more small fix that came out of building this: `.deep-dive--pending`'s
 `text-align: center` (fine for a short one-line note) reads badly for a

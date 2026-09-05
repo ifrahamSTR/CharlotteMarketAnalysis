@@ -246,24 +246,66 @@ const BUY_BOXES = [
       primaryRequirement: "Sleeps 8+ and 2+ bathrooms are both hard floors — 0% of Lakeside listings below either has ever reached the market's Top 10%",
     },
 
-    // Bedroom/bathroom/sleeps capacity analysis is built (see
-    // charlotte_lake_buybox.ipynb); comp set and full amenity/photo evidence
-    // are still pending. A pending box can still show this real, finished
-    // slice of evidence -- pendingIntro/pendingImages render above
-    // pendingNote (see renderDeepDive's pending branch in render.js) without
-    // the box claiming to be a full "developed" deep dive.
+    // Bedroom/bathroom/sleeps capacity analysis AND amenity analysis are
+    // built (see charlotte_lake_buybox.ipynb); analyst-reviewed, tiered
+    // comp-set photo evidence is still pending. A pending box can still show
+    // this real, finished slice of evidence -- pendingIntro/pendingImages/
+    // pendingCharts/niceToHaveRanked render above pendingNote (see
+    // renderDeepDive's pending branch in render.js) without the box
+    // claiming to be a full "developed" deep dive.
     pendingIntro:
-      "Lake is scoped in ../notebooks/charlotte_overview.ipynb (\"Why Lake Is Now a Core Buy Box, Not a Bonus\") — N=39, defined by the Lakeside region's geography (the pocket near Lake Wylie / Mountain Island) rather than the HAS_waterfront/HAS_lake_access amenity flags alone (which alone covered only N=27, too thin to underwrite on its own). The bedroom/bathroom/sleeps capacity analysis below is built; comp set and full amenity/photo evidence are still pending.",
+      "Lake is scoped in ../notebooks/charlotte_overview.ipynb (\"Why Lake Is Now a Core Buy Box, Not a Bonus\") — N=39, defined by the Lakeside region's geography (the pocket near Lake Wylie / Mountain Island) rather than the HAS_waterfront/HAS_lake_access amenity flags alone (which alone covered only N=27, too thin to underwrite on its own). The bedroom/bathroom/sleeps capacity analysis and the amenity analysis below are both built; analyst-reviewed comp-set photo evidence is still pending.",
 
     pendingImages: [
       photo("lake/rooms/bunk-room.avif", "Built-in dual bunk room with four beds and access ladders", "A built-in bunk room — real, dedicated sleep capacity like this is one legitimate way to clear the sleeps 8+ floor below. Bunk density itself doesn't predict revenue on its own (see the beds-per-bedroom finding in the notebook)."),
       photo("lake/rooms/comp-primary-bedroom.avif", "Spacious primary bedroom suite with a sitting area and ensuite bathroom", "The primary bedroom from the first property in this buy box's comp set — see the full comp set link below."),
     ],
-    // Wide (non-cropped) analysis chart -- see renderWideImageBlock in
-    // render.js; a 4:3-cropped grid figure would clip this 2-panel chart.
+    // Wide (non-cropped) analysis charts -- see renderWideImageBlock in
+    // render.js; a 4:3-cropped grid figure would clip these multi-panel
+    // charts. Capacity charts follow the same 2-part (revenue, then Top
+    // 25%/10% hit rate) structure used for Shenandoah's 3BR buy box; the
+    // amenity prevalence-by-tier chart and presence heatmap likewise follow
+    // Shenandoah's 3BR comp-set amenity-analysis structure, adapted to
+    // Lakeside's full population and market-wide tiers since there's no
+    // analyst-curated, tiered comp set for Lake yet.
     pendingCharts: [
-      photo("lake/charts/bedroom_bathroom_capacity.png", "Two bar charts: Top 10% hit rate by bedroom count and by bathroom count, Lakeside region", "Lakeside (N=39): Top 10% hit rate by bedroom count (left) and bathroom count (right). 4BR+ and a 2-bath minimum (3+ preferred) are where the market's Top 10% actually shows up — 2.5 baths does not clearly beat 2.0 in this sample."),
+      photo("lake/charts/capacity_4panel.png", "Four bar charts: median revenue and Top 25%/10% hit rate, by sleeps bucket and by bathroom bucket, Lakeside region", "Lakeside (N=39): median revenue and Top 25%/10% hit rate by sleeps (top) and bathrooms (bottom). 2 baths is a real floor (0% hit rate below it); 3+ baths is the honest \"nice to have\" — 2.5 doesn't clearly beat 2.0."),
+      photo("lake/charts/capacity_by_tier.png", "Three bar charts comparing average sleeps, beds, and baths across Top 10%, Top 25%, and Other 75% revenue tiers, Lakeside region", "Average sleeps/beds/baths by market revenue tier. It's really a Top-10%-vs-everyone-else story — Top 25% is barely distinguishable from Other 75% on capacity alone, the same kind of nuance Shenandoah's own tiered comp-set check surfaced."),
+      photo("lake/charts/amenity_prevalence.png", "Horizontal bar chart of amenity prevalence by revenue tier, Lakeside region", "Amenity prevalence by tier. Fire Pit and Outdoor Dining Area are the region's most common amenities (24 of 39) — closer to table stakes than differentiators at Lakeside's current adoption level."),
+      photo("lake/charts/amenity_heatmap.png", "Grid showing which of 39 Lakeside listings have each amenity, sorted by revenue tier", "Amenity presence across all 39 Lakeside listings, sorted Top 10% → Top 25% → Other 75% (white=absent, green=present)."),
     ],
+
+    // Nice-to-Have, Ranked -- Clearwater's 5BR structure (score / revenue
+    // uplift / Top-10%-hit-rate uplift / N per item, thin-data items flagged
+    // rather than dropped). Score here is our own transparent composite
+    // (revenue uplift + hit-rate uplift + sample size, each min-max
+    // normalized across the rankable amenities) since Clearwater's exact
+    // weights weren't supplied to us -- same shape, our own math. Photos
+    // pending for every item below -- add via photo(relPath, alt, caption)
+    // into each item's `images` array once supplied.
+    niceToHaveRanked: {
+      note: "Ranked by composite score among amenities with N≥9 in Lakeside; everything thinner is flagged, not dropped, matching Clearwater's own treatment of its thin amenities (Movie Theater, Sauna, Golf Simulator). Photos pending for every item below.",
+      items: [
+        { name: "Hot Tub", score: 0.67, revenueUplift: "+191%", p90Uplift: "+74pp", n: 9, note: "By far the strongest signal in Lakeside — 78% of hot-tub-flagged listings reach the market's Top 10%, vs. 3% without. N=9 is still small; treat as directional, not proven.", images: [] },
+        { name: "Lake Access", score: 0.49, revenueUplift: "+100%", p90Uplift: "+44pp", n: 18, note: "Overlaps heavily with Waterfront (17 of 39 Lakeside listings have both) — the more useful finding is that 20 of 39 have neither flag, real room to add one.", images: [] },
+        { name: "Waterfront", score: 0.45, revenueUplift: "+81%", p90Uplift: "+44pp", n: 18, note: "Closely tracks Lake Access above; see its note.", images: [] },
+        { name: "Fire Pit", score: 0.41, revenueUplift: "+29%", p90Uplift: "+33pp", n: 24, note: "Already the region's most common amenity (24 of 39) — closer to table stakes than a differentiator at this point.", images: [] },
+        { name: "Outdoor Dining Area", score: 0.37, revenueUplift: "+40%", p90Uplift: "+23pp", n: 24, note: "Same depth of adoption as Fire Pit (24 of 39) — a real but smaller relative lift.", images: [] },
+        { name: "Pack 'N Play / Travel Crib", score: 0.12, revenueUplift: "+24%", p90Uplift: "+27pp", n: 13, note: "Weakest of the six rankable amenities — present, but not a strong differentiator here.", images: [] },
+        { name: "Crib", n: 5, thinData: true, note: "N=5, too thin to rank reliably.", images: [] },
+        { name: "Gym", n: 4, thinData: true, note: "N=4, too thin to rank reliably.", images: [] },
+        { name: "Pool", n: 3, thinData: true, note: "N=3, too thin to rank reliably.", images: [] },
+        { name: "Game Room", n: 3, thinData: true, note: "N=3, too thin to rank reliably.", images: [] },
+        { name: "Pool Table", n: 2, thinData: true, note: "N=2, too thin to rank reliably.", images: [] },
+        { name: "Pickleball", n: 1, thinData: true, note: "N=1, too thin to rank reliably.", images: [] },
+        { name: "Playground", n: 1, thinData: true, note: "N=1, too thin to rank reliably.", images: [] },
+        { name: "Sauna", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
+        { name: "Mini Golf", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
+        { name: "Movie Theater", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
+        { name: "Golf Simulator", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
+        { name: "Pool Heater", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
+      ],
+    },
 
     pendingNote:
       "<ul>" +
@@ -271,8 +313,9 @@ const BUY_BOXES = [
       "<li><strong>Bathrooms</strong> — 2 minimum, required (0% hit rate below it). 3+ is the real \"nice to have\" — 2.5 does not show a clean improvement over 2.0 in this sample.</li>" +
       "<li><strong>Sleeps</strong> — 8+ required. Every Lakeside listing that has ever reached the market's Top 10% sleeps 8 or more.</li>" +
       "<li><strong>Beds per bedroom</strong> — no requirement; bunk density doesn't predict revenue here (r=0.03).</li>" +
+      "<li><strong>Top nice-to-have amenity</strong> — Hot Tub, by a wide margin (see the ranked list below); Lake Access/Waterfront and Fire Pit/Outdoor Dining Area follow.</li>" +
       "</ul>" +
-      "<strong>Comp set:</strong> <a href=\"https://alexandria.strsearch.com/compsets?market=8&tag=7759fdb2-77e7-4e4c-8f3a-0bff87b79569&tab=view\" target=\"_blank\" rel=\"noopener\">view on Alexandria ↗</a>. 20 of the 39 Lakeside-region listings have neither the waterfront nor lake-access amenity flag set — proximity to the lake, not a tagged amenity, is what the geography captures that the flag missed. 21% Top 10% hit rate market-wide within this region, more than double Downtown's (8%), driven by ADR rather than occupancy (r=0.92 between revenue and ADR within this region). Amenity evidence and property photography beyond the two room photos above are still pending.",
+      "<strong>Comp set:</strong> <a href=\"https://alexandria.strsearch.com/compsets?market=8&tag=7759fdb2-77e7-4e4c-8f3a-0bff87b79569&tab=view\" target=\"_blank\" rel=\"noopener\">view on Alexandria ↗</a>. 20 of the 39 Lakeside-region listings have neither the waterfront nor lake-access amenity flag set — proximity to the lake, not a tagged amenity, is what the geography captures that the flag missed. 21% Top 10% hit rate market-wide within this region, more than double Downtown's (8%), driven by ADR rather than occupancy (r=0.92 between revenue and ADR within this region). Analyst-reviewed, execution-tiered comp-set photo evidence beyond the two room photos above is still pending.",
   },
 ];
 

@@ -707,6 +707,54 @@ function amenityStackBlock(box) {
     wrap.appendChild(strip);
   }
 
+  if (box.niceToHaveRanked) wrap.appendChild(niceToHaveRankedBlock(box.niceToHaveRanked));
+
+  return wrap;
+}
+
+// ---------------------------------------------------------------------------
+// Nice-to-Have, Ranked (Clearwater's 5BR structure): a scored, ordered list --
+// name, score, revenue uplift, Top-10%-hit-rate uplift, N, a note, and
+// optional reference photos per item. Thin-data items (N too small to rank)
+// are flagged, not dropped. Standalone/reusable so a still-"pending" box
+// (e.g. Lake) can show this via renderDeepDive's pending branch too, not
+// just a fully "developed" one via amenityStackBlock above.
+// ---------------------------------------------------------------------------
+function niceToHaveRankedItem(item, rank) {
+  const wrap = el("div", "nice-ranked__item" + (item.thinData ? " nice-ranked__item--thin" : ""));
+  const head = el("div", "nice-ranked__head");
+  head.appendChild(el("span", "nice-ranked__rank", item.thinData ? "—" : "#" + rank));
+  head.appendChild(el("span", "nice-ranked__name", item.name));
+  if (item.thinData) {
+    head.appendChild(el("span", "nice-ranked__badge", "Thin data"));
+  } else {
+    head.appendChild(el("span", "nice-ranked__score", "Score " + item.score.toFixed(2)));
+  }
+  wrap.appendChild(head);
+  if (!item.thinData) {
+    const stats = el("div", "nice-ranked__stats");
+    stats.innerHTML =
+      "<span>Revenue uplift: <strong>" + item.revenueUplift + "</strong></span>" +
+      "<span>Top 10% hit-rate uplift: <strong>" + item.p90Uplift + "</strong></span>" +
+      "<span>N=" + item.n + "</span>";
+    wrap.appendChild(stats);
+  }
+  // item.note carries the N/too-thin-to-rank explanation itself for thin
+  // items -- no separate auto-generated line, to avoid saying it twice.
+  if (item.note) wrap.appendChild(el("p", item.thinData ? "dd-note" : null, item.note));
+  if (item.images && item.images.length) wrap.appendChild(renderImageGrid(item.images, { small: true }));
+  return wrap;
+}
+
+function niceToHaveRankedBlock(data) {
+  const wrap = el("div", "dd-block nice-ranked");
+  wrap.appendChild(el("h4", "dd-block__title", "Nice-to-Have, Ranked"));
+  if (data.note) wrap.appendChild(el("p", "dd-note", data.note));
+  let rank = 0;
+  (data.items || []).forEach((item) => {
+    if (!item.thinData) rank += 1;
+    wrap.appendChild(niceToHaveRankedItem(item, rank));
+  });
   return wrap;
 }
 
@@ -988,6 +1036,7 @@ function renderDeepDive(box) {
     if (box.pendingCharts && box.pendingCharts.length) {
       wrap.appendChild(renderWideImageBlock(box.pendingCharts));
     }
+    if (box.niceToHaveRanked) wrap.appendChild(niceToHaveRankedBlock(box.niceToHaveRanked));
     wrap.appendChild(el("div", "dd-block__body", box.pendingNote || "This buy box has not been developed yet."));
     host.appendChild(wrap);
     return;
