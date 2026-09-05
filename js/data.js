@@ -139,6 +139,16 @@ const DEMOGRAPHICS = {
   note: "These are review-derived guest-composition signals (share of reviews mentioning stays with kids, group trips, or pets), not verified traveler demographics. Group-trip share climbs steadily and sharply with size — from near-zero at 1-2BR to 72% at 6BR+ — while stayed-with-kids share rises from 1BR through 5BR then dips slightly at 6BR+. Charlotte's larger-bedroom inventory is overwhelmingly a group-trip product, not a family-vacation-first one.",
 };
 
+// Lake buy box's Traveler ICP, as two market-wide/Lakeside-wide/Lakeside-Top-
+// 10% comparison bars (charlotte_overview.ipynb's Lakeside region review-
+// composition breakout) instead of prose -- reuses DEMOGRAPHICS.marketWide
+// as the baseline and adds the two Lakeside-specific populations. Rendered
+// by renderLakeIcpCharts() in charts.js.
+const LAKE_ICP_DEMOGRAPHICS = {
+  groupTrip: { marketWide: DEMOGRAPHICS.marketWide.group, lakesideWide: 26, lakesideTop10: 46 },
+  kids: { marketWide: DEMOGRAPHICS.marketWide.kids, lakesideWide: 21, lakesideTop10: 25 },
+};
+
 // ---------------------------------------------------------------------------
 // Section 3 — Location analysis (map)
 // ---------------------------------------------------------------------------
@@ -279,6 +289,7 @@ const BUY_BOXES = [
         images: [
           photo("lake/rooms/bunk-room.avif", "Built-in dual bunk room with four beds and access ladders", "A built-in bunk room — one legitimate way to clear the sleeps 8+ floor above."),
           photo("lake/rooms/comp-primary-bedroom.avif", "Spacious primary bedroom suite with a sitting area and ensuite bathroom", "The primary bedroom from the first property in this buy box's comp set."),
+          photo("lake/ai-gen/comp-six-bunk-room.jpg", "Six-bed, three-tier built-in bunk room", "A second real bunk room, from another of Lakeside's Top 10% comp-set listings — see ../LakeBuyBox/ai-gen/SOURCE.md for how this was sourced."),
         ],
       },
       {
@@ -299,6 +310,15 @@ const BUY_BOXES = [
         ],
       },
       { groupTitle: "Amenities" },
+      {
+        title: "Amenity Prevalence By Tier",
+        body:
+          "<p>Fire Pit, Waterfront, and Lake Access sit at 100% among Lakeside's Top 10% and fall off sharply outside it — that gap is the Must-Have list below. Everything else either stays flat across tiers (no signal) or only partially separates Top 10% from the rest (a nice-to-have, ranked further down). The heatmap shows the same data at the individual-listing level, sorted Top 10% → Top 25% → Other 75%.</p>",
+        chartsRow: [
+          photo("lake/charts/amenity_prevalence.png", "Grouped bar chart of amenity prevalence by revenue tier for Lakeside listings", "Amenity prevalence by tier (N=39)."),
+          photo("lake/charts/amenity_heatmap.png", "Heatmap of amenity presence per listing, sorted Top 10% to Other 75%", "Amenity presence by individual listing (N=39)."),
+        ],
+      },
       {
         title: "Must-Have's",
         body: "<p>The only amenities present in 100% of Lakeside's Top 10% listings (N=8) — everything else is a nice-to-have, ranked below.</p>",
@@ -355,41 +375,31 @@ const BUY_BOXES = [
 
       { groupTitle: "Geo Considerations" },
       {
-        title: "View",
-        pendingLabel: "Not separately analyzed — in this market the defining view is the lake itself; see Waterfront below.",
-      },
-      {
-        title: "Waterfront",
+        title: "Waterfront, View & Privacy",
         body:
-          "<p><strong>Effectively required.</strong> 100% of Lakeside's Top 10% listings (N=8) are flagged both waterfront and lake-access — see Must-Have above. 20 of the 39 Lakeside-region listings have neither flag set, which is real room to add one: proximity to the lake, not a tagged amenity, is what Walid's region geography captures that the flags alone missed.</p>",
+          "<p><strong>Waterfront is effectively required</strong> — 100% of Lakeside's Top 10% (N=8) are flagged waterfront + lake-access (see Must-Have above); 20 of 39 Lakeside listings have neither flag, real room to add one. The lake itself is the view; privacy/seclusion isn't separately analyzed yet. Map below: toggle Lakeside + Top 10% to see exactly which properties this describes, alongside the region's landmarks.</p>",
+        mapEmbed: {
+          url: "assets/overview/charlotte_overview_map.html",
+          title: "Interactive map — Lakeside properties, revenue tiers, and demand-driver landmarks",
+        },
         images: [
           photo("lake/firepit/sunset-firepit-lake.avif", "Adirondack chairs around a fire pit on a beach at sunset, facing a lake with a dock", "Reference example: direct lake-edge access at sunset."),
         ],
       },
-      {
-        title: "Privacy / Seclusion",
-        pendingLabel: "Not yet analyzed — no data or reference photos supplied yet.",
-      },
 
       { groupTitle: "Property Locations" },
       {
-        title: "Ideal Location(s)",
+        title: "Ideal Location(s) & Popular Places",
         body:
-          "<p><strong>28278 (Steele Creek / Lake Wylie) is the priority ZIP</strong> — N=19, median revenue $65,906, and 7 of Lakeside's 8 Top 10% listings sit here. 28214 is the other core ZIP (N=19) but performs far weaker (median $39,818) — same Lakeside region, same waterfront framing, materially different outcome. 28216 has just one Lakeside listing, a $151,170 outlier, too thin to generalize from.</p>",
-      },
-      {
-        title: "Popular Places",
-        body:
-          "<p>Lake Wylie / Mountain Island Lake itself is the demand driver here, not Charlotte's usual landmarks — <code>charlotte_overview.ipynb</code> found Lakeside sits furthest from the Airport, Banking District, and Sports Venues of any region, consistent with a drive-in, destination-leisure trip rather than a fly-in business one.</p>",
+          "<p><strong>28278 (Steele Creek / Lake Wylie)</strong> is the priority ZIP — N=19, median $65,906, 7 of 8 Top 10% listings. 28214 (N=19, median $39,818) is the other core ZIP but performs far weaker. Lake Wylie / Mountain Island Lake itself is the demand driver, not Charlotte's usual landmarks — Lakeside sits furthest from the Airport, Banking District, and Sports Venues of any region. See the map above: landmarks and both ZIPs' properties are marked together.</p>",
       },
 
       { groupTitle: "Traveler Demographics" },
       {
         title: "Traveler ICP",
         body:
-          "<p><strong>Primary: Group Trip.</strong> Among Lakeside's own Top 10% listings, 46% of reviews mention a group trip — nearly double the 26% Lakeside-wide average and the 23% market-wide average.</p>" +
-          "<p><strong>Secondary: Families.</strong> Stayed-with-kids share is also elevated among Lakeside's Top 10% (25%, vs. 21% Lakeside-wide and 15% market-wide) — present alongside the group-trip signal, not instead of it.</p>" +
-          "<p>Not supported by this data: a couples-getaway-first positioning — nothing in the review composition points that direction specifically.</p>",
+          "<p><strong>Group trip, primary; families, secondary.</strong> Not supported: a couples-first positioning.</p>",
+        icpCharts: true,
       },
 
       {
@@ -400,7 +410,7 @@ const BUY_BOXES = [
     ],
 
     pendingNote:
-      "Full chart-based analysis (capacity by bedroom/bathroom/tier, amenity prevalence, amenity presence heatmap): <code>../notebooks/charlotte_lake_buybox.ipynb</code>.",
+      "Full chart-based analysis, including capacity by bedroom/bathroom/tier (not shown above): <code>../notebooks/charlotte_lake_buybox.ipynb</code>.",
   },
 ];
 

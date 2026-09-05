@@ -1065,9 +1065,57 @@ function renderPendingSection(section) {
     wrap.appendChild(renderImageGrid(section.images, { className: "dd-block__images--geo-compact" }));
   }
   if (section.charts && section.charts.length) wrap.appendChild(renderWideImageBlock(section.charts));
+  // Two analysis charts side by side (e.g. amenity prevalence + amenity
+  // presence heatmap, right before Must-Have's) -- same uncropped/natural-
+  // aspect-ratio treatment as renderWideImageBlock's single-column charts,
+  // but in a 2-up row so a compact chart doesn't sprawl full-width alone.
+  if (section.chartsRow && section.chartsRow.length) {
+    const row = el("div", "chart-row");
+    section.chartsRow.forEach((img) => row.appendChild(renderImage(img, { wide: true })));
+    wrap.appendChild(row);
+  }
   if (section.ranked) wrap.appendChild(niceToHaveRankedBlock(section.ranked));
+  // Inline map embed -- replaces prose in Geo Considerations / Property
+  // Locations with the same interactive map from Section 3 (already marks
+  // landmarks, properties, and is region/tier filterable) per explicit
+  // "why not use the map... too many words" feedback.
+  if (section.mapEmbed) {
+    wrap.appendChild(
+      renderEmbeddedMap(section.mapEmbed.url, {
+        className: section.mapEmbed.className || "embedded-map--tall",
+        title: section.mapEmbed.title,
+      })
+    );
+  }
+  // Two small comparison bar charts replacing Traveler ICP's prose, per the
+  // same feedback ("traveller icp also, use the two charts"). Deferred to
+  // pendingChartJobs -- Chart.js needs the <canvas> already attached to the
+  // live document before it can size/draw itself, and this section's wrap
+  // isn't attached to `host` yet at the point renderPendingSection runs.
+  if (section.icpCharts) {
+    const row = el("div", "chart-row");
+    const wrap1 = el("div", "chart-card");
+    const canvas1 = document.createElement("canvas");
+    canvas1.id = "chart-lake-icp-group";
+    wrap1.appendChild(canvas1);
+    const wrap2 = el("div", "chart-card");
+    const canvas2 = document.createElement("canvas");
+    canvas2.id = "chart-lake-icp-kids";
+    wrap2.appendChild(canvas2);
+    row.appendChild(wrap1);
+    row.appendChild(wrap2);
+    wrap.appendChild(row);
+    pendingChartJobs.push(function () {
+      if (typeof renderLakeIcpCharts === "function") renderLakeIcpCharts();
+    });
+  }
   return wrap;
 }
+
+// Queue of chart-instantiation callbacks collected while building a pending
+// box's sections (see icpCharts above), drained by renderDeepDive right
+// after the whole section tree is attached to the live document.
+let pendingChartJobs = [];
 
 function renderDeepDive(box) {
   const host = document.getElementById("deep-dive-content");
@@ -1089,6 +1137,7 @@ function renderDeepDive(box) {
     //    reorganized into sections yet (Downtown/Uptown, Outskirts, which
     //    only set pendingNote today, render exactly as before).
     const wrap = el("div", "deep-dive deep-dive--pending");
+    pendingChartJobs = [];
     if (box.pendingSections && box.pendingSections.length) {
       box.pendingSections.forEach((section) => wrap.appendChild(renderPendingSection(section)));
     } else {
@@ -1103,6 +1152,8 @@ function renderDeepDive(box) {
     }
     wrap.appendChild(el("div", "dd-block__body", box.pendingNote || "This buy box has not been developed yet."));
     host.appendChild(wrap);
+    pendingChartJobs.forEach(function (job) { job(); });
+    pendingChartJobs = [];
     return;
   }
   const wrap = el("div", "deep-dive bb2");

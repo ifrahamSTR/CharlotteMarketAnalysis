@@ -49,37 +49,57 @@ reference site" below for the functional edits made.
   are both built**, even though Lake is still a "pending" tab overall — see
   `../notebooks/charlotte_lake_buybox.ipynb` and the "Pending boxes can show
   real partial evidence" section below for how a pending box shows this
-  without claiming to be a full deep dive. **The page itself follows
-  Clearwater's 5BR structure closely, not Shenandoah's** — Clearwater's own
-  reference is short text-per-section plus real photos, not matplotlib
-  charts, so that's what Lake's page shows too: no charts at all on the live
-  page. `charlotte_lake_buybox.ipynb` itself still has the fuller
-  chart-based analysis (a Shenandoah-style capacity
-  4-panel + tiered-comparison chart, an amenity prevalence chart, and a
-  39-row presence heatmap) since a notebook has room for it that a
-  presentation page doesn't; those 4 PNGs live under `assets/lake/charts/`
-  but are **orphaned, not deleted** — `data.js` doesn't reference them
-  anymore, same treatment as the retired `assets/5br/`. The live page's
-  sections (`pendingSections` in `data.js`, see below) mirror Clearwater's
-  real order: Architectural Style → Bedrooms & Bathrooms → Sleep Count →
-  Backyard / Outdoor Space → Must-Have (one segment — Fire Pit, Waterfront,
-  Lake Access, the only amenities at 100% prevalence among Lakeside's Top
-  10%; no Auto-Add tier) → Nice-to-Have, Ranked (score / revenue uplift /
-  hit-rate uplift / N per item). Architectural Style and Backyard are left
-  genuinely empty (no photos supplied yet) rather than filled with invented
-  text. Two real room photos (a bunk room and the comp set's first property)
-  sit under Sleep Count, matching where Clearwater's own 5BR page puts its
-  bedroom photos — every `niceToHaveRanked` item has an empty `images: []`
+  without claiming to be a full deep dive. **The page mostly follows
+  Clearwater's 5BR structure — short text-per-section plus real photos, not
+  a wall of matplotlib charts — with two explicit, narrow exceptions where
+  the team asked for charts back**: the amenity data (a compact 2-up
+  prevalence-bar + presence-heatmap pair, right before Must-Have's — "it
+  must be there") and Traveler ICP (two small comparison bars replacing
+  prose). `charlotte_lake_buybox.ipynb` itself has the fuller chart-based
+  analysis this page doesn't otherwise surface (a Shenandoah-style capacity
+  4-panel + tiered-comparison chart, plus the same amenity prevalence/
+  heatmap pair now also on the live page) — those PNGs live under
+  `assets/lake/charts/`; the two capacity ones remain orphaned (kept, not
+  deleted, same treatment as `assets/5br/`), the two amenity ones are now
+  referenced from `data.js`. The live page's sections (`pendingSections` in
+  `data.js`, see below) mirror Clearwater's real order: Property Profile
+  (Bedrooms & Bathrooms → Sleep Count → Architectural Style → Backyard) →
+  Amenities (Amenity Prevalence By Tier → Must-Have, one segment — Fire
+  Pit, Waterfront, Lake Access, the only amenities at 100% prevalence among
+  Lakeside's Top 10%; no Auto-Add tier → Nice-to-Have, Ranked) → Geo
+  Considerations (an embedded copy of the Section 3 map, in place of
+  separate View/Waterfront/Privacy prose) → Property Locations (one short
+  paragraph, same map referenced above) → Traveler Demographics (the two
+  ICP bars) → Comp Set. Architectural Style and Backyard are left genuinely
+  empty (no photos supplied yet) rather than filled with invented text.
+  Three real room photos sit under Sleep Count: the two original reference
+  photos (a bunk room and the comp set's first property), plus one sourced
+  directly from Lakeside's Top 10% comp set itself — see "AI-sourced comp
+  photos" below. Every `niceToHaveRanked` item has an empty `images: []`
   slot ready for reference photos once supplied; analyst-reviewed,
   execution-tiered comp-set photo evidence is still pending. An earlier
-  version of this page put all of that chart-based analysis directly on the
+  version of this page put all of the chart-based analysis directly on the
   site and the ranked list rendered every item (even thin ones) as a full
   card — both correct but far too dense for a presentation page; cut down
   after the team's own "this is taking way too much space" review.
+- **AI-sourced comp photos live in their own folder, separate from the
+  team's own curated photos.** `../LakeBuyBox/ai-gen/` (mirrored into
+  `assets/lake/ai-gen/` for the live page) holds photos found by scrolling
+  Lakeside's actual Top 10% comp-set Airbnb listings for amenity categories
+  the team's own `../LakeBuyBox/Images/` didn't yet cover — kept in a
+  separate folder specifically so it's never confused with the team's own
+  photography. `../LakeBuyBox/ai-gen/SOURCE.md` documents what was searched
+  and found: 5 amenities (Sauna, Mini Golf, Movie Theater, Golf Simulator,
+  Pool Heater) are N=0 across the entire 39-listing Lakeside region and 2
+  more (Pickleball, Playground) are N=0 among the Top 8 specifically — not
+  worth searching; Gym and Pack N Play/Crib were checked in their one/few
+  flagged listings' full photo galleries and not found staged; one genuine
+  bonus — a six-bed built-in bunk room — was found and is now in Ideal
+  Sleep Count.
 - **Curated property photography, design comps, and acquisition-candidate
   screening remain deferred for Downtown/Uptown and Outskirts**, and for
-  Lake beyond the two room photos above — no stock photos or invented
-  images anywhere on this page.
+  Lake beyond the photos above — no stock photos or invented images
+  anywhere on this page.
 
 ## Code changes from the reference site
 
@@ -163,10 +183,11 @@ flow instead of one undifferentiated blob of images/text. Lake's own
 sections mirror the team's own template outline (which itself mirrors
 Clearwater's 5BR order almost exactly), grouped under 5 headings: Property
 Profile (Bedrooms & Bathrooms, Ideal Sleep Count, Architectural Style,
-Backyard Size) → Amenities (Must-Have's, Nice-to-Have's) → Geo
-Considerations (View, Waterfront, Privacy / Seclusion) → Property Locations
-(Ideal Location(s), Popular Places) → Traveler Demographics (Traveler ICP)
-→ Comp Set. Each section object supports, all optional:
+Backyard Size) → Amenities (Amenity Prevalence By Tier, Must-Have's,
+Nice-to-Have's) → Geo Considerations (Waterfront, View & Privacy) →
+Property Locations (Ideal Location(s) & Popular Places) → Traveler
+Demographics (Traveler ICP) → Comp Set. Each section object supports, all
+optional:
 
 - **`groupTitle`** — a bare divider heading (`<h2>`, one tier above a
   regular section's `<h3>`) grouping the ordinary sections that follow it —
@@ -202,9 +223,35 @@ Considerations (View, Waterfront, Privacy / Seclusion) → Property Locations
   `renderWideImageBlock()` instead: one full-width, uncropped figure per
   row (`photo-figure--wide` in `styles.css` — `aspect-ratio: auto` and
   `object-fit: contain` instead of the 4:3 `cover` crop). Still lightboxed.
-  Lake's page doesn't currently use this field (see Status above — no
-  charts on the live page at all, by design), but the capability stays
-  available for a future box that does want one.
+- **`chartsRow`** — the same uncropped/natural-aspect-ratio treatment as
+  `charts`, but 2-up side by side in a `.chart-row` grid instead of one per
+  row — for a pair of charts meant to be read together and compact, not
+  full-width alone. Lake's "Amenity Prevalence By Tier" section (right
+  before Must-Have's, per explicit "it must be there" feedback) uses this
+  for `amenity_prevalence.png` + `amenity_heatmap.png`
+  (`assets/lake/charts/`, copied from `charlotte_lake_buybox.ipynb`'s
+  figures) — the aggregate-by-tier bar chart and the per-listing heatmap
+  together justify the Must-Have list right above where it's decided,
+  without either chart sprawling full-width on its own.
+- **`mapEmbed`** — `{ url, title?, className? }`, rendered via the same
+  `renderEmbeddedMap()` iframe helper Section 3 and the 4BR/1-2BR comp maps
+  use. Lake's Geo Considerations section embeds the Section 3 map itself
+  (`assets/overview/charlotte_overview_map.html` — already region/tier
+  filterable and landmark-marked) in place of separate View/Waterfront/
+  Privacy prose paragraphs, per explicit "why not use the map... too many
+  words" feedback: one map replaces three short paragraphs' worth of
+  geography claims a reader can now just go check directly.
+- **`icpCharts`** — `true` renders two small comparison bar charts (ids
+  `chart-lake-icp-group`/`chart-lake-icp-kids`, built by
+  `renderLakeIcpCharts()` in `charts.js` from `LAKE_ICP_DEMOGRAPHICS` in
+  `data.js`) in place of Traveler ICP's prose — same "use charts, not
+  paragraphs" feedback as `mapEmbed` above. Chart.js needs its `<canvas>`
+  already attached to the live document before it can size itself, and a
+  pending section's `wrap` isn't attached to `#deep-dive-content` yet at
+  the point `renderPendingSection()` builds it — so the two canvases are
+  created here but the actual `new Chart(...)` calls are queued
+  (`pendingChartJobs` in `render.js`) and only run after
+  `renderDeepDive()` appends the whole section tree to the live DOM.
 - **`ranked`** — a scored, ordered amenity list matching Clearwater's 5BR
   `niceToHaveRanked` structure, rendered via `niceToHaveRankedBlock()`
   (also reused on a *developed* box via `amenityStackBlock()`, so it isn't
@@ -274,8 +321,11 @@ whichever buy box gets a full deep dive first.
   bedroom/bathroom/sleeps evidence — see "Pending boxes can show real
   partial evidence" above.
 - **`js/charts.js`** — Chart.js: the market-wide Revenue Potential histogram
-  (colored by revenue-tier band) and the two Section-4 demographics charts
-  (review-composition pie + by-bedroom stacked bar).
+  (colored by revenue-tier band), the two Section-4 demographics charts
+  (review-composition pie + by-bedroom stacked bar), and
+  `renderLakeIcpCharts()` (two small Market-wide/Lakeside-wide/Lakeside-Top-
+  10% comparison bars for Lake's Traveler ICP section, from
+  `LAKE_ICP_DEMOGRAPHICS` in `data.js` — see `icpCharts` above).
 - **`js/map.js`** — Leaflet/OpenStreetMap map reading `data/listings.json`,
   filterable by revenue tier (top10/top25/bottom75, market-wide), plus a
   ZIP-area overlay toggle (approximate centroid+radius circles, same
@@ -285,10 +335,30 @@ whichever buy box gets a full deep dive first.
   and in place as a documented fallback/extension point, not deleted.
 - **`js/main.js`** — bootstraps everything on `DOMContentLoaded`; nav
   scroll-spy; lightbox open/close wiring. Unmodified from the reference site.
-- **`css/styles.css`** — the whole design system, unmodified from the
-  reference site except the two small, scoped additions already noted above
+- **`css/styles.css`** — the design system. Originally the reference site's
+  unmodified, plus the small scoped additions already noted above
   (`.embedded-map--tall`; `.photo-figure--wide`/`.dd-block__wide-images`/
   `.deep-dive--pending .dd-block__body` for the pending-box image system).
+  Since redesigned for a more formal/restrained look, per explicit "colors
+  and borders are horrible... make them formal and elegant" feedback — the
+  brand palette (forest green + amber, still not brown/tan) is unchanged,
+  but: (1) every dashed border (informal-looking) is now a solid hairline
+  (`--hairline: 1px solid var(--color-border)`); (2) the scattered one-off
+  `color-mix()` tint percentages that had accumulated across components
+  (3/4/5/6/8/10/16%, no shared rhythm) are consolidated into four tokens —
+  `--surface-tint`/`--surface-tint-strong` (neutral forest-tinted
+  backgrounds) and `--accent-tint`/`--accent-tint-strong` (amber-tinted);
+  (3) the loud 2px solid-amber top border on `.pending-section--group`
+  (every group heading like "Amenities", "Geo Considerations") is now a
+  plain hairline with a small-caps amber eyebrow label instead — a report
+  reads as more formal when its section accent is restrained typography,
+  not a repeated bright color bar; (4) colored left/top borders elsewhere
+  (`.dd-block--priority`, `.dd-block--contrast`, `.declaration-card--lead`)
+  went from 4px to 3px, and the pending-status badge
+  (`--status-pending-bg`/`--status-pending-text`) now derives from
+  `--brand-amber-dark` instead of its own separately-tuned orange, so it
+  reads as the same accent color everywhere rather than two different
+  oranges.
 - **`data/listings.json`** — generated by `scripts/generate_webpage_map_data.py`
   from `Charlotte NC - Market Eval - FINAL.xlsx`; safe to re-run, do not
   hand-edit. Includes a `zipApprox` array (see ZIP overlay note below) and an
@@ -365,7 +435,12 @@ retired).
   went up before its comp set was ready.
 - **Add a new photo**: drop the file under
   `assets/<buy-box-id>/<category>/`, then reference it via
-  `photo(relPath, alt, caption)` in `data.js`.
+  `photo(relPath, alt, caption)` in `data.js`. If it was sourced from a
+  comp-set listing's own photos rather than supplied directly by the team,
+  put it under `assets/<buy-box-id>/ai-gen/` instead (mirroring
+  `../<BuyBox>/ai-gen/` alongside the team's own `Images/` folder) and note
+  the source listing in that folder's `SOURCE.md` — see Lake's for the
+  pattern.
 - **Regenerate `data/listings.json`**: `python3
   scripts/generate_webpage_map_data.py` from this directory whenever the
   underlying workbook changes. This file is not currently used by the live
