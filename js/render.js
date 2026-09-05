@@ -42,7 +42,10 @@ function pendingImageCard(ref, opts) {
 
 function photoFigure(p, opts) {
   opts = opts || {};
-  const figure = el("figure", "photo-figure" + (opts.small ? " photo-figure--small" : ""));
+  // opts.wide: for analysis charts (wide multi-panel figures) rather than
+  // property photos -- the default photo-figure crops every image to a 4:3
+  // aspect ratio via object-fit:cover, which badly clips a wide chart.
+  const figure = el("figure", "photo-figure" + (opts.small ? " photo-figure--small" : "") + (opts.wide ? " photo-figure--wide" : ""));
   const button = el("button", "photo-figure__trigger");
   button.type = "button";
   const img = el("img");
@@ -63,6 +66,16 @@ function renderImage(ref, opts) {
   if (!ref) return el("div", null, "");
   if (ref.pending) return pendingImageCard(ref, opts);
   return photoFigure(ref, opts);
+}
+
+// Full-width, uncropped figures -- for wide analysis charts (multi-panel
+// figures), which the 4:3-cropped photo grid below badly clips. One figure
+// per row, not a grid, so a wide chart gets its natural aspect ratio back.
+function renderWideImageBlock(images, opts) {
+  opts = Object.assign({}, opts, { wide: true });
+  const wrap = el("div", "dd-block__wide-images");
+  (images || []).forEach((img) => wrap.appendChild(renderImage(img, opts)));
+  return wrap;
 }
 
 function renderImageGrid(images, opts) {
@@ -962,13 +975,21 @@ function renderDeepDive(box) {
   if (typeof cleanupOneTwoBrCompMap === "function") cleanupOneTwoBrCompMap();
   host.innerHTML = "";
   if (box.status !== "developed") {
-    host.appendChild(
-      el(
-        "div",
-        "deep-dive deep-dive--pending",
-        "<p>" + (box.pendingNote || "This buy box has not been developed yet.") + "</p>"
-      )
-    );
+    // A pending box can still show real, finished evidence for the piece(s)
+    // of its analysis that ARE done (e.g. Lake's bedroom/bathroom capacity
+    // charts) without the box as a whole claiming to be a full deep dive.
+    // pendingIntro/pendingImages are optional -- a box that only sets
+    // pendingNote (the common case) renders exactly as before.
+    const wrap = el("div", "deep-dive deep-dive--pending");
+    if (box.pendingIntro) wrap.appendChild(el("div", "dd-block__body", box.pendingIntro));
+    if (box.pendingImages && box.pendingImages.length) {
+      wrap.appendChild(renderImageGrid(box.pendingImages));
+    }
+    if (box.pendingCharts && box.pendingCharts.length) {
+      wrap.appendChild(renderWideImageBlock(box.pendingCharts));
+    }
+    wrap.appendChild(el("div", "dd-block__body", box.pendingNote || "This buy box has not been developed yet."));
+    host.appendChild(wrap);
     return;
   }
   const wrap = el("div", "deep-dive bb2");

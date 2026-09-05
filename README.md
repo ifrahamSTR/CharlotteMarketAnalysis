@@ -45,9 +45,18 @@ reference site" below for the functional edits made.
   those listings have neither flag set — which resolved the sample-size
   objection and is why Lake now sits alongside Downtown/Uptown and Outskirts
   as a core box rather than a cross-cutting bonus.
+- **Lake's bedroom/bathroom/sleeps capacity analysis is built**, even though
+  Lake is still a "pending" tab overall — see `../notebooks/
+  charlotte_lake_buybox.ipynb` and the "Pending boxes can show real partial
+  evidence" section below for how a pending box shows this without claiming
+  to be a full deep dive. Two real room photos (a bunk room and the comp
+  set's first property) and the capacity chart are the only images on this
+  page for Lake — comp-set-wide photography and amenity evidence are still
+  pending.
 - **Curated property photography, design comps, and acquisition-candidate
-  screening are deferred for all three buy boxes**, same as before the
-  pivot — no stock photos or invented images anywhere on this page.
+  screening remain deferred for Downtown/Uptown and Outskirts**, and for
+  Lake beyond the two room photos above — no stock photos or invented
+  images anywhere on this page.
 
 ## Code changes from the reference site
 
@@ -107,14 +116,42 @@ state/market, so:
   embedded map; it's called from `main.js` in place of the old `initMap()`
   call.
 
-No other line of `render.js`, `map.js`, `charts.js`, `main.js`, or
-`css/styles.css` was touched beyond the above (one added `.embedded-map--tall`
-CSS rule for the taller Section-3 iframe) — everything else is a byte-for-byte
-copy of the reference site's files. `js/render.js`'s `fourBrCompMapBlock()`/
+Beyond the above and the pending-box image system described next, no other
+line of `render.js`, `map.js`, `charts.js`, `main.js`, or `css/styles.css`
+was touched (one added `.embedded-map--tall` CSS rule for the taller
+Section-3 iframe) — everything else is a byte-for-byte copy of the
+reference site's files. `js/render.js`'s `fourBrCompMapBlock()`/
 `oneTwoBrCompMapBlock()` and `js/map.js`'s corresponding init/cleanup
 functions are Shenandoah-specific (4BR/1-2BR embedded Leaflet comp maps) and
 are unused dead code here — none of the three current buy boxes reference
 those section keys.
+
+## Pending boxes can show real partial evidence
+
+Lake needed to show two real room photos and an analysis chart on the page
+while still being an honest "pending" tab — its comp set and full amenity
+evidence aren't ready. `renderDeepDive()` in `render.js` now supports two
+optional fields alongside the original `pendingNote` on a pending box:
+
+- **`pendingIntro`** — a short lead paragraph, rendered before any images.
+- **`pendingImages`** — an array of `photo()`/`pendingPhoto()` objects,
+  rendered through the exact same `renderImageGrid()`/lightbox system every
+  developed box's photos use (same 4:3-cropped grid, same click-to-enlarge).
+  Right for property photos.
+- **`pendingCharts`** — same idea, but for wide analysis figures (e.g. a
+  2-panel matplotlib chart). The 4:3-cropped photo grid badly clips a wide
+  chart, so this renders through a new `renderWideImageBlock()` instead: one
+  full-width, uncropped figure per row (`photo-figure--wide` in
+  `styles.css`, a real, deliberately scoped CSS addition — `aspect-ratio:
+  auto` and `object-fit: contain` instead of the 4:3 `cover` crop). Still
+  goes through the same lightbox.
+
+All three are optional and additive — a box that only sets `pendingNote`
+(the common case: Downtown/Uptown, Outskirts) renders exactly as before.
+One more small fix that came out of building this: `.deep-dive--pending`'s
+`text-align: center` (fine for a short one-line note) reads badly for a
+bullet list — `.deep-dive--pending .dd-block__body` is now explicitly
+left-aligned, and only content wrapped in that class is affected.
 
 ## Content style: compact, bulleted narrative fields
 
@@ -143,6 +180,9 @@ whichever buy box gets a full deep dive first.
   according to each box's own `buyBoxSections` order (unknown/absent keys are
   skipped silently). A box with `status !== "developed"` renders its
   `pendingNote` instead of a deep dive — currently true for all three boxes.
+  Lake also sets `pendingIntro`/`pendingImages`/`pendingCharts` for its real
+  bedroom/bathroom/sleeps evidence — see "Pending boxes can show real
+  partial evidence" above.
 - **`js/charts.js`** — Chart.js: the market-wide Revenue Potential histogram
   (colored by revenue-tier band) and the two Section-4 demographics charts
   (review-composition pie + by-bedroom stacked bar).
@@ -155,8 +195,10 @@ whichever buy box gets a full deep dive first.
   and in place as a documented fallback/extension point, not deleted.
 - **`js/main.js`** — bootstraps everything on `DOMContentLoaded`; nav
   scroll-spy; lightbox open/close wiring. Unmodified from the reference site.
-- **`css/styles.css`** — the whole design system. Unmodified from the
-  reference site.
+- **`css/styles.css`** — the whole design system, unmodified from the
+  reference site except the two small, scoped additions already noted above
+  (`.embedded-map--tall`; `.photo-figure--wide`/`.dd-block__wide-images`/
+  `.deep-dive--pending .dd-block__body` for the pending-box image system).
 - **`data/listings.json`** — generated by `scripts/generate_webpage_map_data.py`
   from `Charlotte NC - Market Eval - FINAL.xlsx`; safe to re-run, do not
   hand-edit. Includes a `zipApprox` array (see ZIP overlay note below) and an
@@ -165,6 +207,11 @@ whichever buy box gets a full deep dive first.
 - **`assets/overview/charlotte_overview_map.html`** — the live Section 3
   map, generated by `charlotte_overview.ipynb`. Regenerate by re-running
   that notebook and copying its output here (see "How to extend").
+- **`assets/lake/rooms/`** — the two real property photos on the Lake tab
+  (`bunk-room.avif`, `comp-primary-bedroom.avif`), sourced from
+  `../LakeBuyBox/Images/Bedroom/` — a real Charlotte-market image library,
+  not stock photos. **`assets/lake/charts/`** — the bedroom/bathroom
+  capacity chart generated by `charlotte_lake_buybox.ipynb`.
 - **`assets/5br/`** — the real matplotlib charts and folium map generated
   for the now-retired 5BR+ deep dive. **Orphaned, not deleted** — nothing in
   `data.js` references this directory anymore.
@@ -210,10 +257,15 @@ retired).
   `mustHaveAmenities`, `revenueTiers`, `analystNotes`, `acquisition`, etc. —
   see the retired 5BR+ entry in git history for a fully worked example of
   every section), set `status: "developed"`, and remove its entry from
-  `PENDING_BUY_BOXES`. Give it its own deep-dive notebook first (none of the
-  three currently has one — the old bedroom-count stub notebooks
+  `PENDING_BUY_BOXES`. Give it its own deep-dive notebook first — Lake has
+  one now (`charlotte_lake_buybox.ipynb`); Downtown/Uptown and Outskirts
+  don't yet (the old bedroom-count stub notebooks
   `charlotte_3br_buybox.ipynb`/`charlotte_4br_buybox.ipynb` no longer
-  correspond to any current buy box).
+  correspond to any current buy box). In the meantime, a box can show real
+  partial evidence (a chart, a couple of photos) while still `"pending"` via
+  `pendingIntro`/`pendingImages`/`pendingCharts` — see "Pending boxes can
+  show real partial evidence" above; that's how Lake's capacity analysis
+  went up before its comp set was ready.
 - **Add a new photo**: drop the file under
   `assets/<buy-box-id>/<category>/`, then reference it via
   `photo(relPath, alt, caption)` in `data.js`.

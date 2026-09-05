@@ -239,14 +239,40 @@ const BUY_BOXES = [
     name: "Charlotte Lake (Lakeside Region)",
     thesis: "Smallest region by count, strongest by far on Top 10% hit rate — defined by geography (the Lakeside region near Lake Wylie / Mountain Island), not just the waterfront amenity flag.",
     atAGlance: {
-      bedBath: "Any bedroom count, Lakeside-region geography (not amenity-flag-only)",
-      sleeps: "TBD",
+      bedBath: "4+ bedrooms preferred · 2 bathrooms minimum (3+ nice to have)",
+      sleeps: "8+ required — every Lakeside Top 10% listing sleeps 8 or more, none below it",
       heroMechanism: "Lake/waterfront setting — earns on ADR, not occupancy",
       revenue: "N=39 listings · 21% reach market Top 10% ($78,801+) — more than double Downtown's 8%",
-      primaryRequirement: "TBD",
+      primaryRequirement: "Sleeps 8+ and 2+ bathrooms are both hard floors — 0% of Lakeside listings below either has ever reached the market's Top 10%",
     },
+
+    // Bedroom/bathroom/sleeps capacity analysis is built (see
+    // charlotte_lake_buybox.ipynb); comp set and full amenity/photo evidence
+    // are still pending. A pending box can still show this real, finished
+    // slice of evidence -- pendingIntro/pendingImages render above
+    // pendingNote (see renderDeepDive's pending branch in render.js) without
+    // the box claiming to be a full "developed" deep dive.
+    pendingIntro:
+      "Lake is scoped in ../notebooks/charlotte_overview.ipynb (\"Why Lake Is Now a Core Buy Box, Not a Bonus\") — N=39, defined by the Lakeside region's geography (the pocket near Lake Wylie / Mountain Island) rather than the HAS_waterfront/HAS_lake_access amenity flags alone (which alone covered only N=27, too thin to underwrite on its own). The bedroom/bathroom/sleeps capacity analysis below is built; comp set and full amenity/photo evidence are still pending.",
+
+    pendingImages: [
+      photo("lake/rooms/bunk-room.avif", "Built-in dual bunk room with four beds and access ladders", "A built-in bunk room — real, dedicated sleep capacity like this is one legitimate way to clear the sleeps 8+ floor below. Bunk density itself doesn't predict revenue on its own (see the beds-per-bedroom finding in the notebook)."),
+      photo("lake/rooms/comp-primary-bedroom.avif", "Spacious primary bedroom suite with a sitting area and ensuite bathroom", "The primary bedroom from the first property in this buy box's comp set — see the full comp set link below."),
+    ],
+    // Wide (non-cropped) analysis chart -- see renderWideImageBlock in
+    // render.js; a 4:3-cropped grid figure would clip this 2-panel chart.
+    pendingCharts: [
+      photo("lake/charts/bedroom_bathroom_capacity.png", "Two bar charts: Top 10% hit rate by bedroom count and by bathroom count, Lakeside region", "Lakeside (N=39): Top 10% hit rate by bedroom count (left) and bathroom count (right). 4BR+ and a 2-bath minimum (3+ preferred) are where the market's Top 10% actually shows up — 2.5 baths does not clearly beat 2.0 in this sample."),
+    ],
+
     pendingNote:
-      "Lake is scoped in ../notebooks/charlotte_overview.ipynb (\"Why Lake Is Now a Core Buy Box, Not a Bonus\") — N=39, defined by the Lakeside region's geography (the pocket near Lake Wylie / Mountain Island) rather than the HAS_waterfront/HAS_lake_access amenity flags alone. That resolves an earlier sample-size objection: the amenity-flag-only view covered just N=27 market-wide and was judged too thin to underwrite a standalone buy box. 20 of the 39 Lakeside-region listings have neither amenity flag set — proximity to the lake, not a tagged amenity, is what the geography captures that the flag missed. 21% Top 10% hit rate, more than double Downtown's (8%), driven by ADR rather than occupancy (r=0.92 between revenue and ADR within this region). Full deep-dive analysis has not been built yet.",
+      "<ul>" +
+      "<li><strong>Bedrooms</strong> — 4+ preferred. 1-3BR essentially never reach the market's Top 10% within Lakeside (0-8% hit rate); 4BR/5BR do (50-60%).</li>" +
+      "<li><strong>Bathrooms</strong> — 2 minimum, required (0% hit rate below it). 3+ is the real \"nice to have\" — 2.5 does not show a clean improvement over 2.0 in this sample.</li>" +
+      "<li><strong>Sleeps</strong> — 8+ required. Every Lakeside listing that has ever reached the market's Top 10% sleeps 8 or more.</li>" +
+      "<li><strong>Beds per bedroom</strong> — no requirement; bunk density doesn't predict revenue here (r=0.03).</li>" +
+      "</ul>" +
+      "<strong>Comp set:</strong> <a href=\"https://alexandria.strsearch.com/compsets?market=8&tag=7759fdb2-77e7-4e4c-8f3a-0bff87b79569&tab=view\" target=\"_blank\" rel=\"noopener\">view on Alexandria ↗</a>. 20 of the 39 Lakeside-region listings have neither the waterfront nor lake-access amenity flag set — proximity to the lake, not a tagged amenity, is what the geography captures that the flag missed. 21% Top 10% hit rate market-wide within this region, more than double Downtown's (8%), driven by ADR rather than occupancy (r=0.92 between revenue and ADR within this region). Amenity evidence and property photography beyond the two room photos above are still pending.",
   },
 ];
 
