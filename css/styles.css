@@ -255,14 +255,24 @@ img { max-width: 100%; display: block; }
 /* Nice-to-Have, Ranked (Clearwater's 5BR structure): a scored, ordered list. */
 .nice-ranked { margin-top: 20px; }
 .nice-ranked__item { background: var(--color-surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px 18px; margin-top: 12px; }
-.nice-ranked__item--thin { background: color-mix(in srgb, var(--color-text-muted) 6%, white); box-shadow: none; border: 1px dashed var(--color-border); }
 .nice-ranked__head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .nice-ranked__rank { font-weight: 700; color: var(--color-text-muted); min-width: 2em; }
 .nice-ranked__name { font-weight: 700; color: var(--color-primary); font-size: 1.05rem; }
 .nice-ranked__score { margin-left: auto; background: var(--color-primary); color: white; border-radius: 999px; padding: 3px 12px; font-size: 0.8rem; font-weight: 600; }
-.nice-ranked__badge { margin-left: auto; background: color-mix(in srgb, var(--color-text-muted) 15%, white); color: var(--color-text-muted); border-radius: 999px; padding: 3px 12px; font-size: 0.8rem; font-weight: 600; }
 .nice-ranked__stats { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 8px; font-size: 0.88rem; color: var(--color-text-muted); }
 .nice-ranked__stats strong { color: var(--color-text); }
+/* Thin-data items: one dense row (rank, name, inline note), not a full
+   card -- there's no score/uplift to show, so a full card per item was
+   most of what made an early version of this list take up far more space
+   than Clearwater's own terse treatment of its thin amenities. */
+.nice-ranked__item--thin { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; background: transparent; box-shadow: none; padding: 6px 4px; margin-top: 2px; border-bottom: 1px dashed var(--color-border); border-radius: 0; }
+.nice-ranked__item--thin .nice-ranked__name { font-size: 0.92rem; }
+.nice-ranked__thin-note { color: var(--color-text-muted); font-size: 0.85rem; }
+
+/* A named section inside a still-"pending" box (see pendingSections in
+   render.js) -- gives the pending state real presentation flow. An empty
+   section (no data yet) shows only its title and this one muted line. */
+.pending-section__empty { color: var(--color-text-muted); font-style: italic; }
 
 .lightbox { position: fixed; inset: 0; background: rgba(18,38,31,0.92); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; z-index: 100; padding: 24px; }
 .lightbox--open { opacity: 1; pointer-events: auto; }

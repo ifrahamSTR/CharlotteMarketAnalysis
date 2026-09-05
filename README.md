@@ -49,20 +49,33 @@ reference site" below for the functional edits made.
   are both built**, even though Lake is still a "pending" tab overall — see
   `../notebooks/charlotte_lake_buybox.ipynb` and the "Pending boxes can show
   real partial evidence" section below for how a pending box shows this
-  without claiming to be a full deep dive. Capacity charts follow the same
-  2-part (median revenue, then Top 25%/10% hit rate) structure used for
-  Shenandoah's 3BR buy box; amenity prevalence-by-tier and the presence
-  heatmap likewise follow Shenandoah's 3BR comp-set amenity-analysis
-  structure (adapted to Lakeside's full 39-listing population and
-  market-wide tiers, since Lake doesn't have an analyst-curated, tiered comp
-  set yet); the ranked nice-to-have list (`niceToHaveRanked`) follows
-  Clearwater's 5BR structure (score / revenue uplift / hit-rate uplift / N
-  per item, thin-data items flagged rather than dropped). Two real room
-  photos (a bunk room and the comp set's first property) are the only
-  property photos on this page for Lake — every `niceToHaveRanked` item has
-  an empty `images: []` slot ready for reference photos once supplied;
-  analyst-reviewed, execution-tiered comp-set photo evidence is still
-  pending.
+  without claiming to be a full deep dive. **The page itself follows
+  Clearwater's 5BR structure closely, not Shenandoah's** — Clearwater's own
+  reference is short text-per-section plus real photos, not matplotlib
+  charts, so that's what Lake's page shows too: no charts at all on the live
+  page. `charlotte_lake_buybox.ipynb` itself still has the fuller
+  chart-based analysis (a Shenandoah-style capacity
+  4-panel + tiered-comparison chart, an amenity prevalence chart, and a
+  39-row presence heatmap) since a notebook has room for it that a
+  presentation page doesn't; those 4 PNGs live under `assets/lake/charts/`
+  but are **orphaned, not deleted** — `data.js` doesn't reference them
+  anymore, same treatment as the retired `assets/5br/`. The live page's
+  sections (`pendingSections` in `data.js`, see below) mirror Clearwater's
+  real order: Architectural Style → Bedrooms & Bathrooms → Sleep Count →
+  Backyard / Outdoor Space → Must-Have (one segment — Fire Pit, Waterfront,
+  Lake Access, the only amenities at 100% prevalence among Lakeside's Top
+  10%; no Auto-Add tier) → Nice-to-Have, Ranked (score / revenue uplift /
+  hit-rate uplift / N per item). Architectural Style and Backyard are left
+  genuinely empty (no photos supplied yet) rather than filled with invented
+  text. Two real room photos (a bunk room and the comp set's first property)
+  sit under Sleep Count, matching where Clearwater's own 5BR page puts its
+  bedroom photos — every `niceToHaveRanked` item has an empty `images: []`
+  slot ready for reference photos once supplied; analyst-reviewed,
+  execution-tiered comp-set photo evidence is still pending. An earlier
+  version of this page put all of that chart-based analysis directly on the
+  site and the ranked list rendered every item (even thin ones) as a full
+  card — both correct but far too dense for a presentation page; cut down
+  after the team's own "this is taking way too much space" review.
 - **Curated property photography, design comps, and acquisition-candidate
   screening remain deferred for Downtown/Uptown and Outskirts**, and for
   Lake beyond the two room photos above — no stock photos or invented
@@ -138,44 +151,71 @@ those section keys.
 
 ## Pending boxes can show real partial evidence
 
-Lake needed to show two real room photos and an analysis chart on the page
-while still being an honest "pending" tab — its comp set and full amenity
-evidence aren't ready. `renderDeepDive()` in `render.js` now supports two
-optional fields alongside the original `pendingNote` on a pending box:
+A pending box needs to show whatever real analysis IS finished — with its
+own section flow, like a developed box gets — without claiming to be a
+full deep dive. `renderDeepDive()` in `render.js` supports two shapes on a
+pending box, checked in this order:
 
-- **`pendingIntro`** — a short lead paragraph, rendered before any images.
-- **`pendingImages`** — an array of `photo()`/`pendingPhoto()` objects,
-  rendered through the exact same `renderImageGrid()`/lightbox system every
-  developed box's photos use (same 4:3-cropped grid, same click-to-enlarge).
-  Right for property photos.
-- **`pendingCharts`** — same idea, but for wide analysis figures (e.g. a
-  4-panel matplotlib chart). The 4:3-cropped photo grid badly clips a wide
-  chart, so this renders through a new `renderWideImageBlock()` instead: one
-  full-width, uncropped figure per row (`photo-figure--wide` in
-  `styles.css`, a real, deliberately scoped CSS addition — `aspect-ratio:
-  auto` and `object-fit: contain` instead of the 4:3 `cover` crop). Still
-  goes through the same lightbox.
-- **`niceToHaveRanked`** — a fourth optional field, also read on a
-  *developed* box via `amenityStackBlock()` (so it isn't pending-only): a
-  scored, ordered amenity list matching Clearwater's 5BR structure. Each
-  item is `{ name, score, revenueUplift, p90Uplift, n, note, images }`, or
-  `{ name, n, thinData: true, note, images }` for an amenity too thin to
-  rank (still shown, not dropped — `.nice-ranked__item--thin` renders it
-  visually de-emphasized: dashed border, muted background, a "Thin data"
-  badge instead of a score). `note` alone carries the explanation for a
-  thin item — `niceToHaveRankedItem()` does not also auto-generate an N
-  line, to avoid saying the same thing twice (an early version of Lake's
-  page did exactly that; fixed by testing the actual rendered page, not
-  just re-reading the code). `images` is always present, even if empty —
-  Lake's 18 items all currently have `images: []`, ready for reference
-  photos to be dropped in per item later.
+**1. `pendingSections`** (preferred — this is what Lake uses) — an ordered
+array of named, titled sections, each rendered via `renderPendingSection()`
+with its own `<h3>`. This is what gives a pending box real presentation
+flow instead of one undifferentiated blob of images/text; Lake's own
+sections mirror Clearwater's 5BR order (Architectural Style → Bedrooms &
+Bathrooms → Sleep Count → Backyard / Outdoor Space → Must-Have →
+Nice-to-Have, Ranked). Each section object supports, all optional:
 
-All four are optional and additive — a box that only sets `pendingNote`
-(the common case: Downtown/Uptown, Outskirts) renders exactly as before.
-One more small fix that came out of building this: `.deep-dive--pending`'s
-`text-align: center` (fine for a short one-line note) reads badly for a
-bullet list — `.deep-dive--pending .dd-block__body` is now explicitly
-left-aligned, and only content wrapped in that class is affected.
+- **`title`** — rendered as an `<h3 class="dd-block__title">`. Omit it if
+  the section's own content already self-titles (see `ranked` below).
+- **`pendingLabel`** — for a section with no data yet (Lake's Architectural
+  Style and Backyard): renders just the title plus this one muted, italic
+  line, e.g. "Not yet analyzed — no reference photos supplied yet." Nothing
+  else in the section renders when `pendingLabel` is set.
+- **`body`** — arbitrary HTML (short paragraphs, bullets), rendered via
+  `innerHTML` like every other narrative field on this page.
+- **`items`** — a plain string array, rendered via the existing
+  `amenityChecklist()` helper (a checkmark list) — used for Lake's
+  Must-Have section (one segment only, no Auto-Add tier, matching
+  Clearwater's structure exactly per the team's explicit instruction).
+- **`images`** — a `photo()`/`pendingPhoto()` array, rendered through the
+  same `renderImageGrid()`/lightbox system every developed box's photos use.
+- **`charts`** — same idea, but for wide analysis figures (a 4:3-cropped
+  photo grid badly clips a multi-panel chart), rendered through
+  `renderWideImageBlock()` instead: one full-width, uncropped figure per
+  row (`photo-figure--wide` in `styles.css` — `aspect-ratio: auto` and
+  `object-fit: contain` instead of the 4:3 `cover` crop). Still lightboxed.
+  Lake's page doesn't currently use this field (see Status above — no
+  charts on the live page at all, by design), but the capability stays
+  available for a future box that does want one.
+- **`ranked`** — a scored, ordered amenity list matching Clearwater's 5BR
+  `niceToHaveRanked` structure, rendered via `niceToHaveRankedBlock()`
+  (also reused on a *developed* box via `amenityStackBlock()`, so it isn't
+  pending-only). Each item is `{ name, score, revenueUplift, p90Uplift, n,
+  note, images }`, or `{ name, n, thinData: true, note, images }` for an
+  amenity too thin to rank. `niceToHaveRankedBlock()` renders its own
+  "Nice-to-Have, Ranked" `<h4>` — leave the section's own `title` unset for
+  a `ranked` section, or the heading prints twice (a real bug from an
+  early version of this page, caught by testing the rendered page). A
+  thin-data item collapses to one dense line (`.nice-ranked__item--thin`:
+  no card, no score, just name + note on a dashed-bottom-border row) rather
+  than a full card — an earlier version gave every item, thin or not, a
+  full padded card, which was most of what made the page "take way too
+  much space" per the team's own review. `images` is always present on
+  every item, even if empty — Lake's items all currently have `images: []`,
+  ready for reference photos to be dropped in per item later.
+
+**2. The older flat fields** — `pendingIntro`, `pendingImages`,
+`pendingCharts`, `niceToHaveRanked` set directly on the box (not nested in
+`pendingSections`) — still supported as a fallback for a box that hasn't
+been organized into sections yet. Downtown/Uptown and Outskirts only set
+`pendingNote` today and render exactly as before either way.
+
+`pendingNote` itself always renders last, section-structured or not — the
+one constant "footer" (comp-set link, closing caveats) regardless of how
+the rest of the box is organized. One more small fix that came out of
+building this: `.deep-dive--pending`'s `text-align: center` (fine for a
+short one-line note) reads badly for a bullet list — `.deep-dive--pending
+.dd-block__body` is now explicitly left-aligned, and only content wrapped
+in that class is affected.
 
 ## Content style: compact, bulleted narrative fields
 
@@ -234,8 +274,11 @@ whichever buy box gets a full deep dive first.
 - **`assets/lake/rooms/`** — the two real property photos on the Lake tab
   (`bunk-room.avif`, `comp-primary-bedroom.avif`), sourced from
   `../LakeBuyBox/Images/Bedroom/` — a real Charlotte-market image library,
-  not stock photos. **`assets/lake/charts/`** — the bedroom/bathroom
-  capacity chart generated by `charlotte_lake_buybox.ipynb`.
+  not stock photos. **`assets/lake/charts/`** — the 4 capacity/amenity
+  charts generated by `charlotte_lake_buybox.ipynb`. **Orphaned, not
+  deleted** — `data.js` doesn't reference them (see Status above; the live
+  page follows Clearwater's text-and-photo structure, no charts), same
+  treatment as `assets/5br/` below.
 - **`assets/5br/`** — the real matplotlib charts and folium map generated
   for the now-retired 5BR+ deep dive. **Orphaned, not deleted** — nothing in
   `data.js` references this directory anymore.

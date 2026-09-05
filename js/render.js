@@ -721,27 +721,33 @@ function amenityStackBlock(box) {
 // just a fully "developed" one via amenityStackBlock above.
 // ---------------------------------------------------------------------------
 function niceToHaveRankedItem(item, rank) {
-  const wrap = el("div", "nice-ranked__item" + (item.thinData ? " nice-ranked__item--thin" : ""));
-  const head = el("div", "nice-ranked__head");
-  head.appendChild(el("span", "nice-ranked__rank", item.thinData ? "—" : "#" + rank));
-  head.appendChild(el("span", "nice-ranked__name", item.name));
+  // Thin-data items collapse to one dense line (name + note inline) rather
+  // than a full card -- there's no score/uplift to show anyway, and a full
+  // card per thin item was most of what made an early version of this list
+  // take up far more space than Clearwater's own compact treatment of its
+  // own thin amenities (Movie Theater, Sauna, Golf Simulator).
   if (item.thinData) {
-    head.appendChild(el("span", "nice-ranked__badge", "Thin data"));
-  } else {
-    head.appendChild(el("span", "nice-ranked__score", "Score " + item.score.toFixed(2)));
+    const wrap = el("div", "nice-ranked__item nice-ranked__item--thin");
+    wrap.innerHTML =
+      '<span class="nice-ranked__rank">—</span>' +
+      '<span class="nice-ranked__name">' + item.name + "</span>" +
+      (item.note ? '<span class="nice-ranked__thin-note">' + item.note + "</span>" : "");
+    if (item.images && item.images.length) wrap.appendChild(renderImageGrid(item.images, { small: true }));
+    return wrap;
   }
+  const wrap = el("div", "nice-ranked__item");
+  const head = el("div", "nice-ranked__head");
+  head.appendChild(el("span", "nice-ranked__rank", "#" + rank));
+  head.appendChild(el("span", "nice-ranked__name", item.name));
+  head.appendChild(el("span", "nice-ranked__score", "Score " + item.score.toFixed(2)));
   wrap.appendChild(head);
-  if (!item.thinData) {
-    const stats = el("div", "nice-ranked__stats");
-    stats.innerHTML =
-      "<span>Revenue uplift: <strong>" + item.revenueUplift + "</strong></span>" +
-      "<span>Top 10% hit-rate uplift: <strong>" + item.p90Uplift + "</strong></span>" +
-      "<span>N=" + item.n + "</span>";
-    wrap.appendChild(stats);
-  }
-  // item.note carries the N/too-thin-to-rank explanation itself for thin
-  // items -- no separate auto-generated line, to avoid saying it twice.
-  if (item.note) wrap.appendChild(el("p", item.thinData ? "dd-note" : null, item.note));
+  const stats = el("div", "nice-ranked__stats");
+  stats.innerHTML =
+    "<span>Revenue uplift: <strong>" + item.revenueUplift + "</strong></span>" +
+    "<span>Top 10% hit-rate uplift: <strong>" + item.p90Uplift + "</strong></span>" +
+    "<span>N=" + item.n + "</span>";
+  wrap.appendChild(stats);
+  if (item.note) wrap.appendChild(el("p", null, item.note));
   if (item.images && item.images.length) wrap.appendChild(renderImageGrid(item.images, { small: true }));
   return wrap;
 }
@@ -1016,6 +1022,32 @@ const NARRATIVE_BLOCKS = {
   acquisitionCandidates: acquisitionCandidatesBlock,
 };
 
+// ---------------------------------------------------------------------------
+// One named, titled section inside a still-"pending" box's deep dive (see
+// pendingSections in renderDeepDive below) -- gives a pending box the same
+// section-by-section presentation flow a developed box's NARRATIVE_BLOCKS
+// give it, without requiring the box to declare itself fully developed.
+// A section with no content yet (e.g. Lake's Architectural Style / Backyard,
+// left empty per an explicit "leave this area empty for now") just shows its
+// title and a short pending note -- never invented placeholder content.
+// ---------------------------------------------------------------------------
+function renderPendingSection(section) {
+  const wrap = el("div", "dd-block pending-section");
+  if (section.title) wrap.appendChild(el("h3", "dd-block__title", section.title));
+  if (section.pendingLabel) {
+    wrap.appendChild(el("p", "dd-note pending-section__empty", section.pendingLabel));
+    return wrap;
+  }
+  if (section.body) wrap.appendChild(el("div", "dd-block__body", section.body));
+  if (section.items && section.items.length) {
+    wrap.appendChild(amenityChecklist(section.items, "bb2-checklist bb2-checklist--check"));
+  }
+  if (section.images && section.images.length) wrap.appendChild(renderImageGrid(section.images));
+  if (section.charts && section.charts.length) wrap.appendChild(renderWideImageBlock(section.charts));
+  if (section.ranked) wrap.appendChild(niceToHaveRankedBlock(section.ranked));
+  return wrap;
+}
+
 function renderDeepDive(box) {
   const host = document.getElementById("deep-dive-content");
   if (!host) return;
@@ -1024,19 +1056,30 @@ function renderDeepDive(box) {
   host.innerHTML = "";
   if (box.status !== "developed") {
     // A pending box can still show real, finished evidence for the piece(s)
-    // of its analysis that ARE done (e.g. Lake's bedroom/bathroom capacity
-    // charts) without the box as a whole claiming to be a full deep dive.
-    // pendingIntro/pendingImages are optional -- a box that only sets
-    // pendingNote (the common case) renders exactly as before.
+    // of its analysis that ARE done, without the box as a whole claiming to
+    // be a full deep dive. Two shapes, in order of preference:
+    // 1. `pendingSections` -- an ordered array of named, titled sections
+    //    (e.g. Lake's Architectural Style / Bedrooms & Bathrooms / Sleep
+    //    Count / Backyard / Must-Have / Nice-to-Have, Ranked), each with its
+    //    own <h3> -- this is what gives a pending box real presentation
+    //    "flow" instead of one undifferentiated blob of images/text.
+    // 2. The older flat fields (pendingIntro/pendingImages/pendingCharts/
+    //    niceToHaveRanked) -- still supported for a box that hasn't been
+    //    reorganized into sections yet (Downtown/Uptown, Outskirts, which
+    //    only set pendingNote today, render exactly as before).
     const wrap = el("div", "deep-dive deep-dive--pending");
-    if (box.pendingIntro) wrap.appendChild(el("div", "dd-block__body", box.pendingIntro));
-    if (box.pendingImages && box.pendingImages.length) {
-      wrap.appendChild(renderImageGrid(box.pendingImages));
+    if (box.pendingSections && box.pendingSections.length) {
+      box.pendingSections.forEach((section) => wrap.appendChild(renderPendingSection(section)));
+    } else {
+      if (box.pendingIntro) wrap.appendChild(el("div", "dd-block__body", box.pendingIntro));
+      if (box.pendingImages && box.pendingImages.length) {
+        wrap.appendChild(renderImageGrid(box.pendingImages));
+      }
+      if (box.pendingCharts && box.pendingCharts.length) {
+        wrap.appendChild(renderWideImageBlock(box.pendingCharts));
+      }
+      if (box.niceToHaveRanked) wrap.appendChild(niceToHaveRankedBlock(box.niceToHaveRanked));
     }
-    if (box.pendingCharts && box.pendingCharts.length) {
-      wrap.appendChild(renderWideImageBlock(box.pendingCharts));
-    }
-    if (box.niceToHaveRanked) wrap.appendChild(niceToHaveRankedBlock(box.niceToHaveRanked));
     wrap.appendChild(el("div", "dd-block__body", box.pendingNote || "This buy box has not been developed yet."));
     host.appendChild(wrap);
     return;
