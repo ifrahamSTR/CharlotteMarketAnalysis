@@ -732,7 +732,14 @@ function niceToHaveRankedItem(item, rank) {
       '<span class="nice-ranked__rank">—</span>' +
       '<span class="nice-ranked__name">' + item.name + "</span>" +
       (item.note ? '<span class="nice-ranked__thin-note">' + item.note + "</span>" : "");
-    if (item.images && item.images.length) wrap.appendChild(renderImageGrid(item.images, { small: true }));
+    // A tiny inline thumbnail per image (not the geo-compact grid used
+    // elsewhere) -- a thin-data row is one dense line of text; a 220-360px
+    // grid figure below it would dwarf the line it's illustrating.
+    (item.images || []).forEach((img) => {
+      const thumb = el("span", "nice-ranked__thin-thumb");
+      thumb.appendChild(renderImage(img, { small: true, noCaption: true }));
+      wrap.appendChild(thumb);
+    });
     return wrap;
   }
   const wrap = el("div", "nice-ranked__item");
@@ -748,7 +755,7 @@ function niceToHaveRankedItem(item, rank) {
     "<span>N=" + item.n + "</span>";
   wrap.appendChild(stats);
   if (item.note) wrap.appendChild(el("p", null, item.note));
-  if (item.images && item.images.length) wrap.appendChild(renderImageGrid(item.images, { small: true }));
+  if (item.images && item.images.length) wrap.appendChild(renderImageGrid(item.images, { small: true, className: "dd-block__images--geo-compact" }));
   return wrap;
 }
 
@@ -1032,6 +1039,15 @@ const NARRATIVE_BLOCKS = {
 // title and a short pending note -- never invented placeholder content.
 // ---------------------------------------------------------------------------
 function renderPendingSection(section) {
+  // A groupTitle-only entry is a bare divider heading (e.g. "Property
+  // Profile", "Amenities", "Geo Considerations") grouping the ordinary
+  // titled sections that follow it -- <h2>, one level up from a regular
+  // section's <h3>, so the page reads in two tiers instead of one flat list.
+  if (section.groupTitle) {
+    const group = el("div", "pending-section pending-section--group");
+    group.appendChild(el("h2", "dd-block__title", section.groupTitle));
+    return group;
+  }
   const wrap = el("div", "dd-block pending-section");
   if (section.title) wrap.appendChild(el("h3", "dd-block__title", section.title));
   if (section.pendingLabel) {
@@ -1042,7 +1058,12 @@ function renderPendingSection(section) {
   if (section.items && section.items.length) {
     wrap.appendChild(amenityChecklist(section.items, "bb2-checklist bb2-checklist--check"));
   }
-  if (section.images && section.images.length) wrap.appendChild(renderImageGrid(section.images));
+  // "geo-compact" throughout -- a page whose photos aren't curated yet
+  // shouldn't have the ones that do exist blow up to fill the full width;
+  // capped at 360px so a 2-3 photo row stays modestly sized.
+  if (section.images && section.images.length) {
+    wrap.appendChild(renderImageGrid(section.images, { className: "dd-block__images--geo-compact" }));
+  }
   if (section.charts && section.charts.length) wrap.appendChild(renderWideImageBlock(section.charts));
   if (section.ranked) wrap.appendChild(niceToHaveRankedBlock(section.ranked));
   return wrap;

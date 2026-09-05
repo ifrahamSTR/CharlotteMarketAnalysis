@@ -265,14 +265,24 @@ img { max-width: 100%; display: block; }
    card -- there's no score/uplift to show, so a full card per item was
    most of what made an early version of this list take up far more space
    than Clearwater's own terse treatment of its thin amenities. */
-.nice-ranked__item--thin { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; background: transparent; box-shadow: none; padding: 6px 4px; margin-top: 2px; border-bottom: 1px dashed var(--color-border); border-radius: 0; }
+.nice-ranked__item--thin { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; background: transparent; box-shadow: none; padding: 6px 4px; margin-top: 2px; border-bottom: 1px dashed var(--color-border); border-radius: 0; }
 .nice-ranked__item--thin .nice-ranked__name { font-size: 0.92rem; }
 .nice-ranked__thin-note { color: var(--color-text-muted); font-size: 0.85rem; }
+/* A tiny inline reference thumbnail, not the full geo-compact grid size --
+   a thin-data row is one dense line of text, not a photo feature. */
+.nice-ranked__thin-thumb { display: inline-block; width: 48px; flex-shrink: 0; }
+.nice-ranked__thin-thumb .photo-figure__trigger { border-radius: 6px; }
 
 /* A named section inside a still-"pending" box (see pendingSections in
    render.js) -- gives the pending state real presentation flow. An empty
    section (no data yet) shows only its title and this one muted line. */
 .pending-section__empty { color: var(--color-text-muted); font-style: italic; }
+/* A bare group-divider heading (e.g. "Property Profile", "Amenities") one
+   tier above the ordinary <h3> sections it groups -- gives the page a
+   two-level outline instead of one flat list of same-size headings. */
+.pending-section--group { margin-top: 28px; padding-top: 12px; border-top: 2px solid var(--color-accent); }
+.pending-section--group h2 { font-size: 1.4rem; margin-bottom: 0; }
+.pending-section--group:first-child { margin-top: 0; }
 
 .lightbox { position: fixed; inset: 0; background: rgba(18,38,31,0.92); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; z-index: 100; padding: 24px; }
 .lightbox--open { opacity: 1; pointer-events: auto; }
