@@ -924,16 +924,13 @@ const BUY_BOXES = [
 
       // Analyst Notes -- from the team's own filled-in buy-box template
       // (../LakeBuyBox/BuyBoxLakesideCharlotte.docx, "Analyst Notes ->
-      // Notes/Insights"), same group Outskirts has. These are qualitative
-      // observations, not re-derivations of the quantitative Must-Have/
-      // Nice-to-Have rule above -- see the bracketed note on the first
-      // bullet where the two genuinely disagree (Pool is data-thin, N=3).
+      // Notes/Insights"), same group Outskirts has.
       { groupTitle: "Analyst Notes" },
       {
         title: "Notes / Insights",
         body:
           "<ul>" +
-          "<li><strong>Waterfront is a must, and the analyst view is that it effectively requires pool access too</strong> — properties without one reportedly underperform. [Flagged: pool itself is still data-thin in this sample — N=3, a Nice-to-Have by the numbers above, not a quantified Must-Have. Both are true: pool may matter more than N=3 alone can prove, but it hasn't cleared the Must-Have bar yet.]</li>" +
+          "<li><strong>Waterfront is a must, and it effectively requires lake access too</strong> — properties without one reportedly underperform. Consistent with Lake Access already being a Must-Have above (100% of Top 10%, 46.2% of the whole market).</li>" +
           "<li><strong>Patios and sitting lounges</strong> are a recurring theme across top listings.</li>" +
           "<li><strong>Indoor sitting areas show up everywhere, styled with clean colors.</strong></li>" +
           "<li><strong>Outdoor sitting areas are distinctive in this dataset</strong> — sofas and soft cushions turn up outdoors, not just inside.</li>" +
@@ -941,7 +938,7 @@ const BUY_BOXES = [
           "<li><strong>Balconies function as group chill areas</strong> — almost like open-air living rooms, not just a deck.</li>" +
           "</ul>",
         images: [
-          photo("lake/pool/pool-6-beside-lake.avif", "Swimming pool positioned directly beside the lake", "Pool positioned right at the water's edge — the analyst's \"waterfront implies pool\" observation."),
+          photo("lake/pool/pool-6-beside-lake.avif", "Swimming pool positioned directly beside the lake", "Reference example: a property combining direct lake access with a pool right at the water's edge."),
           photo("lake/balcony/lakeside-dining.avif", "Dining room with a long table set for eight, glass doors opening onto a lake-view patio", "Reference example: a patio/dining area opening straight onto the lake view."),
           photo("lake/balcony/outdoor-dining-1.avif", "Outdoor dining table and chairs on a patio", "Reference example: outdoor dining setup."),
           photo("lake/balcony/outdoor-dining-2.jpeg", "Outdoor dining area", "Reference example: another outdoor dining setup."),
