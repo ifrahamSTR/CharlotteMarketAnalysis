@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderDeclarations();
   renderMarketOverview();
   renderDemographics();
+  renderRegulationsSection();
   renderDeepDiveTabs();
   renderDeepDive(BUY_BOXES.find((b) => b.status === "developed") || BUY_BOXES[0]);
   renderPendingBuyBoxes();

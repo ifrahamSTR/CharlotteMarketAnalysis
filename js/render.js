@@ -1136,13 +1136,6 @@ function renderPendingSection(section) {
   if (section.compSetComparison) {
     wrap.appendChild(compSetComparisonBlock(section.compSetComparison));
   }
-  // STR Regulations -- a shared, city/county-wide fact (not buy-box-
-  // specific), so `section.regulations` is just `true` here and the
-  // actual content always comes from the one shared CHARLOTTE_STR_
-  // REGULATIONS object in data.js, not a per-box copy.
-  if (section.regulations && typeof CHARLOTTE_STR_REGULATIONS !== "undefined") {
-    wrap.appendChild(regulationsBlock(CHARLOTTE_STR_REGULATIONS));
-  }
   return wrap;
 }
 
@@ -1187,60 +1180,43 @@ function compSetComparisonBlock(data) {
   return wrap;
 }
 
-// STR Regulations -- Clearwater's own collapsed-by-default accordion
-// treatment (`.bb2-details`), so a thorough regulatory writeup doesn't
-// cost permanent scroll space ("minimize text usage"): one summary line
-// until clicked open. Inside: a tier badge, checkmark-chip highlights
-// (short phrases, not paragraphs), and a compact two-column key/value
-// grid for the specific numbers -- bullet-driven throughout, per explicit
-// "visually attractive, bullet points, minimize text" ask. Same content
-// object is reused verbatim across all boxes (STR regulation is a
-// city/county-wide fact, not buy-box-specific) -- see
-// CHARLOTTE_STR_REGULATIONS in data.js.
-function regulationsBlock(data) {
-  const details = el("details", "bb2-details");
-  details.appendChild(el("summary", "bb2-details__summary", "STR Regulations — " + data.tier));
+// STR Regulations (Section 5) -- a shared, city/county-wide fact, not
+// buy-box-specific, so it renders once here rather than inside every
+// buy-box tab. Category structure matches the team's own buy-box template
+// exactly (Regulation Tier Overall / Permit & Residency / Operating
+// Limits / Investor Notes -- see CHARLOTTE_STR_REGULATIONS in data.js),
+// each rendered as bullets, not paragraphs, per explicit "visually
+// attractive, bullet points, minimize text usage" instruction.
+function regulationsCardBody(data) {
+  const wrap = el("div", "regs-card");
   const tier = el("div", "regs-card__tier");
   tier.innerHTML = '<span class="regs-card__tier-dot"></span>' + data.tier;
-  details.appendChild(tier);
-  details.appendChild(el("p", "regs-card__summary", data.summary));
+  wrap.appendChild(tier);
+  wrap.appendChild(el("p", "regs-card__summary", data.tierNote));
 
-  const chipRow = el("div", "bb2-chip-row regs-card__highlights");
-  data.highlights.forEach((h) => {
-    const chip = el("span", "bb2-chip regs-card__highlight-chip", "✓ " + h);
-    chipRow.appendChild(chip);
-  });
-  details.appendChild(chipRow);
-
-  const grid = el("div", "regs-card__grid");
-  const reqCol = el("div", null);
-  reqCol.appendChild(el("h5", "regs-card__col-title", "Safety & Occupancy"));
-  const reqRows = el("div", "dd-rows");
-  data.requirements.forEach((r) => {
+  const rows = el("div", "dd-rows");
+  const addRow = (label, items) => {
     const row = el("div", "dd-row");
-    row.innerHTML = "<span class='dd-row__label'>" + r.label + "</span><p class='dd-row__value'>" + r.value + "</p>";
-    reqRows.appendChild(row);
-  });
-  reqCol.appendChild(reqRows);
-  grid.appendChild(reqCol);
-
-  const taxCol = el("div", null);
-  taxCol.appendChild(el("h5", "regs-card__col-title", "Taxes"));
-  const taxRows = el("div", "dd-rows");
-  data.taxes.forEach((t) => {
-    const row = el("div", "dd-row");
-    row.innerHTML = "<span class='dd-row__label'>" + t.label + "</span><p class='dd-row__value'>" + t.value + "</p>";
-    taxRows.appendChild(row);
-  });
-  taxCol.appendChild(taxRows);
-  if (data.caveat) taxCol.appendChild(el("p", "dd-note", data.caveat));
-  grid.appendChild(taxCol);
-  details.appendChild(grid);
+    row.appendChild(el("span", "dd-row__label", label));
+    const value = el("div", "dd-row__value");
+    value.innerHTML = listHtml(items);
+    row.appendChild(value);
+    rows.appendChild(row);
+  };
+  addRow("Permit / Residency", data.permitResidency);
+  addRow("Operating Limits", data.operatingLimits);
+  addRow("Investor Notes", data.investorNotes);
+  wrap.appendChild(rows);
 
   if (data.sources && data.sources.length) {
-    details.appendChild(el("p", "dd-note regs-card__sources", "<strong>Official sources:</strong> " + data.sources.join(" · ")));
+    wrap.appendChild(el("p", "dd-note regs-card__sources", "<strong>Official sources:</strong> " + data.sources.join(" · ")));
   }
-  return details;
+  return wrap;
+}
+function renderRegulationsSection() {
+  const host = document.getElementById("regulations-body");
+  if (!host || typeof CHARLOTTE_STR_REGULATIONS === "undefined") return;
+  host.appendChild(regulationsCardBody(CHARLOTTE_STR_REGULATIONS));
 }
 
 // Queue of chart-instantiation callbacks collected while building a pending

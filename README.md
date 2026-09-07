@@ -363,31 +363,6 @@ optional:
   replaced]` so it's never mistaken for real analysis — swap it for the
   real write-up once supplied, the same way a `pendingPhoto()` gets swapped
   for a real `photo()` once that property's image arrives.
-- **`regulations`** — `true` renders `CHARLOTTE_STR_REGULATIONS` (a
-  city/county-wide fact from a supplied PDF, "Charlotte, NC Overview.pdf",
-  not buy-box-specific — the same object is reused verbatim by every box
-  that sets this) via `regulationsBlock()`, Clearwater's own collapsed-by-
-  default `<details>`/`.bb2-details` accordion (ported CSS included) so a
-  thorough regulatory writeup costs one summary line by default, not
-  permanent scroll space — "minimize text usage" as a real space mechanic,
-  not just terse prose. Inside: a tier badge, checkmark-chip highlights
-  (short phrases, not paragraphs), and a compact two-column key/value grid
-  for the specific numbers (safety/occupancy on the left, taxes on the
-  right) — bullet-driven throughout, per explicit "visually attractive,
-  bullet points, minimize text" instruction. No outer `title` here either,
-  same reason as `ranked`/`compSetComparison` — `regulationsBlock()`
-  renders its own summary line ("STR Regulations — Investor-Friendly").
-  Currently set on Outskirts and Lake, right after Traveler ICP, before
-  Comp Set (as asked) — not yet on Downtown/Uptown, which has no
-  `pendingSections` at all yet (only a flat `pendingNote`) and so has no
-  "after Traveler ICP" anchor point to place it at.
-- Fixed while building this: `.deep-dive--pending`'s `text-align: center`
-  base rule (see `pendingNote` note below) was also centering
-  `regulationsBlock()`'s bullet/grid content, since it isn't wrapped in
-  `.dd-block__body` the way ordinary section bodies are — added
-  `.deep-dive--pending .bb2-details` to the same left-align override
-  rather than wrapping the accordion in an unrelated class.
-
 **2. The older flat fields** — `pendingIntro`, `pendingImages`,
 `pendingCharts`, `niceToHaveRanked` set directly on the box (not nested in
 `pendingSections`) — still supported as a fallback for a box that hasn't
@@ -414,6 +389,42 @@ adds scannability), not a wall of text — see `MARKET_OVERVIEW.paragraphs`'s
 third paragraph and `MAP_CONFIG.regionBullets` for the current examples.
 **This is the template going forward** for any narrative field, including
 whichever buy box gets a full deep dive first.
+
+## STR Regulations (Section 5)
+
+A city/county-wide fact, not a buy-box-specific one — Charlotte's STR
+regulatory environment is identical whether the property is Downtown,
+Outskirts, or Lake. It lives once, as its own top-level page section
+(`#regulations`, between Traveller Demographics and Buy-Box Deep Dive,
+with its own nav link), not repeated inside every buy-box tab. **This is
+a correction**: it was first built as a `{ regulations: true }`
+`pendingSections` entry duplicated inside Outskirts' and Lake's own tabs,
+right after their own Traveler ICP section — the team's own wording ("add
+it after Traveler ICP") was ambiguous between "after the buy-box-level
+Traveler ICP section" and "after the page's own Traveller Demographics
+section, in the shared overview flow, not per box" until clarified
+directly; the fix removed both per-box copies and moved the content to
+its own Section 5.
+
+`CHARLOTTE_STR_REGULATIONS` in `data.js` holds the content, sourced from a
+supplied PDF ("Charlotte, NC Overview.pdf" — a Short-Term Rental
+Regulatory Due Diligence Report). Its category structure — **Regulation
+Tier Overall** (a tier badge + one-sentence note), **Permit / Residency**,
+**Operating Limits**, **Investor Notes** — matches the team's own buy-box
+template exactly (the same 4 categories used, and left entirely blank, at
+the top of Outskirts' `Charlotte, NC Buy Boxes.docx`), populated here with
+the PDF's real findings for the first time. `sources` are the report's
+named official resources (Charlotte UDO Portal, Municode, the county tax
+office); their hyperlink targets weren't extractable from the PDF text,
+so they're listed as plain labels rather than guessing at a URL.
+
+`regulationsCardBody()` in `render.js` renders all three category rows as
+bulleted lists via the existing `listHtml()`/`dd-row` pattern — no
+paragraphs — per explicit "visually attractive, bullet points, minimize
+text usage" instruction; `renderRegulationsSection()` populates the
+`#regulations-body` host on `DOMContentLoaded` (see `main.js`), the same
+pattern every other top-level section (`renderMarketOverview()`,
+`renderDemographics()`, etc.) already uses.
 
 ## Architecture
 

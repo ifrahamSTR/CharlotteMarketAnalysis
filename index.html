@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css?v=20260907-regs2" />
+<link rel="stylesheet" href="css/styles.css?v=20260907-regs3" />
 </head>
 <body>
 
@@ -21,6 +21,7 @@
       <a href="#market">Market</a>
       <a href="#location">Location</a>
       <a href="#demographics">Demographics</a>
+      <a href="#regulations">Regulations</a>
       <a href="#deep-dive">Deep Dive</a>
       <a href="#pending">Coverage</a>
     </nav>
@@ -60,7 +61,7 @@
     <div class="container">
       <p class="section-kicker">Section 3</p>
       <h2>Location Analysis</h2>
-      <iframe class="embedded-map embedded-map--tall" src="assets/overview/charlotte_overview_map.html?v=20260907-regs2" loading="lazy" title="Interactive map of Charlotte STR revenue tiers, Downtown/Outskirts/Lakeside regions, and demand-driver landmarks"></iframe>
+      <iframe class="embedded-map embedded-map--tall" src="assets/overview/charlotte_overview_map.html?v=20260907-regs3" loading="lazy" title="Interactive map of Charlotte STR revenue tiers, Downtown/Outskirts/Lakeside regions, and demand-driver landmarks"></iframe>
       <div id="map-interpretation" class="section-interpretation"></div>
     </div>
   </section>
@@ -90,20 +91,31 @@
     </div>
   </section>
 
-  <!-- Section 5: buy-box deep dive -->
-  <section id="deep-dive" class="section">
+  <!-- Section 5: STR regulations -- city/county-wide, not buy-box-specific,
+       so this lives once in the shared market overview flow rather than
+       being repeated inside every buy-box tab. -->
+  <section id="regulations" class="section">
     <div class="container">
       <p class="section-kicker">Section 5</p>
+      <h2>STR Regulations</h2>
+      <div id="regulations-body"></div>
+    </div>
+  </section>
+
+  <!-- Section 6: buy-box deep dive -->
+  <section id="deep-dive" class="section">
+    <div class="container">
+      <p class="section-kicker">Section 6</p>
       <h2>Buy-Box Deep Dive</h2>
       <div id="deep-dive-tabs" class="tabs"></div>
       <div id="deep-dive-content"></div>
     </div>
   </section>
 
-  <!-- Section 6: Buy-box coverage status -->
+  <!-- Section 7: Buy-box coverage status -->
   <section id="pending" class="section section--note">
     <div class="container">
-      <p class="section-kicker">Section 6</p>
+      <p class="section-kicker">Section 7</p>
       <h2>Buy-Box Coverage</h2>
       <div id="pending-buyboxes"></div>
     </div>
@@ -128,10 +140,10 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-<script src="js/data.js?v=20260907-regs2"></script>
-<script src="js/render.js?v=20260907-regs2"></script>
-<script src="js/charts.js?v=20260907-regs2"></script>
-<script src="js/map.js?v=20260907-regs2"></script>
-<script src="js/main.js?v=20260907-regs2"></script>
+<script src="js/data.js?v=20260907-regs3"></script>
+<script src="js/render.js?v=20260907-regs3"></script>
+<script src="js/charts.js?v=20260907-regs3"></script>
+<script src="js/map.js?v=20260907-regs3"></script>
+<script src="js/main.js?v=20260907-regs3"></script>
 </body>
 </html>
