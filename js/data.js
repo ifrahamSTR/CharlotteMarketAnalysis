@@ -233,11 +233,11 @@ const CHARLOTTE_STR_REGULATIONS = {
     "No citywide caps, quotas, unit-per-parcel/owner limits, or distance/radius buffers.",
     "No annual rental-night limit — up to 365 nights/year.",
     "Occupancy: no explicit STR guest cap; the UDO defines a dwelling as serving \"no more than one family\" — implies a ceiling around 6 unrelated adults, regardless of bed count.",
-    "Taxes: 8% Mecklenburg County Room Occupancy Tax + 7.25% NC Sales Tax (15.25% combined).",
+    "Taxes: 8% Mecklenburg County Room Occupancy Tax + 7.25% NC Sales Tax.",
   ],
   investorNotes: [
     "Allowed by-right in every residential/commercial zoning district — no Conditional Use Permit or public hearing.",
-    "No permit system also means no moratorium, waitlist, or transfer process to worry about at resale.",
+    "No permit or license system — no active moratorium or waitlist, and no permit-transfer process at resale.",
     "Required: smoke alarms every unit, ≥1 CO alarm per level, safety equipment verified every 6 months.",
     "Airbnb/Vrbo auto-collect and remit both taxes on platform bookings; direct bookings need a separate NC DOR Certificate of Registration + county tax account.",
     "Private restrictions (HOA covenants, condo bylaws, master leases) can still apply even though the city itself imposes none.",
