@@ -217,7 +217,9 @@ const BUY_BOXES = [
   // ---------------------------------------------------------------------------
   // Outskirts — the broadest region geographically and the largest pool of
   // big-bedroom inventory, but intentionally coarse (see the notebook's own
-  // caution about internal variation).
+  // caution about internal variation). Property Profile through Projections
+  // below is a teammate's (Walid's) own buy-box research -- see
+  // ../Outskirts/readme.txt for the folder-to-section source mapping.
   // ---------------------------------------------------------------------------
   {
     id: "outskirts",
@@ -226,14 +228,257 @@ const BUY_BOXES = [
     name: "Charlotte Outskirts",
     thesis: "The broadest region geographically (2.5–14 miles from Uptown) and the largest pool of big, group-oriented houses — Top 10% hit rate roughly climbs with that size mix.",
     atAGlance: {
-      bedBath: "Any bedroom count (312 listings; 32% are 4BR+, the highest big-house share of the three regions)",
-      sleeps: "TBD",
-      heroMechanism: "TBD",
+      bedBath: "4+ bedrooms · 3+ bathrooms (5BR is the single most common count among the region's Top 10% listings)",
+      sleeps: "10+ minimum, ideally 16 — the two most common sleep counts among Top 10% listings",
+      heroMechanism: "Group-trip volume — business conventions, sports events, and bachelor/bachelorette parties, not a lake or view amenity",
       revenue: "N=312 listings · 11% reach market Top 10% ($78,801+)",
-      primaryRequirement: "TBD",
+      primaryRequirement: "4+ bedrooms and 3+ bathrooms — see Property Profile below for the size-distribution evidence",
     },
+
+    // Sourced from a teammate's (Walid's) own buy-box research: a filled-in
+    // copy of this same team's buy-box template ("Charlotte, NC Buy
+    // Boxes.docx") plus a photo/chart folder (../Outskirts/, readme.txt
+    // there maps every folder to a section) -- not an independent notebook
+    // analysis the way Lake's is. Presentation flow mirrors Lake's own
+    // pendingSections mechanism and grouping exactly (same component
+    // vocabulary: groupTitle/title/body/items/images/charts/chartsRow/
+    // ranked/mapEmbed), extended with 3 groups Lake's page doesn't have
+    // (Comp Set's Design/Revenue split, Analyst Notes, Projections) because
+    // Walid's own material covers real content there that Lake's doesn't
+    // yet have -- "add the extra content... use everything he provided."
+    pendingSections: [
+      { groupTitle: "Property Profile" },
+      {
+        title: "Bedrooms & Bathrooms",
+        body:
+          "<p><strong>4+ bedrooms, 3+ bathrooms.</strong> Among the region's Top 10% listings (N=32, $82,516–$150,606), 5BR is the single most common bedroom count (16 of 32) and 2.5–3.5 baths covers the bulk of the set (25 of 32) — see the size and revenue-by-size evidence below.</p>",
+        chartsRow: [
+          photo("outskirts/charts/size_distribution_chart.png", "Bedroom, sleeps, and bathroom count histograms for Outskirts' Top 10% revenue listings", "Bedroom/sleeps/bathroom distribution across Outskirts' Top 10% listings (N=32, $82,516–$150,606) — from Walid's own analysis."),
+          photo("outskirts/charts/revenue_size_box_plots.png", "Box plots of revenue potential by bedroom count, sleeps, and bathroom count for Outskirts", "Revenue Potential by bedroom count / sleeps / bathroom count, as box plots — from Walid's own analysis."),
+        ],
+      },
+      {
+        title: "Ideal Sleep Count",
+        body:
+          "<p><strong>10+ minimum, ideally 16.</strong> Sleeps 10 is the single most common capacity among Top 10% listings (10 of 32); sleeps 16 is the next-largest non-trivial cluster (7 of 32) and sits at the top of the revenue range in the box plot above.</p>",
+      },
+      {
+        title: "Architectural Style",
+        body:
+          "<p>Two acceptable vocabularies: <strong>Traditional / Classic</strong> (brick or vinyl-sided colonials and craftsman-gabled homes) and <strong>Modern Farmhouse / Contemporary Wave</strong> (board-and-batten siding, angular flat or shed rooflines, dark monochrome or cedar-accented exteriors).</p>",
+        images: [
+          photo("outskirts/architecture/modern-black-board-batten-cube.jpg", "Two-story home with dark charcoal vertical wood siding and angular flat-roof geometric massing, set among trees", "Two-story home clad in dark charcoal vertical board-and-batten siding with an angular, cube-like flat-roof massing and oversized steel-framed windows, exemplifying the Modern Farmhouse / Contemporary Wave style's bold monochrome geometry."),
+          photo("outskirts/architecture/modern-farmhouse-dark-gray-duplex.jpg", "Dark gray board-and-batten duplex with steep white-trimmed gables and a black standing-seam metal roof over a shared columned porch", "Dark gray board-and-batten duplex-style new build with steep white-trimmed gable peaks and a black standing-seam metal portico roof over a shared columned porch, a textbook Modern Farmhouse facade."),
+          photo("outskirts/architecture/modern-cedar-accent-shed-roof.jpg", "Contemporary two-story house with gray siding, cedar-toned wood accent panels, and an asymmetric sloped roofline, flanked by similar new-build homes", "Contemporary two-story house combining gray fiber-cement siding with warm cedar-toned wood accent panels under an asymmetric shed roofline and dark modern garage door, illustrating the Contemporary Wave half of the style."),
+          photo("outskirts/architecture/traditional-white-gabled-dusk-porch.jpg", "White two-story house at dusk with black shutters, dormer-like gables, and a lit covered front porch with red rocking chairs", "White two-story home photographed at dusk with a front-gabled roof, black shutters, brick porch columns, and red rocking chairs on the covered entry porch, representative of the Traditional / Classic Vocabulary style."),
+          photo("outskirts/architecture/traditional-taupe-craftsman-gable-timber.jpg", "Large taupe two-story home with a steep front gable, exposed timber brackets over the entry, and a curved driveway on a wooded lot", "Large taupe-sided two-story home with a dramatic steep front gable, exposed timber knee brackets over the entry, dark shutters, and a curved concrete driveway, showing the more craftsman-inflected end of the Traditional / Classic Vocabulary style."),
+          photo("outskirts/architecture/traditional-red-brick-colonial-shutters.jpg", "Red brick two-story colonial home with black shutters, a white-columned entry portico with red door, and a side-facing white garage", "Red brick two-story colonial with black shutters, white-trimmed windows, a small white-columned entry portico with a red door, and an attached side-facing white garage, a clear example of the Traditional / Classic Vocabulary style."),
+          photo("outskirts/architecture/traditional-white-vinyl-gable-porch-dusk.jpg", "White vinyl-sided two-story house at dusk with a covered front porch furnished with blue rocking chairs and an attached two-car garage", "White vinyl-sided two-story home at dusk with a front-gabled roof, black shutters, brick watertable, and a covered front porch furnished with blue rocking chairs beside an attached two-car garage, another instance of the Traditional / Classic Vocabulary style."),
+        ],
+      },
+      {
+        title: "Backyard Size",
+        body:
+          "<p>Large enough for shaded outdoor dining, a pool, and a fire pit — the combination Top 10% backyards tend to have, not any single feature alone.</p>",
+        images: [
+          photo("outskirts/backyard/fenced-pool-deck-pergola-lounge.jpg", "Rectangular in-ground pool enclosed by a white safety fence, with a wood deck in the foreground, a palm tree, and a covered pergola with sectional lounge seating in the background of a wooded backyard.", "Fenced in-ground pool with a raised deck and a separate pergola-covered lounge seating area, showing the pool and shaded-seating components of the required backyard on one wooded lot."),
+          photo("outskirts/backyard/aerial-firepit-seating-hot-tub-yard.jpg", "Aerial nighttime view of a fenced backyard with a lit in-ground hot tub on a side patio and a separate gravel seating area with a rectangular fire pit surrounded by lounge chairs.", "Aerial night shot of a grass backyard showing a built-in fire pit ringed by lounge chairs on one side and a hot tub on the patio, but no pool or dining table visible."),
+          photo("outskirts/backyard/aerial-lap-pool-spa-dining-deck.jpg", "Aerial daytime view of a narrow backyard between neighboring houses with a long lap pool, an attached spa, lounge chairs on a white paved patio, and a raised wood deck with an outdoor dining table under a pergola.", "Aerial view of a narrow modern backyard combining a lap pool with attached spa, poolside lounge chairs, and a pergola-covered outdoor dining table on the upper deck, with a turf strip alongside but no dedicated fire pit visible."),
+        ],
+      },
+
+      { groupTitle: "Amenities" },
+      {
+        title: "Amenity Prevalence",
+        body:
+          "<p>Outdoor Dining Area (71.9%) and Fire Pit (65.6%) are the two highest-penetration amenities among Top 10% listings — both are Must-Haves below. Game Room (50.0%) and its Pool Table (25.0%) are mid-penetration, not universal; Workspace isn't a flagged amenity in this dataset at all (see Analyst Notes) but is called out as a Must-Have on staging/photography grounds. Pool (28.1%) and Hot Tub (34.4%) are this buy box's two Nice-to-Haves, ranked below by revenue uplift.</p>",
+        charts: [
+          photo("outskirts/charts/amenity_penetration.png", "Horizontal bar chart of amenity penetration percentages across Outskirts' Top 10% listings", "Amenity penetration across Top 10% listings — from Walid's own analysis."),
+        ],
+      },
+      {
+        title: "Must-Have's",
+        body:
+          "<p>Two of the ten photos below were filed under Walid's \"Nice-to-haves\" folder but actually show a game room and a fire pit — placed here by what's actually in the photo, not by source folder.</p>",
+        items: ["Game Room with Pool Table", "Workspace", "Fire Pit", "Outdoor Dining Area"],
+        images: [
+          photo("outskirts/musthaves/game-room-pool-table-disco-ball-neon-lounge.jpg", "Basement game room with a pool table, disco ball, arcade cabinets, and a neon sign reading 'A little party never killed nobody'", "Basement game room centered on a pool table with racked balls, backed by arcade cabinets, a disco-ball cluster, and teal lounge seating."),
+          photo("outskirts/musthaves/game-room-pool-table-dartboard-garage-mural.jpg", "Converted garage game room with a pool table in the foreground and a dartboard, cue rack, and bar stools against a geometric black-and-white mural", "Garage game room with a racked pool table, wall-mounted dartboard and cue rack, and bar stools set against a bold geometric mural."),
+          photo("outskirts/musthaves/workspace-desk-nook-green-wall-balcony.jpg", "Home office nook with a wood desk and green chair set into a green accent wall with cork boards, next to sliding glass doors to a balcony", "Built-in desk nook with a wood writing desk, task chair, and cork pin-boards, located beside sliding glass doors that open to a balcony."),
+          photo("outskirts/musthaves/fire-pit-adirondack-chairs-backyard-charlotte-mural.jpg", "Backyard fire pit surrounded by teal Adirondack chairs at dusk, with string lights, a basketball court, and a mural referencing Charlotte", "Backyard fire pit ringed by teal Adirondack chairs at dusk, with string lights and a backyard basketball court in the background."),
+          photo("outskirts/musthaves/game-room-pool-table-pacman-arcade-checkered-wall.jpg", "Game room with a pool table, a yellow Pac-Man arcade cabinet, a shuffleboard table, and a blue-and-white checkered accent wall with a bar and TV", "Game room featuring a pool table, a Pac-Man arcade cabinet, a shuffleboard table, and a bar area with a TV against a checkered accent wall."),
+          photo("outskirts/musthaves/game-room-pool-table-black-striped-rug-lounge.jpg", "Game room with a black pool table on a black-and-white striped rug, a dartboard, an arcade cabinet, and an orange sofa lounge area", "Game room with a black pool table racked and ready on a striped rug, flanked by a dartboard, arcade cabinet, and an adjoining sofa lounge."),
+          photo("outskirts/musthaves/outdoor-dining-table-umbrella-brick-patio.jpg", "Outdoor wood dining table with place mats set for six under a large umbrella, surrounded by wicker chairs on a brick patio", "Outdoor dining table set with place mats for six diners under a market umbrella, ringed by wicker chairs on a brick patio."),
+          photo("outskirts/musthaves/workspace-round-table-bookshelves-blue-study.jpg", "Home office study with a round sculptural wood table and chair flanked by two bookshelves full of books, under a starburst light fixture on a blue wall", "Study/workspace with a sculptural round wood table and task chair flanked by bookshelf towers, set against a deep blue accent wall."),
+          photo("outskirts/nicetohaves/game-room-billiards-foosball-charlotte-decor.jpg", "Indoor game room with a black billiards table, foosball table, wall-mounted mini basketball hoop, wall-mounted TV, and Charlotte skyline wall art on a brick accent wall", "Indoor game room with a billiards (pool) table, foosball table, and mini basketball hoop — this is a game-room pool table, not the swimming pool amenity, and no hot tub appears here."),
+          photo("outskirts/nicetohaves/aerial-sport-court-firepit-backyard.jpg", "Aerial view of a red and light-blue backyard multi-sport court labeled 'THE WEEKENDER CLT' with basketball and pickleball lines, next to a gravel fire pit area with teal Adirondack chairs", "Aerial view of a custom backyard basketball/pickleball sport court and an adjacent fire pit lounge area — neither a swimming pool nor a hot tub is visible in this photo."),
+        ],
+      },
+      // Nice-to-Have, Ranked -- same Clearwater-style structure Lake uses,
+      // but Walid's own analysis only quantified a bare revenue-uplift %
+      // per item (no score/hit-rate-uplift/N the way Lake's composite score
+      // has) -- niceToHaveRankedItem() renders whichever stats are actually
+      // present rather than fabricating the rest.
+      {
+        ranked: {
+          note: "Only two nice-to-have amenities were quantified in Walid's analysis, both by revenue uplift alone — shown at full weight below despite there being no independent score/hit-rate-uplift/N figures the way Lake's composite score has.",
+          items: [
+            {
+              name: "Pool",
+              revenueUplift: "+41.7%",
+              note: "The higher-uplift of the two nice-to-haves, despite lower Top 10% penetration (28.1%) than Hot Tub — real upside if added.",
+              images: [
+                photo("outskirts/nicetohaves/kidney-pool-yellow-umbrellas-patio.jpg", "Kidney-shaped in-ground swimming pool with a stone-edged patio, three yellow market umbrellas, lounge chairs, and a green kamado grill, surrounded by trees", "Kidney-shaped in-ground pool with a sun-deck patio, yellow umbrellas, and lounge chairs overlooking a wooded backyard."),
+              ],
+            },
+            {
+              name: "Hot Tub",
+              revenueUplift: "+21.5%",
+              note: "Lower uplift than Pool, but already the more common of the two at 34.4% Top 10% penetration.",
+              images: [
+                photo("outskirts/nicetohaves/hot-tub-dusk-steam-sauna-cabin.jpg", "In-ground hot tub with illuminated jets and rising steam at dusk, beside a lit wooden outdoor sauna cabin and cushioned lounge seating", "Hot tub with glowing jets and rising steam photographed at twilight, positioned beside a private cedar sauna cabin and an outdoor lounge seating area."),
+              ],
+            },
+          ],
+        },
+      },
+
+      { groupTitle: "Geo Considerations" },
+      {
+        title: "View, Waterfront & Privacy / Seclusion",
+        body:
+          "<p><strong>View and Waterfront: n/a</strong> — per Walid's own analysis, neither is a defining feature of this region. <strong>Privacy / Seclusion:</strong> Outskirts properties usually sit in ordinary neighborhoods, not isolated lots — a fenced backyard is the practical way to create privacy here, not lot selection. Map below: toggle Outskirts to see the region's own footprint alongside its landmarks.</p>",
+        mapEmbed: {
+          url: "assets/overview/charlotte_overview_map.html",
+          title: "Interactive map — Outskirts properties, revenue tiers, and demand-driver landmarks",
+        },
+      },
+
+      { groupTitle: "Property Locations" },
+      {
+        title: "Ideal Location(s) & Popular Places",
+        body:
+          "<p><strong>Exclude central/uptown Charlotte.</strong> Per Walid's analysis, listings generating $80k+ concentrate in the eastern half of the Charlotte metro — from just north of Uptown down through the southeast suburbs — with almost nothing to the west (Belmont, Mount Holly, Lowell, Tega Cay, and Fort Mill are all empty). See the map above for how that overlays this site's own region boundaries, and Walid's own location map below for his original evidence.</p><p><strong>Popular Places:</strong> NASCAR Hall of Fame, Carowinds, Discovery Place Science, and Uptown itself (museums, restaurants, entertainment) are the draws named in Walid's analysis — none of them lake- or view-driven, consistent with the group-trip/business-travel ICP below.</p>",
+        charts: [
+          photo("outskirts/charts/ideal_locations_map.png", "Dark-themed map of the Charlotte metro with red dots marking ideal property locations concentrated in the eastern half", "Ideal property locations across the Charlotte metro, sized by revenue — concentrated east of Uptown, essentially empty to the west (Mount Holly/Belmont/Lowell/Tega Cay/Fort Mill). From Walid's own analysis."),
+        ],
+      },
+
+      { groupTitle: "Traveler Demographics" },
+      {
+        title: "Traveler ICP",
+        body:
+          "<p><strong>Primary: Group Trip.</strong> Guests here are people attending business conventions, sports events, and bachelor/bachelorette parties — not a family-vacation or couples-getaway ICP.</p>",
+        charts: [
+          photo("outskirts/charts/traveler_icp_pie_chart.png", "Pie chart of average review composition across all Outskirts listings: 49.2% group trip, 24.8% stayed with kids, 7.8% stayed with a pet, 18.1% other", "Average review composition, all Outskirts listings (not Top-10%-segmented) — 49.2% group trip, the largest single share. From Walid's own analysis."),
+        ],
+      },
+
+      { groupTitle: "Comp Set" },
+      {
+        title: "Design Comp Set",
+        body:
+          "<p>Alexandria Design Comp Set link: pending — not yet supplied. Photos below show ten of Outskirts' top-performing comps by interior/exterior design, from Walid's own comp research.</p>",
+        images: [
+          photo("outskirts/topdesigns/olive-green-primary-bedroom-tray-ceiling.avif", "Olive green primary bedroom with white bouclé headboard and globe pendant lights", "Primary bedroom with olive-green walls, a wood-textured green accent wall, a tray ceiling, globe pendant sconces flanking a white bouclé headboard, a curved black bench, and a chevron-pattern area rug."),
+          photo("outskirts/topdesigns/pergola-deck-pool-view-dining.avif", "Wood pergola-covered deck with a dining table overlooking a backyard lap pool", "Elevated wood pergola dining deck strung with string lights, looking down over a narrow turf-and-tile lap pool and lounge chairs in a wooded backyard."),
+          photo("outskirts/topdesigns/white-built-in-desk-nook-moodboard.avif", "White built-in desk with matching drawer towers and a bouclé arch-back chair", "White built-in desk flanked by matching multi-drawer towers, centered on a bouclé arch-back chair and styled with a cork mood board and a grid of framed prints on the wall."),
+          photo("outskirts/topdesigns/terracotta-office-nook-rattan-lamp.avif", "Small desk nook against a terracotta wall with a woven rattan lamp", "Corner desk nook against a terracotta/rust accent wall, pairing a white sit-stand desk with a woven rattan mushroom-shade lamp and an abstract framed painting."),
+          photo("outskirts/topdesigns/living-room-mauve-pouf-ottomans-fluted-table.avif", "Living room with gray sofa, mauve velvet ottomans, and a round fluted coffee table", "Living room pairing a gray sofa with twin mauve velvet drum ottomans on brass bases, a round fluted white coffee table, and a brass arc-shaped mirror above a white console table."),
+          photo("outskirts/topdesigns/dining-banquette-vintage-photo-gallery-wall.avif", "Curved white banquette dining nook beneath a gallery wall of vintage travel photos", "Curved white bouclé banquette dining nook with a round wood table, black-and-brass leather chairs, a woven drum pendant light, and a gallery wall of framed vintage travel snapshots with handwritten captions."),
+          photo("outskirts/topdesigns/coffee-bar-condiment-drawer-organizer.webp", "Built-in drawer organizer stocked with coffee pods, creamers, and sweeteners", "Close-up of a built-in coffee station drawer neatly organized with K-cups, single-serve creamers, sweetener packets, and Nespresso capsules for guest self-service."),
+          photo("outskirts/topdesigns/sculptural-wood-hand-stools-home-bar.jpeg", "Home bar corner with sculptural wood hand-shaped stools and a brass globe floor lamp", "Corner wet bar with a faceted black wood counter, sculptural carved-wood 'hand' bar stools, and a tall brass floor lamp of stacked glass globes beside a monstera plant."),
+          photo("outskirts/topdesigns/green-wallpaper-bedroom-ribbed-nightstand.avif", "Bedroom nightstand with green textured wallpaper and a globe pendant light", "Bedroom vignette with textured green wallpaper, a globe pendant light over a sculptural ribbed-wood nightstand, and a breakfast tray of berries and a mimosa on the bed."),
+          photo("outskirts/topdesigns/aerial-backyard-pool-turf-pergola-deck.avif", "Aerial view of three modern homes sharing a narrow pool and turf lawn between them", "Aerial view of three adjoining modern backyards centered on a narrow resort-style lap pool, spa, turf lawn strip, and pergola-covered deck dining area."),
+        ],
+      },
+      {
+        title: "Revenue Comp Set — High Tier",
+        body: "<p>Alexandria Revenue Comp Set link: pending — not yet supplied.</p>",
+        images: [
+          photo("outskirts/revenuecomps-high/garage-game-room-pool-table-geometric-mural.jpg", "Converted garage game room with a pool table, dartboard, and bold black-and-white geometric painted walls", "Converted garage game room with a full-size pool table, wall-mounted dartboard, and bar stool seating under a bold black-and-white geometric mural."),
+          photo("outskirts/revenuecomps-high/living-room-navy-sofa-bowl-coffee-table.jpg", "Living room corner with a navy sofa, white boucle armchair, large potted plant, and a rounded white coffee table facing a mounted TV", "Living room seating area with a navy sofa, boucle accent chair, and sculptural bowl-shaped coffee table arranged around a wall-mounted TV on a fluted media console."),
+          photo("outskirts/revenuecomps-high/dining-room-floral-wallpaper-round-table.jpg", "Dining room with navy floral wallpaper, a round table set for six, and gold curtains opening to a screened porch", "Formal dining room with navy hydrangea wallpaper and a round table set for six, opening through gold drapes onto a furnished screened porch."),
+          photo("outskirts/revenuecomps-high/backyard-pool-diving-board-wooded-lot.jpg", "Large in-ground backyard pool with a diving board, red lounge chairs, and a white farmhouse-style home surrounded by trees", "Large in-ground pool with a diving board and red lounge chairs set on a wooded lot behind a white farmhouse-style home with a screened porch and deck."),
+          photo("outskirts/revenuecomps-high/basement-game-room-pool-table-shuffleboard-arcade.jpg", "Dark-walled basement game room with a pool table, shuffleboard table, dartboard, and arcade cabinets", "Basement entertainment room combining a pool table, shuffleboard table, dartboard, and arcade game cabinets alongside a mustard sofa."),
+          photo("outskirts/revenuecomps-high/bedroom-queen-city-vibes-neon-mural.jpg", "Themed bedroom with a colorful Charlotte-doors mural, a pink neon Queen City Vibes sign, and a mustard velvet upholstered bed with sofa-arm sides", "Charlotte-themed bedroom with a hand-painted rowhouse-door mural, a glowing 'Queen City Vibes' neon sign, and a mustard velvet upholstered bed frame."),
+          photo("outskirts/revenuecomps-high/bedroom-blue-accent-wall-orange-bedding.jpg", "Bedroom with a light blue textured accent wall, a king bed with orange and navy pillows, and a multicolor abstract area rug", "Bedroom with a light-blue grasscloth accent wall behind the headboard, orange and navy accent pillows, and a bold multicolor abstract area rug."),
+          photo("outskirts/revenuecomps-high/sitting-room-french-doors-blue-chaise-chairs.jpg", "Small sitting room accessed through white French doors, with two navy blue chaise lounge chairs flanking a white writing desk", "Flex sitting room entered through glass-paned French doors, furnished with a pair of navy velvet chaise lounge chairs and a small white writing desk."),
+          photo("outskirts/revenuecomps-high/aerial-view-house-pool-wooded-lot.jpg", "Aerial drone view of a house with a red metal roof accent, in-ground pool, and patio surrounded by dense mature trees", "Aerial view showing the property's in-ground pool, patio, and red-roofed home tucked into a heavily wooded, private lot."),
+          photo("outskirts/revenuecomps-high/entryway-mustard-floral-wallpaper-desk.jpg", "Alcove with bold mustard and cream floral wallpaper, a wood writing desk, navy blue chair, and a tall potted tree", "Entry alcove featuring bold mustard floral wallpaper as a design statement behind a wood writing desk, navy accent chair, and potted tree."),
+        ],
+      },
+      {
+        title: "Revenue Comp Set — Mid Tier",
+        images: [
+          photo("outskirts/revenuecomps-mid/fenced-backyard-suburban-two-story.jpg", "Large fenced backyard behind a tan two-story house, with a storage shed and tree line at the back edge of the lawn", "Rear yard of a tan two-story suburban home with a fully fenced grass lawn, a covered grill, and a storage shed backing onto wooded tree cover."),
+          photo("outskirts/revenuecomps-mid/foyer-staircase-wrought-iron-loft.jpg", "Two-story entry foyer with a dark wood staircase, wrought iron railing, and an open loft landing above overlooking the hallway", "Two-story foyer with a dark hardwood staircase and wrought-iron balusters leading up to an open loft landing above the entry hall."),
+          photo("outskirts/revenuecomps-mid/log-cabin-bedroom-king-bed-desk.jpg", "Log cabin bedroom with a king bed with white bedding, wood beam ceiling fan, blue curtains, and a small desk with an office chair", "Log-walled primary bedroom with a king bed, white bedding, and a corner desk with office chair set beneath large forest-view windows."),
+          photo("outskirts/revenuecomps-mid/log-cabin-open-kitchen-dining.jpg", "Open kitchen and dining area in a log cabin with white cabinetry, stainless steel refrigerator, wood beam ceiling, and a wooden dining table with mismatched chairs", "Open kitchen-dining great room in a log cabin, with a white cabinet island, stainless fridge, exposed wood beam ceiling, and a farmhouse-style dining table seating six."),
+          photo("outskirts/revenuecomps-mid/bathroom-marble-shower-gold-fixtures.jpg", "Bathroom with a walk-in marble-tiled shower, gold hardware, dark navy vanity cabinet, and a gold-framed mirror", "Renovated bathroom featuring a walk-in marble-tile shower with gold fixtures and a navy vanity topped with white quartz and gold hardware."),
+          photo("outskirts/revenuecomps-mid/outdoor-pergola-kitchen-gazebo-bar.jpg", "Concrete patio in a wooded lot with a pergola-covered outdoor kitchen on one side and a gazebo with bar seating on the other", "Outdoor entertaining patio with a pergola-covered built-in grill kitchen and a separate gazebo with bar-height table seating, set among trees on a wooded lot."),
+          photo("outskirts/revenuecomps-mid/log-cabin-exterior-gambrel-roof-deck.jpg", "Log cabin style house exterior with a gambrel roof, attached two-car garage, wood deck with stairs, and gravel driveway surrounded by trees", "Front exterior of a log-sided cabin home with a gambrel roof, attached garage, and a covered wood entry deck on a wooded, gravel-drive lot."),
+          photo("outskirts/revenuecomps-mid/modern-kitchen-waterfall-island-hood.jpg", "Modern kitchen with a white quartz waterfall-edge island, stainless range hood and cooktop, and stainless refrigerator, opening to a dining and living area", "Modern white kitchen with a quartz waterfall island, stainless cooktop and vent hood, opening onto a dining table and living area beyond."),
+          photo("outskirts/revenuecomps-mid/bedroom-gray-upholstered-bed-rug.jpg", "Bedroom with a gray upholstered bed frame, gray comforter, patterned area rug, and geometric cube-pattern wall art", "Bedroom furnished with a gray upholstered bed, matching nightstands with lamps, and a large geometric-print canvas on the wall above a patterned area rug."),
+        ],
+      },
+      {
+        title: "Revenue Comp Set — Low Tier",
+        body: "<p>The counterexamples — what underperforming comps in this region tend to look like: sparser furnishing, dated finishes, undeveloped yards despite available space.</p>",
+        images: [
+          photo("outskirts/revenuecomps-low/night-firepit-plastic-chairs-shed.jpg", "Backyard fire pit at night surrounded by white plastic lawn chairs, a storage shed, and a wood privacy fence.", "Nighttime fire-pit seating area furnished with mismatched white plastic lawn chairs beside a metal storage shed, reflecting a lower-budget backyard setup."),
+          photo("outskirts/revenuecomps-low/sparse-living-room-empty-back-room.jpg", "Living room with a small green loveseat, round coffee table, and wood floors opening into a mostly empty adjoining room.", "Underfurnished living room holding only a compact loveseat and coffee table, opening into an almost bare secondary room with no seating."),
+          photo("outskirts/revenuecomps-low/garage-converted-game-room.jpg", "Garage converted into a game room with a foosball table and ping pong table, garage door open to the driveway.", "Game room set up inside an unfinished two-car garage with exposed concrete floor and wire shelving still visible, rather than a dedicated finished bonus room."),
+          photo("outskirts/revenuecomps-low/traditional-primary-bedroom-dated-ensuite.jpg", "Primary bedroom with a dark wood four-poster bed, light blue walls, carpet, and a glimpse of a dated ensuite bathroom.", "Traditional four-poster bedroom set on wall-to-wall carpet with a visibly dated ensuite bathroom showing tan tile and gold-toned fixtures through the open door."),
+          photo("outskirts/revenuecomps-low/aerial-large-underused-backyard.jpg", "Aerial view of a large fenced backyard behind a row of townhomes, mostly open grass with minimal furniture.", "Drone shot of an oversized fenced backyard that sits largely undeveloped, holding only a few chairs and a small fire pit despite the available space."),
+          photo("outskirts/revenuecomps-low/living-room-charlotte-skyline-mural.jpg", "Living room with people relaxing, a blue velvet sectional, and a large mural of the Charlotte skyline on the accent wall.", "Living room whose main design feature is a painted Charlotte-skyline mural wall paired with a blue velvet sectional and generic gray armchair."),
+          photo("outskirts/revenuecomps-low/brick-ranch-exterior-bare-trees.jpg", "Single-story brick ranch house exterior viewed between two bare tree trunks, with a dark shingle roof.", "Compact single-story brick ranch home shot through bare winter trees, with a plain mulched yard dominating the foreground and little curb appeal."),
+          photo("outskirts/revenuecomps-low/sunroom-recliners-vinyl-flooring.jpg", "Enclosed sunroom porch with three brown recliner chairs, a striped rug, and windows overlooking a wood privacy fence.", "Screened-in sunroom furnished with three matching brown recliners and vinyl plank flooring, with windows facing directly into a neighboring wood fence."),
+          photo("outskirts/revenuecomps-low/bedroom-iron-bed-modern-neutral.jpg", "Bedroom with a black wrought iron bed frame, neutral white bedding, wood floors, and a black leather accent chair.", "Simply furnished neutral-toned bedroom with an iron bed frame and a small floating wood nightstand, modest in scale compared to higher-tier comps."),
+          photo("outskirts/revenuecomps-low/cramped-living-dining-kitchen-combo.jpg", "Combined living and dining area with gray armchairs, a dark wood dining table, and a galley kitchen visible in the background.", "Tight open-plan living/dining/kitchen combo with mismatched dining chairs and a small pale coffee table crowded close to the seating area."),
+          photo("outskirts/revenuecomps-low/deck-hot-tub-vinyl-siding.jpg", "Built-in hot tub on a wood deck against white vinyl siding, with a plain gravel and mulch yard behind it.", "Deck-mounted hot tub with a worn blue liner set against bare vinyl siding and an unlandscaped side yard."),
+          photo("outskirts/revenuecomps-low/backyard-firepit-sport-court-no-pool.jpg", "Backyard fire pit with lime green Adirondack chairs next to a blue-surfaced sport court, no pool in view.", "Backyard amenity area centered on a fire pit and a painted multi-sport court, with inflatable pool flamingos sitting on the ground but no actual pool present."),
+        ],
+      },
+
+      { groupTitle: "Analyst Notes" },
+      {
+        title: "Notes / Insights",
+        body:
+          "<ul><li><strong>Spacious over sleep count:</strong> properties generating $90k+ maintain a spacious look — prioritize that over pushing for more sleep count.</li><li><strong>Business travelers:</strong> a good share of guests come for business conventions — ensure a dedicated workspace and showcase it in listing photos.</li><li><strong>Kitchen island:</strong> a large kitchen is consistent across top listings — include an island that also seats more guests.</li><li><strong>Palette:</strong> modern all-white, or white plus one or two accent colors; fixtures should match. Prioritize lighter accent colors for a larger, more spacious look.</li></ul>",
+        images: [
+          photo("outskirts/notes/colorful-bedroom-mustard-sofa-spacious.jpg", "Large bedroom with a white bed topped with orange and navy pillows, a colorful striped area rug, and a mustard-green sofa against a white wall.", "Oversized bedroom devotes floor space to a separate mustard-green sofa seating area rather than an extra bed, reflecting top listings' priority on a spacious feel over maximizing sleep count."),
+          photo("outskirts/notes/vaulted-ceiling-living-room-windows.jpg", "Living room with a two-story wall of windows overlooking trees, a light gray sofa, a wood media console with wall-mounted TV, and wicker dining chairs.", "Great room with double-height windows and an open, airy floor plan illustrates the spacious layout that top-performing listings favor over cramming in more beds."),
+          photo("outskirts/notes/log-cabin-kitchen-island-dining.jpg", "Rustic log-cabin kitchen with a white quartz island, stainless refrigerator, and an open dining area with a wood table seating eight under exposed beams.", "Large white kitchen island with a bar stool opens directly onto an eight-person dining table, matching the pattern of top listings featuring a bigger island with more seating."),
+          photo("outskirts/notes/open-concept-kitchen-blue-barstools.jpg", "Open-concept living and kitchen area with a gray sectional sofa, purple accent chair, bold patterned wallpaper accent wall, and three blue stools at a kitchen island.", "Kitchen island with three blue counter stools opens onto the living room, showing island seating for extra guests, though the multicolor palette departs from a white-plus-one-accent scheme."),
+          photo("outskirts/notes/dining-table-navy-chairs-patterned-wall.jpg", "Dining room with a long white table, navy blue chairs, a bold orange-and-navy fan-pattern accent wall, and a white-cabinet kitchen visible beyond.", "Long dining table seating eight sits beside a white-cabinet kitchen, showing generous group seating, though the bold patterned accent wall is not the white-plus-single-accent look."),
+          photo("outskirts/notes/floral-wallpaper-living-room-navy-curtains.jpg", "Living room with a bold mustard floral accent wall, navy curtains, heron bird artwork, and a beige sectional sofa on a striped rug.", "Living room built around a bold mustard floral accent wall and layered patterned textiles, a maximalist palette that contrasts with the white/light-plus-accent look top listings favor."),
+          photo("outskirts/notes/bedroom-with-desk-workspace-blue-wallpaper.jpg", "Primary bedroom with a navy leaf-pattern accent wall, blue swivel chairs, a ceiling fan, and a desk with an office chair visible in the background near a fireplace.", "Spacious primary suite includes a dedicated desk and office chair tucked beyond the fireplace, directly illustrating the visible-workspace insight for business travelers."),
+          photo("outskirts/notes/neutral-sitting-room-wine-cabinet.jpg", "Sitting room with taupe walls, a gray swivel accent chair, a wood wine-storage cabinet, a large abstract canvas, and a full-length leaning mirror.", "Uncluttered flex sitting room with dark hardwood floors and sparse furnishings shows the open, spacious feel prioritized over packing in more furniture or beds."),
+          photo("outskirts/notes/grand-dining-room-capiz-chandeliers-seats-twelve.jpg", "Large dining room with two capiz-shell chandeliers over a long wood table set for twelve with woven rattan chairs and a green area rug.", "Dining room seats twelve at a single long table under a tray ceiling, exemplifying the spacious, group-friendly layout that top listings emphasize over squeezing in extra sleeping capacity."),
+          photo("outskirts/notes/white-kitchen-black-accent-fixtures.jpg", "Modern galley kitchen with white wood-grain cabinets, white quartz countertops, black pendant lights, a black faucet, a black range hood, and a wine-and-cheese spread on the island.", "White cabinetry and countertops paired with matching black pendant lights, faucet, and range hood exemplify the all-white-plus-one-accent-color palette with coordinated fixtures."),
+          photo("outskirts/photography/pickleball-court-friends-golden-light.avif", "Four women laughing together while holding colorful pickleball paddles on an outdoor court, with a blurred background of blue Adirondack chairs and people lounging.", "Four women laughing over pickleball paddles on a backyard court, shot with a shallow depth of field that blurs the background lounge area and keeps warm sunlight and genuine candid expressions sharp on the subjects."),
+          photo("outskirts/photography/aerial-drone-pool-house-treeline.jpeg", "Overhead drone photo of a house with a rectangular pool and patio, surrounded by a dense tree canopy.", "Straight-down drone shot of the house, pool, and patio nestled in mature trees, using an aerial angle to convey the full lot layout and privacy that a ground-level photo could not capture."),
+          photo("outskirts/photography/bedroom-nightstand-vignette-warm-globe-light.avif", "Styled bedroom nightstand vignette with a sculptural ribbed wood dresser, a two-tier glass globe pendant light, a snake plant, and a white upholstered headboard with a breakfast tray of berries and a drink.", "Close-up styled vignette of a sculptural ribbed nightstand beside a white boucle headboard, pairing a warm globe pendant against cool green textured wallpaper and a staged breakfast tray to create an inviting, magazine-style composition."),
+        ],
+      },
+
+      { groupTitle: "Projections" },
+      {
+        title: "Revenue Potential & Candidate Listings",
+        body:
+          "<p><strong>Revenue Potential:</strong> $95k–120k. <strong>Purchase Price:</strong> ~$500k (Walid's own working estimate; no underwriting examples supplied yet).</p><p><strong>Candidate listings found (Zillow):</strong></p><ul>" +
+          "<li><a href=\"https://www.zillow.com/homedetails/7323-Neal-Rd-Charlotte-NC-28262/338431200_zpid/\" target=\"_blank\" rel=\"noopener\">7323 Neal Rd, Charlotte, NC 28262 ↗</a></li>" +
+          "<li><a href=\"https://www.zillow.com/homedetails/7319-Neal-Rd-Charlotte-NC-28262/2063448195_zpid/\" target=\"_blank\" rel=\"noopener\">7319 Neal Rd, Charlotte, NC 28262 ↗</a></li>" +
+          "<li><a href=\"https://www.zillow.com/homedetails/3021-Cresthill-Dr-Charlotte-NC-28212/6252220_zpid/\" target=\"_blank\" rel=\"noopener\">3021 Cresthill Dr, Charlotte, NC 28212 ↗</a></li>" +
+          "<li><a href=\"https://www.zillow.com/homedetails/8016-Painted-Pony-Ct-Charlotte-NC-28269/6144340_zpid/\" target=\"_blank\" rel=\"noopener\">8016 Painted Pony Ct, Charlotte, NC 28269 ↗</a></li>" +
+          "<li><a href=\"https://www.zillow.com/homedetails/4432-Woodwind-St-Charlotte-NC-28213/339867125_zpid/\" target=\"_blank\" rel=\"noopener\">4432 Woodwind St, Charlotte, NC 28213 ↗</a></li>" +
+          "</ul>",
+      },
+    ],
+
     pendingNote:
-      "Outskirts is scoped in ../notebooks/charlotte_overview.ipynb (\"Why These Buy Boxes\") — N=312, the broadest region geographically (2.5–14 miles from Uptown, mean 7.1 miles) and the market's largest pool of big-bedroom (4BR+) inventory (32%), 11% Top 10% hit rate. Note: this region is intentionally coarse — it spans everything from close-in SouthPark-adjacent ZIPs to far exurbs, and likely hides real internal variation a finer cut would separate out (see the notebook's own caution in \"Tying It Together\"). Full deep-dive analysis has not been built yet.",
+      "Outskirts is scoped in ../notebooks/charlotte_overview.ipynb (\"Why These Buy Boxes\") — N=312, the broadest region geographically (2.5–14 miles from Uptown, mean 7.1 miles) and the market's largest pool of big-bedroom (4BR+) inventory (32%), 11% Top 10% hit rate. Note: this region is intentionally coarse — it spans everything from close-in SouthPark-adjacent ZIPs to far exurbs, and likely hides real internal variation a finer cut would separate out (see the notebook's own caution in \"Tying It Together\"). The content above (Property Profile through Projections) is a teammate's (Walid's) own buy-box research, not this notebook — see ../Outskirts/readme.txt for full source/provenance.",
   },
 
   // ---------------------------------------------------------------------------

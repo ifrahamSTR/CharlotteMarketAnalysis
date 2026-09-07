@@ -746,14 +746,25 @@ function niceToHaveRankedItem(item, rank) {
   const head = el("div", "nice-ranked__head");
   head.appendChild(el("span", "nice-ranked__rank", "#" + rank));
   head.appendChild(el("span", "nice-ranked__name", item.name));
-  head.appendChild(el("span", "nice-ranked__score", "Score " + item.score.toFixed(2)));
+  // Score is our own composite metric (see Lake's amenity-scoring note) --
+  // not every source has one. A source that only supplies a bare revenue
+  // uplift % (e.g. Outskirts, from Walid's own analysis) still gets a full
+  // card, just without a score badge or the stats this item's source never
+  // computed, rather than crashing on `.toFixed()` of an undefined score or
+  // printing a literal "undefined" into a stat the source never gave.
+  if (item.score != null) {
+    head.appendChild(el("span", "nice-ranked__score", "Score " + item.score.toFixed(2)));
+  }
   wrap.appendChild(head);
-  const stats = el("div", "nice-ranked__stats");
-  stats.innerHTML =
-    "<span>Revenue uplift: <strong>" + item.revenueUplift + "</strong></span>" +
-    "<span>Top 10% hit-rate uplift: <strong>" + item.p90Uplift + "</strong></span>" +
-    "<span>N=" + item.n + "</span>";
-  wrap.appendChild(stats);
+  const statParts = [];
+  if (item.revenueUplift != null) statParts.push("<span>Revenue uplift: <strong>" + item.revenueUplift + "</strong></span>");
+  if (item.p90Uplift != null) statParts.push("<span>Top 10% hit-rate uplift: <strong>" + item.p90Uplift + "</strong></span>");
+  if (item.n != null) statParts.push("<span>N=" + item.n + "</span>");
+  if (statParts.length) {
+    const stats = el("div", "nice-ranked__stats");
+    stats.innerHTML = statParts.join("");
+    wrap.appendChild(stats);
+  }
   if (item.note) wrap.appendChild(el("p", null, item.note));
   if (item.images && item.images.length) wrap.appendChild(renderImageGrid(item.images, { small: true, className: "dd-block__images--geo-compact" }));
   return wrap;
