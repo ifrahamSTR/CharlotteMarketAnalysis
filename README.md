@@ -58,30 +58,55 @@ reference site" below for the functional edits made.
   prose). `charlotte_lake_buybox.ipynb` itself has the fuller chart-based
   analysis this page doesn't otherwise surface (a Shenandoah-style capacity
   4-panel + tiered-comparison chart, plus the same amenity prevalence/
-  heatmap pair now also on the live page) — those PNGs live under
-  `assets/lake/charts/`; the two capacity ones remain orphaned (kept, not
-  deleted, same treatment as `assets/5br/`), the two amenity ones are now
-  referenced from `data.js`. The live page's sections (`pendingSections` in
-  `data.js`, see below) mirror Clearwater's real order: Property Profile
-  (Bedrooms & Bathrooms → Sleep Count → Architectural Style → Backyard) →
-  Amenities (Amenity Prevalence By Tier → Must-Have, one segment — Fire
-  Pit, Waterfront, Lake Access, the only amenities at 100% prevalence among
-  Lakeside's Top 10%; no Auto-Add tier → Nice-to-Have, Ranked) → Geo
-  Considerations (an embedded copy of the Section 3 map, in place of
-  separate View/Waterfront/Privacy prose) → Property Locations (one short
-  paragraph, same map referenced above) → Traveler Demographics (the two
-  ICP bars) → Comp Set. Architectural Style and Backyard are left genuinely
-  empty (no photos supplied yet) rather than filled with invented text.
-  Three real room photos sit under Sleep Count: the two original reference
-  photos (a bunk room and the comp set's first property), plus one sourced
-  directly from Lakeside's Top 10% comp set itself — see "AI-sourced comp
-  photos" below. Every `niceToHaveRanked` item has an empty `images: []`
-  slot ready for reference photos once supplied; analyst-reviewed,
-  execution-tiered comp-set photo evidence is still pending. An earlier
-  version of this page put all of the chart-based analysis directly on the
-  site and the ranked list rendered every item (even thin ones) as a full
-  card — both correct but far too dense for a presentation page; cut down
-  after the team's own "this is taking way too much space" review.
+  heatmap pair now also on the live page) — all 4 PNGs under
+  `assets/lake/charts/` are now referenced from `data.js` (the two capacity
+  ones under Bedrooms & Bathrooms, the two amenity ones under Amenity
+  Prevalence By Tier); none remain orphaned. The live page's sections
+  (`pendingSections` in `data.js`, see below) mirror Clearwater's real
+  order: an `overview` hero card (see "Pending boxes can show real partial
+  evidence" below) → Property Profile (Bedrooms & Bathrooms, now with the
+  capacity-4panel/by-tier evidence charts → Sleep Count → Architectural
+  Style → Backyard) → Amenities (Amenity Prevalence By Tier → Must-Have,
+  one segment — Fire Pit, Waterfront, Lake Access, the only amenities at
+  100% prevalence among Lakeside's Top 10%; no Auto-Add tier → Nice-to-
+  Have, Ranked) → Geo Considerations (an embedded copy of the Section 3
+  map, in place of separate View/Waterfront/Privacy prose) → Property
+  Locations (one short paragraph, same map referenced above) → Traveler
+  Demographics (the two ICP bars) → Comp Set (Comp-Set Visual Comparison,
+  then the Alexandria link). Architectural Style and Backyard are left
+  genuinely empty (no photos supplied yet) rather than filled with invented
+  text. Three real room photos sit under Sleep Count: the two original
+  reference photos (a bunk room and the comp set's first property), plus
+  one sourced directly from Lakeside's Top 10% comp set itself — see
+  "AI-sourced comp photos" below. Every `niceToHaveRanked` item has an
+  empty `images: []` slot ready for reference photos once supplied. An
+  earlier version of this page put all of the chart-based analysis
+  directly on the site and the ranked list rendered every item (even thin
+  ones) as a full card — both correct but far too dense for a presentation
+  page; cut down after the team's own "this is taking way too much space"
+  review.
+- **Comp-Set Visual Comparison is now in progress on the live page**,
+  replacing the earlier "still pending" note. Lake's 8-listing Top 10% comp
+  set (`../LakeBuyBox/Compset.csv`) is tiered by literal CSV row order
+  (top 2 by Revenue Potential = High, next 4 = Mid, remaining 2 = Low)
+  across 2 photo categories (Exterior, Bedrooms) shown as Top/Mid/Low
+  columns side by side — see `compSetComparison` under "Pending boxes can
+  show real partial evidence" below. Photos are being supplied property-
+  by-property (`../LakeBuyBox/Images/HeroPic/`, `.../Bedroom/`, named by
+  comp rank e.g. `Property1.avif`) — any property without a photo yet in a
+  given category shows a `pendingPhoto()` card linking to its real Airbnb
+  listing instead. The per-category analyst write-up is a literal Lorem
+  Ipsum placeholder, explicitly marked as such, until the real one is
+  supplied.
+- **Every buy box now opens with a Clearwater-style "Buy-Box Summary" hero
+  card** (`box.overview`, rendered by the same `overviewBlock()` a
+  developed box uses) — status badge, thesis, "why this works", spec
+  chips, revenue chips, and a hero photo where one exists (Lake uses its
+  own #1-by-revenue comp's exterior; Outskirts borrows one of Walid's
+  Architecture reference photos; Downtown/Uptown has none yet and renders
+  single-column instead of leaving a blank media panel). Purely additive —
+  a box with no `overview` set (there are none currently) would render
+  exactly as before.
 - **AI-sourced comp photos live in their own folder, separate from the
   team's own curated photos.** `../LakeBuyBox/ai-gen/` (mirrored into
   `assets/lake/ai-gen/` for the live page) holds photos found by scrolling
@@ -200,20 +225,33 @@ those section keys.
 
 A pending box needs to show whatever real analysis IS finished — with its
 own section flow, like a developed box gets — without claiming to be a
-full deep dive. `renderDeepDive()` in `render.js` supports two shapes on a
-pending box, checked in this order:
+full deep dive. `renderDeepDive()` in `render.js` supports an optional
+opening hero plus two shapes for the body, checked in this order:
 
-**1. `pendingSections`** (preferred — this is what Lake uses) — an ordered
-array of named, titled sections, each rendered via `renderPendingSection()`
-with its own `<h3>`. This is what gives a pending box real presentation
-flow instead of one undifferentiated blob of images/text. Lake's own
-sections mirror the team's own template outline (which itself mirrors
-Clearwater's 5BR order almost exactly), grouped under 5 headings: Property
-Profile (Bedrooms & Bathrooms, Ideal Sleep Count, Architectural Style,
-Backyard Size) → Amenities (Amenity Prevalence By Tier, Must-Have's,
-Nice-to-Have's) → Geo Considerations (Waterfront, View & Privacy) →
-Property Locations (Ideal Location(s) & Popular Places) → Traveler
-Demographics (Traveler ICP) → Comp Set. Each section object supports, all
+**0. `overview`** (all three pending boxes set this) — Clearwater's "1.
+Buy-Box Summary" hero card (`{ statusBadge, thesis, whyItWorks, heroImage?,
+chips, revenueChips }`), rendered via the *same* `overviewBlock()` a
+developed box's `NARRATIVE_BLOCKS.overview` uses — reused as-is, not
+reimplemented, so a pending box gets the identical at-a-glance opening
+(status badge, thesis, "why this works", spec chips, revenue chips) instead
+of starting cold on "Property Profile". `heroImage` is optional: Downtown/
+Uptown has no photos yet, so it renders `.bb2-hero--no-media` (single
+column, no blank media panel) instead of the two-column layout — set
+whenever `box.overview` lacks a `heroImage`, checked in `overviewBlock()`
+itself so callers never have to think about it.
+
+**1. `pendingSections`** (preferred — this is what Lake and Outskirts use)
+— an ordered array of named, titled sections, each rendered via
+`renderPendingSection()` with its own `<h3>`. This is what gives a pending
+box real presentation flow instead of one undifferentiated blob of
+images/text. Lake's own sections mirror the team's own template outline
+(which itself mirrors Clearwater's 5BR order almost exactly), grouped under
+6 headings: Property Profile (Bedrooms & Bathrooms, Ideal Sleep Count,
+Architectural Style, Backyard Size) → Amenities (Amenity Prevalence By
+Tier, Must-Have's, Nice-to-Have's) → Geo Considerations (Waterfront, View &
+Privacy) → Property Locations (Ideal Location(s) & Popular Places) →
+Traveler Demographics (Traveler ICP) → Comp Set (Comp-Set Visual
+Comparison, Alexandria Comp Set). Each section object supports, all
 optional:
 
 - **`groupTitle`** — a bare divider heading (`<h2>`, one tier above a
@@ -302,6 +340,29 @@ optional:
   the team's "do not make them huge" feedback was about; caught the same
   way, by looking at the actual rendered page. Still fully lightboxed on
   click despite the tiny inline size.
+- **`compSetComparison`** — `{ intro?, categories: [{ title, interpretation?,
+  tiers: { high, mid, low } }] }`, rendered via `compSetComparisonBlock()`
+  (Clearwater's exact "Comp-Set Visual Comparison" structure: named photo
+  categories, each split into Top/Mid/Low tier columns side by side via the
+  same `.bb2-tier-compare__*` CSS the reference site ships). Each tier is
+  an array of properties — `{ title, url?, stats?, images, note? }` — one
+  `compSetPropertyCard()` per property, stacked vertically within its tier
+  column (`renderImageGrid(prop.images, { small: true })`, so a property
+  with several photos doesn't force an unreadably tall column). Lake's own
+  usage: 8 properties from `../LakeBuyBox/Compset.csv`, tiered by literal
+  CSV row order (top 2 rows = High, next 4 = Mid, remaining 2 = Low, sorted
+  by Revenue Potential) across 2 categories (Exterior, Bedrooms) — the
+  categories a teammate has actually started supplying property-numbered
+  photos for (`../LakeBuyBox/Images/HeroPic/`, `.../Bedroom/`) as of this
+  writing; more may be added the same way as more categories get photos.
+  Any property whose photo for that category hasn't been supplied yet gets
+  a `pendingPhoto(url, label)` card instead of an invented image — it
+  links straight to that listing's real Airbnb URL from the CSV. Category
+  `interpretation` text is a **literal Lorem Ipsum placeholder** for now,
+  explicitly prefixed `[Analyst opinion — placeholder text below, to be
+  replaced]` so it's never mistaken for real analysis — swap it for the
+  real write-up once supplied, the same way a `pendingPhoto()` gets swapped
+  for a real `photo()` once that property's image arrives.
 
 **2. The older flat fields** — `pendingIntro`, `pendingImages`,
 `pendingCharts`, `niceToHaveRanked` set directly on the box (not nested in

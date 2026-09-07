@@ -210,6 +210,25 @@ const BUY_BOXES = [
       revenue: "N=368 listings · 8% reach market Top 10% ($78,801+)",
       primaryRequirement: "TBD",
     },
+    // Clearwater's "1. Buy-Box Summary" hero card, reused for pending boxes
+    // too (see overviewBlock() in render.js) -- no heroImage yet since no
+    // photos have been supplied for this box (renders single-column, no
+    // blank media panel).
+    overview: {
+      statusBadge: "Named and scoped — no photos or deep-dive template supplied yet",
+      thesis: "The market's largest region by inventory (51% of all listings), but the weakest by Top 10% hit rate — capped mostly by a smaller-bedroom product mix.",
+      whyItWorks:
+        "This region wins on inventory scale, not amenity/product fit — 51% of the market's listings sit here, but the same small-unit mix that drives that scale (51% are 1-2BR) also caps its Top 10% hit rate at 8%, the lowest of the three regions.",
+      chips: [
+        { label: "51% of market inventory (N=368)" },
+        { label: "51% are 1-2BR" },
+        { label: "8% reach Top 10%" },
+      ],
+      revenueChips: [
+        { label: "Top 10% threshold", value: "$78,801+" },
+        { label: "Highest single listing", value: "$199,741" },
+      ],
+    },
     pendingNote:
       "Downtown / Uptown is scoped in ../notebooks/charlotte_overview.ipynb (\"Why These Buy Boxes\") — N=368, the market's largest single region (51% of all 719 listings), but the lowest Top 10% hit rate of the three (8%), driven mostly by a smaller-bedroom product mix (51% of Downtown listings are 1-2BR, vs. 27% in Outskirts and 33% in Lakeside). It still produces the single highest-revenue listing in the market (\"Spacious 8BR Duplex, Sleeps 20, Walk to Breweries,\" $199,741). Full deep-dive analysis (comp sets, revenue tiering, amenity evidence, buy-box template) has not been built yet.",
   },
@@ -233,6 +252,26 @@ const BUY_BOXES = [
       heroMechanism: "Group-trip volume — business conventions, sports events, and bachelor/bachelorette parties, not a lake or view amenity",
       revenue: "N=312 listings · 11% reach market Top 10% ($78,801+)",
       primaryRequirement: "4+ bedrooms and 3+ bathrooms — see Property Profile below for the size-distribution evidence",
+    },
+    // Clearwater's "1. Buy-Box Summary" hero card, reused for pending boxes
+    // too (see overviewBlock() in render.js). heroImage borrows one of
+    // Walid's own Architecture reference photos (see Property Profile
+    // below) since none of his material is a dedicated "hero" shot.
+    overview: {
+      statusBadge: "Teammate-supplied buy-box research — Alexandria comp-set links and acquisition underwriting pending",
+      thesis: "The broadest region geographically (2.5–14 miles from Uptown) and the largest pool of big, group-oriented houses — Top 10% hit rate roughly climbs with that size mix.",
+      whyItWorks:
+        "Outskirts has the market's largest pool of big-bedroom inventory (32% are 4BR+), and Walid's own analysis of its Top 10% listings (N=32) found the demand is group-trip and business-travel driven, not lake- or view-driven — concentrated in the eastern half of the metro, empty to the west.",
+      heroImage: photo("outskirts/architecture/modern-black-board-batten-cube.jpg", "Two-story home with dark charcoal vertical wood siding and angular flat-roof geometric massing, set among trees", "One of the two acceptable architectural styles for this buy box — see Architectural Style below."),
+      chips: [
+        { label: "4+ bedrooms · 3+ bathrooms" },
+        { label: "Sleeps 10+, ideally 16" },
+        { label: "Group-trip / business-travel ICP" },
+      ],
+      revenueChips: [
+        { label: "N=312 listings", value: "11% reach Top 10%" },
+        { label: "Revenue Potential", value: "$95k–120k" },
+      ],
     },
 
     // Sourced from a teammate's (Walid's) own buy-box research: a filled-in
@@ -500,6 +539,26 @@ const BUY_BOXES = [
       revenue: "N=39 listings · 21% reach market Top 10% ($78,801+) — more than double Downtown's 8%",
       primaryRequirement: "Sleeps 8+ and 2+ bathrooms are both hard floors — 0% of Lakeside listings below either has ever reached the market's Top 10%",
     },
+    // Clearwater's "1. Buy-Box Summary" hero card, reused for pending boxes
+    // too (see overviewBlock() in render.js). heroImage is the #1-by-
+    // revenue comp's own exterior (see Comp-Set Visual Comparison below).
+    overview: {
+      statusBadge: "Capacity & amenity analysis complete — comp-set photo evidence in progress",
+      thesis: "Smallest region by count, strongest by far on Top 10% hit rate — defined by geography (the Lakeside region near Lake Wylie / Mountain Island), not just the waterfront amenity flag.",
+      whyItWorks:
+        "Lake is the smallest region by count but by far the strongest on Top 10% hit rate (21%, more than double Downtown's 8%) — driven by the Lakeside region's geography, not the waterfront/lake-access flags alone (which alone covered only N=27, too thin to underwrite on its own).",
+      heroImage: photo("lake/compset/exterior/property-1-exterior.avif", "Blue two-story lakefront home with stone porch columns and a covered entry", "The #1-by-revenue listing in Lakeside's Top 10% comp set — see Comp-Set Visual Comparison below."),
+      chips: [
+        { label: "4+ bedrooms preferred" },
+        { label: "2+ bathrooms (3+ nice to have)" },
+        { label: "Sleeps 8+ required" },
+        { label: "Waterfront + lake access, effectively required" },
+      ],
+      revenueChips: [
+        { label: "N=39 listings", value: "21% reach Top 10%" },
+        { label: "Top 10% threshold", value: "$78,801+" },
+      ],
+    },
 
     // Presentation flow follows Clearwater's 5BR buy box section-by-section,
     // grouped under 5 headings the same way the team's own template groups
@@ -524,7 +583,11 @@ const BUY_BOXES = [
         body:
           "<p><strong>Target range:</strong> 4+ bedrooms; 2 bathrooms minimum.</p>" +
           "<p><strong>Bathrooms:</strong> 2 is a hard floor, not just a preference — 0% of Lakeside listings below 2 baths have ever reached the market's Top 10%. 3+ is the real \"nice to have\" above that floor; 2.5 does not show a clean improvement over 2.0 in this sample.</p>" +
-          "<p><strong>Bedrooms:</strong> 1-3BR essentially never reach the market's Top 10% within Lakeside (0-8% hit rate); 4BR/5BR do (50-60%).</p>",
+          "<p><strong>Bedrooms:</strong> 1-3BR essentially never reach the market's Top 10% within Lakeside (0-8% hit rate); 4BR/5BR do (50-60%). Top 10% listings also sleep further (avg. 12.1) and have more beds/baths (7.0 beds, 3.1 baths) than Top 25% or the rest of the market — see the capacity-by-tier evidence below.</p>",
+        chartsRow: [
+          photo("lake/charts/capacity_4panel.png", "Four-panel chart: median revenue and Top 25%/10% hit rate, by sleeps and by bathroom count, for Lakeside listings", "Lakeside (N=39): capacity thresholds, not straight lines — median revenue and Top 25%/10% hit rate, by sleeps and by bathroom count."),
+          photo("lake/charts/capacity_by_tier.png", "Grouped bar chart of average sleeps, beds, and baths for Lakeside's Top 10%, Top 25%, and Other 75% tiers", "Lakeside: average sleeps/beds/baths by market revenue tier (Top 10% vs. Top 25% vs. Other 75%)."),
+        ],
       },
       {
         title: "Ideal Sleep Count",
@@ -647,10 +710,165 @@ const BUY_BOXES = [
         icpCharts: true,
       },
 
+
+      { groupTitle: "Comp Set" },
+      // Comp-Set Visual Comparison -- Clearwater's exact structure (Top/Mid/
+      // Low tier columns side by side per photo category). Tiering rule is
+      // literal row order in ../LakeBuyBox/Compset.csv, sorted by Revenue
+      // Potential: top 2 rows = High, next 4 = Mid, remaining 2 = Low --
+      // the same 8 listings used throughout this box (see Must-Have/Nice-
+      // to-Have photos and ../LakeBuyBox/ai-gen/SOURCE.md). Photos are
+      // being supplied property-by-property (HeroPic/BedroomN in
+      // ../LakeBuyBox/Images/) -- any property without a photo yet shows a
+      // pendingPhoto() card linking straight to its real Airbnb listing
+      // instead of an invented placeholder image. Category interpretation
+      // text is a literal placeholder (lorem ipsum) until the real
+      // write-up is supplied -- do not mistake it for real analysis.
       {
-        title: "Comp Set",
+        title: "Comp-Set Visual Comparison",
         body:
-          "<p><a href=\"https://alexandria.strsearch.com/compsets?market=8&tag=7759fdb2-77e7-4e4c-8f3a-0bff87b79569&tab=view\" target=\"_blank\" rel=\"noopener\">View the live comp set on Alexandria ↗</a>. Analyst-reviewed, execution-tiered comp-set photo evidence (named comps, revenue/ADR/occupancy per comp) is still pending — everything on this page is region-wide market data, not a curated comp table yet.</p>",
+          "<p>Lakeside's 8 Top 10% comp-set listings, tiered by Revenue Potential (see <code>../LakeBuyBox/Compset.csv</code>): <strong>Top (High) tier</strong> is the top 2 by revenue, <strong>Mid tier</strong> is the next 4, <strong>Low tier</strong> is the remaining 2. Photos are being added property by property — a \"photo pending\" card links straight to that listing until its photo is in.</p>",
+        compSetComparison: {
+          categories: [
+            {
+              title: "Exterior",
+              interpretation:
+                "[Analyst opinion — placeholder text below, to be replaced] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+              tiers: {
+                high: [
+                  {
+                    title: "Lakefront Estate with Beach + Dock + Hot Tub",
+                    url: "https://www.airbnb.com/rooms/47855845",
+                    stats: "$182,749 · $896.51 ADR · 54.65% occ · 5BR/3.5BA, sleeps 16 · 4.95★ (97)",
+                    images: [photo("lake/compset/exterior/property-1-exterior.avif", "Blue two-story lakefront home with stone porch columns and a covered entry", "Property 1 (High tier, #1 by revenue) — exterior.")],
+                  },
+                  {
+                    title: "Lake front home away from home",
+                    url: "https://www.airbnb.com/rooms/591945644640549600",
+                    stats: "$151,170 · $738.15 ADR · 55.56% occ · 5BR/3.5BA, sleeps 16 · 4.9★ (149)",
+                    images: [photo("lake/compset/exterior/property-2-exterior.avif", "Lake property exterior/grounds view", "Property 2 (High tier, #2 by revenue) — exterior.")],
+                  },
+                ],
+                mid: [
+                  {
+                    title: "Modern 4BR Lakefront Home w/Pool, Patio & Pets OK",
+                    url: "https://www.airbnb.com/rooms/1142965470924412498",
+                    stats: "$138,235 · $795.41 ADR · 46.57% occ · 4BR/3.5BA, sleeps 11 · 4.9★ (32)",
+                    images: [photo("lake/compset/exterior/property-3-exterior.avif", "Modern lakefront home exterior", "Property 3 (Mid tier, #3 by revenue) — exterior.")],
+                  },
+                  {
+                    title: "Lake Wylie Lakefront | Hot Tub+Firepit | CLT, 20m",
+                    url: "https://www.airbnb.com/rooms/1022667495215121231",
+                    stats: "$126,895 · $793.71 ADR · 44.14% occ · 4BR/4BA, sleeps 14 · 5★ (56)",
+                    images: [photo("lake/compset/exterior/property-4-exterior.avif", "Lakefront home exterior", "Property 4 (Mid tier, #4 by revenue) — exterior.")],
+                  },
+                  {
+                    title: "Serene Lake Views • Hot Tub • BBQ • Kayaks",
+                    url: "https://www.airbnb.com/rooms/49369858",
+                    stats: "$121,486 · $523.86 ADR · 65.36% occ · 4BR/2.5BA, sleeps 10 · 4.8★ (95)",
+                    images: [
+                      photo("lake/compset/exterior/property-5-exterior.avif", "Lake home exterior view", "Property 5 (Mid tier, #5 by revenue) — exterior."),
+                      photo("lake/compset/exterior/property-5-exterior-2.avif", "Lake home exterior, second view", "Property 5 — second exterior view."),
+                    ],
+                  },
+                  {
+                    title: "Mid-Century Modern Lake House with Stunning Views",
+                    url: "https://www.airbnb.com/rooms/1405992491060136013",
+                    stats: "$115,911 · $677.60 ADR · 52.22% occ · 4BR/3.5BA, sleeps 8 · 4.95★ (33)",
+                    images: [pendingPhoto("https://www.airbnb.com/rooms/1405992491060136013", "Exterior photo")],
+                  },
+                ],
+                low: [
+                  {
+                    title: "Castaway Cove— 5Bed Lake Retreat—Fire Pit—Hot Tub!",
+                    url: "https://www.airbnb.com/rooms/52281872",
+                    stats: "$99,613 · $466.33 ADR · 57.71% occ · 5BR/2BA, sleeps 14 · 4.9★ (97)",
+                    images: [pendingPhoto("https://www.airbnb.com/rooms/52281872", "Exterior photo")],
+                  },
+                  {
+                    title: "Your Lake House Awaits!",
+                    url: "https://www.airbnb.com/rooms/1294906461944120744",
+                    stats: "$87,852 · $360.50 ADR · 67.04% occ · 3BR/2BA, sleeps 8 · 4.95★ (104)",
+                    images: [pendingPhoto("https://www.airbnb.com/rooms/1294906461944120744", "Exterior photo")],
+                  },
+                ],
+              },
+            },
+            {
+              title: "Bedrooms",
+              interpretation:
+                "[Analyst opinion — placeholder text below, to be replaced] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              tiers: {
+                high: [
+                  {
+                    title: "Lakefront Estate with Beach + Dock + Hot Tub",
+                    url: "https://www.airbnb.com/rooms/47855845",
+                    stats: "5BR / 10 beds / sleeps 16",
+                    images: [photo("lake/compset/bedrooms/property-1-bedroom.avif", "Bedroom in the Property 1 listing", "Property 1 (High tier) — a bedroom.")],
+                  },
+                  {
+                    title: "Lake front home away from home",
+                    url: "https://www.airbnb.com/rooms/591945644640549600",
+                    stats: "5BR / 9 beds / sleeps 16",
+                    images: [photo("lake/compset/bedrooms/property-2-bunk.avif", "Built-in bunk room in the Property 2 listing", "Property 2 (High tier) — the built-in bunk room.")],
+                  },
+                ],
+                mid: [
+                  {
+                    title: "Modern 4BR Lakefront Home w/Pool, Patio & Pets OK",
+                    url: "https://www.airbnb.com/rooms/1142965470924412498",
+                    stats: "4BR / 8 beds / sleeps 11",
+                    images: [
+                      photo("lake/compset/bedrooms/property-3-bedroom.avif", "Bedroom in the Property 3 listing", "Property 3 (Mid tier) — a bedroom."),
+                      photo("lake/compset/bedrooms/property-3-bunk.avif", "Bunk room in the Property 3 listing", "Property 3 — the bunk room."),
+                    ],
+                  },
+                  {
+                    title: "Lake Wylie Lakefront | Hot Tub+Firepit | CLT, 20m",
+                    url: "https://www.airbnb.com/rooms/1022667495215121231",
+                    stats: "4BR / 9 beds / sleeps 14",
+                    images: [
+                      photo("lake/compset/bedrooms/property-4-bedroom.avif", "Bedroom in the Property 4 listing", "Property 4 (Mid tier) — a bedroom."),
+                      photo("lake/compset/bedrooms/property-4-bunk.avif", "Bunk room in the Property 4 listing", "Property 4 — the bunk room."),
+                      photo("lake/compset/bedrooms/property-4-couch.avif", "Living area with a couch in the Property 4 listing", "Property 4 — a sleeper-couch/living area."),
+                    ],
+                  },
+                  {
+                    title: "Serene Lake Views • Hot Tub • BBQ • Kayaks",
+                    url: "https://www.airbnb.com/rooms/49369858",
+                    stats: "4BR / 6 beds / sleeps 10",
+                    images: [pendingPhoto("https://www.airbnb.com/rooms/49369858", "Bedroom photo")],
+                  },
+                  {
+                    title: "Mid-Century Modern Lake House with Stunning Views",
+                    url: "https://www.airbnb.com/rooms/1405992491060136013",
+                    stats: "4BR / 5 beds / sleeps 8",
+                    images: [pendingPhoto("https://www.airbnb.com/rooms/1405992491060136013", "Bedroom photo")],
+                  },
+                ],
+                low: [
+                  {
+                    title: "Castaway Cove— 5Bed Lake Retreat—Fire Pit—Hot Tub!",
+                    url: "https://www.airbnb.com/rooms/52281872",
+                    stats: "5BR / 6 beds / sleeps 14",
+                    images: [pendingPhoto("https://www.airbnb.com/rooms/52281872", "Bedroom photo")],
+                  },
+                  {
+                    title: "Your Lake House Awaits!",
+                    url: "https://www.airbnb.com/rooms/1294906461944120744",
+                    stats: "3BR / 3 beds / sleeps 8",
+                    images: [pendingPhoto("https://www.airbnb.com/rooms/1294906461944120744", "Bedroom photo")],
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+      {
+        title: "Alexandria Comp Set",
+        body:
+          "<p><a href=\"https://alexandria.strsearch.com/compsets?market=8&tag=7759fdb2-77e7-4e4c-8f3a-0bff87b79569&tab=view\" target=\"_blank\" rel=\"noopener\">View the live comp set on Alexandria ↗</a>.</p>",
       },
     ],
 

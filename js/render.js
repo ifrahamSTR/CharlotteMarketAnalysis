@@ -316,23 +316,33 @@ function renderDeepDiveTabs() {
 
 function overviewBlock(box) {
   const o = box.overview;
-  const hero = el("div", "bb2-hero");
-  const media = el("div", "bb2-hero__media");
-  media.appendChild(renderImage(o.heroImage));
-  hero.appendChild(media);
+  // A pending box's overview (Downtown/Uptown especially) may not have a
+  // hero photo yet -- skip the whole media panel rather than rendering an
+  // empty <div> into it, and drop the grid down to a single column so the
+  // body doesn't leave a blank column-width gap next to it.
+  const hero = el("div", "bb2-hero" + (o.heroImage ? "" : " bb2-hero--no-media"));
+  if (o.heroImage) {
+    const media = el("div", "bb2-hero__media");
+    media.appendChild(renderImage(o.heroImage));
+    hero.appendChild(media);
+  }
   const body = el("div", "bb2-hero__body");
-  body.appendChild(el("p", "bb2-hero__status", o.statusBadge));
+  if (o.statusBadge) body.appendChild(el("p", "bb2-hero__status", o.statusBadge));
   body.appendChild(el("h3", "bb2-hero__title", box.name));
   body.appendChild(el("p", "bb2-hero__thesis", o.thesis));
-  body.appendChild(el("p", "bb2-hero__why", o.whyItWorks));
-  const chipRow = el("div", "bb2-chip-row");
-  o.chips.forEach((c) => chipRow.appendChild(el("span", "bb2-chip", c.label)));
-  body.appendChild(chipRow);
-  const revRow = el("div", "bb2-chip-row");
-  o.revenueChips.forEach((c) =>
-    revRow.appendChild(el("span", "bb2-chip bb2-chip--revenue", c.label + ": " + c.value))
-  );
-  body.appendChild(revRow);
+  if (o.whyItWorks) body.appendChild(el("p", "bb2-hero__why", "<strong>Why this works:</strong> " + o.whyItWorks));
+  if (o.chips && o.chips.length) {
+    const chipRow = el("div", "bb2-chip-row");
+    o.chips.forEach((c) => chipRow.appendChild(el("span", "bb2-chip", c.label)));
+    body.appendChild(chipRow);
+  }
+  if (o.revenueChips && o.revenueChips.length) {
+    const revRow = el("div", "bb2-chip-row");
+    o.revenueChips.forEach((c) =>
+      revRow.appendChild(el("span", "bb2-chip bb2-chip--revenue", c.label + ": " + c.value))
+    );
+    body.appendChild(revRow);
+  }
   hero.appendChild(body);
   return hero;
 }
@@ -1120,6 +1130,53 @@ function renderPendingSection(section) {
       if (typeof renderLakeIcpCharts === "function") renderLakeIcpCharts();
     });
   }
+  // Comp-Set Visual Comparison (Clearwater's 5BR structure): one or more
+  // named photo categories, each split into Top (High) / Mid / Low tier
+  // columns side by side -- see compSetComparisonBlock() below.
+  if (section.compSetComparison) {
+    wrap.appendChild(compSetComparisonBlock(section.compSetComparison));
+  }
+  return wrap;
+}
+
+// A single comp property inside one tier column: its photo(s) (or a
+// pendingPhoto() placeholder card if that property's photo hasn't been
+// supplied yet -- see LakeBuyBox/Compset.csv's Listing URL), title (linked
+// to the real listing when a url is given), one-line stats, and an
+// optional analyst note (lorem ipsum until the real write-up is supplied).
+function compSetPropertyCard(prop) {
+  const card = el("div", "bb2-tier-compare__property");
+  if (prop.images && prop.images.length) {
+    card.appendChild(renderImageGrid(prop.images, { small: true, className: "dd-block__images--geo-compact" }));
+  }
+  const label = el("div", "comp-tier-property__label");
+  label.innerHTML =
+    "<strong>" + (prop.url ? '<a href="' + prop.url + '" target="_blank" rel="noopener">' + prop.title + "</a>" : prop.title) + "</strong>" +
+    (prop.stats ? "<br>" + prop.stats : "");
+  card.appendChild(label);
+  if (prop.note) card.appendChild(el("p", "dd-note comp-tier-property__note", prop.note));
+  return card;
+}
+function compSetTierColumn(tierKey, tierLabel, properties) {
+  const col = el("div", "bb2-tier-compare__col");
+  col.appendChild(el("div", "bb2-tier-compare__col-label", tierLabel));
+  (properties || []).forEach((prop) => col.appendChild(compSetPropertyCard(prop)));
+  return col;
+}
+function compSetComparisonBlock(data) {
+  const wrap = el("div", "comp-set-comparison");
+  if (data.intro) wrap.appendChild(el("div", "dd-block__body", data.intro));
+  (data.categories || []).forEach((cat) => {
+    const catWrap = el("div", "bb2-tier-compare__category");
+    catWrap.appendChild(el("h4", "dd-block__title", cat.title));
+    if (cat.interpretation) catWrap.appendChild(el("div", "dd-note comp-tier-category__note", cat.interpretation));
+    const grid = el("div", "bb2-tier-compare__grid");
+    grid.appendChild(compSetTierColumn("high", "Top (High Tier)", cat.tiers.high));
+    grid.appendChild(compSetTierColumn("mid", "Mid Tier", cat.tiers.mid));
+    grid.appendChild(compSetTierColumn("low", "Low Tier", cat.tiers.low));
+    catWrap.appendChild(grid);
+    wrap.appendChild(catWrap);
+  });
   return wrap;
 }
 
@@ -1149,6 +1206,13 @@ function renderDeepDive(box) {
     //    only set pendingNote today, render exactly as before).
     const wrap = el("div", "deep-dive deep-dive--pending");
     pendingChartJobs = [];
+    // Clearwater's "1. Buy-Box Summary" hero card (status badge, thesis,
+    // why-it-works, spec/revenue chips) -- reuses the same overviewBlock()
+    // a developed box's NARRATIVE_BLOCKS.overview renders, so a pending box
+    // gets the same at-a-glance opening card instead of starting cold on
+    // "Property Profile". Purely additive: a box with no `overview` set
+    // renders exactly as before.
+    if (box.overview) wrap.appendChild(overviewBlock(box));
     if (box.pendingSections && box.pendingSections.length) {
       box.pendingSections.forEach((section) => wrap.appendChild(renderPendingSection(section)));
     } else {
