@@ -653,7 +653,7 @@ const BUY_BOXES = [
       },
       {
         title: "Backyard Size",
-        body: "<p><strong>Outdoor lounges, sofas, fire pits, lakeside hot tubs, and sitting areas</strong> — no numeric size or usability metric has been analyzed, but this is the outdoor program that's consistently present. Balconies double as lounges here, not just a pass-through to the yard.</p>",
+        body: "<p><strong>Outdoor lounges, sofas, fire pits, lakeside hot tubs, and sitting areas</strong> — no numeric size or usability metric has been analyzed, but this is the outdoor program that's consistently present. <strong>Outdoor sitting areas are distinctive here</strong> — sofas and soft cushions turn up outdoors, not just inside. <strong>Balconies double as lounges</strong>, almost like open-air living rooms, not just a pass-through to the yard.</p>",
         images: [
           photo("lake/exterior/pool-dock-view.avif", "Pool deck with lounge chairs overlooking a private dock and the lake", "Reference example: pool deck stepping down to a private dock."),
           photo("lake/porch/covered-porch-dock-view.avif", "Covered porch with string lights and wicker seating overlooking a lake and dock", "Reference example: a covered porch overlooking the dock, sized for a full outdoor living/dining setup."),
@@ -961,18 +961,66 @@ const BUY_BOXES = [
             ],
           },
           {
-            text: "<strong>Outdoor sitting areas are distinctive in this dataset</strong> — sofas and soft cushions turn up outdoors, not just inside (see Backyard Size above for examples).",
-            images: [],
-          },
-          {
             text: "<strong>Lake-activity imagery and accessories</strong> (kayaks, docks) are worth featuring.",
             images: [
               photo("lake/balcony/outdoor-activities.webp", "Two people in a small boat on the lake at golden hour, near a dock", "Reference example: lake-activity imagery (kayak/small boat) — the kind of accessory shot the analyst notes flag as worth featuring."),
             ],
           },
+        ],
+      },
+
+      // Lakefront vs. Castaway -- both are already in the comp set (High
+      // tier #1 and Low tier #7); every number in compStats is pulled
+      // straight from Compset.csv, verified against the row data directly
+      // before writing this, not re-derived or taken on faith. The photo
+      // rows use each property's own real listing photos (downloaded from
+      // its actual Airbnb gallery -- see ../LakeBuyBox/CompComparison/),
+      // not stock/reference images.
+      { groupTitle: "Comp Deep-Dive" },
+      {
+        title: "Lakefront vs. Castaway: Why the Revenue Gap",
+        body:
+          "<p>Both are 5BR Lake Wylie waterfront comps with a beach, dock, hot tub, and fire pit. Lakefront earns <strong>83% more revenue</strong> — at <strong>lower</strong> occupancy. Not a demand story.</p>" +
+          "<ul>" +
+          "<li><strong>Not an occupancy story.</strong> Castaway occupies more (57.7% vs. 54.7%) — Lakefront earns 83% more purely on rate (ADR +92%).</li>" +
+          "<li><strong>Bathrooms: 3.5 vs. 2.</strong> ~4.6 guests/bath vs. 7 guests/bath at max capacity.</li>" +
+          "<li><strong>Sleeping design, not just sleep count.</strong> 10 beds incl. a built-in 6-person bunk room vs. 6 beds.</li>" +
+          "<li><strong>Game room, data-confirmed.</strong> Lakefront flags Game Room + Pool Table; Castaway flags neither.</li>" +
+          "<li><strong>Same dock flag, different asset.</strong> Both flag Waterfront + Lake Access identically — real photos below show very different docks.</li>" +
+          "<li><strong>Cleaning fee works against Castaway.</strong> $520 vs. $374, despite the lower nightly rate.</li>" +
+          "</ul>",
+        compStats: [
+          { label: "Revenue Potential", lakefront: "$182,749", castaway: "$99,613" },
+          { label: "ADR", lakefront: "$896.51", castaway: "$466.33" },
+          { label: "Occupancy", lakefront: "54.65%", castaway: "57.71%" },
+          { label: "Bedrooms", lakefront: "5", castaway: "5" },
+          { label: "Sleeps", lakefront: "16", castaway: "14" },
+          { label: "Beds", lakefront: "10", castaway: "6" },
+          { label: "Bathrooms", lakefront: "3.5", castaway: "2" },
+          { label: "Cleaning Fee", lakefront: "$374", castaway: "$520" },
+          { label: "Min Stay", lakefront: "5 nights", castaway: "3 nights" },
+          { label: "Rating", lakefront: "4.95★ (97)", castaway: "4.9★ (97)" },
+        ],
+      },
+      {
+        title: "Same Amenity, Different Asset — In Photos",
+        body:
+          "<p>Real photos from each listing's own gallery, not reference/stock images. Neither listing's actual hot-tub photo turned up in what we could pull — so this uses the same pattern on what we do have: color and daylight vs. a pretty sky that hides the water.</p>",
+        compPhotoRows: [
           {
-            text: "<strong>Balconies function as group chill areas</strong> — almost like open-air living rooms, not just a deck (see Backyard Size above for examples).",
-            images: [],
+            note: "<strong>Lakefront sells daylight and color</strong> — bright water, kayaks staged in the foreground, the lake fills the frame. <strong>Castaway's best water shot is dusk</strong> — a striking sky, but the lake itself goes dark and undersaturated. Good photo, wrong subject: the lake is the expensive amenity, and this shot hides it.",
+            lakefront: photo("lake/compcompare/lakefront/beach-kayaks-daylight.jpeg", "Sandy beach with two kayaks and Adirondack chairs around a fire pit, bright blue lake and sky", "Lakefront Estate — beach, kayaks, dock, full color, full sun."),
+            castaway: photo("lake/compcompare/castaway/deck-sunset.jpeg", "Two people in Adirondack chairs facing a dark lake under a dramatic orange and pink sunset sky", "Castaway Cove — a striking sky, but the lake itself is nearly black."),
+          },
+          {
+            note: "Both listings flag Waterfront + Dock identically — the data can't see this gap. <strong>Lakefront's dock is a two-level structure</strong> with its own stairs and upper deck, a destination in itself. <strong>Castaway's dock is a single-level slip</strong> for the boat, shot in bare winter trees. Same checkbox, different asset.",
+            lakefront: photo("lake/compcompare/lakefront/dock-two-level.jpeg", "Two-level dock structure with stairs leading up to a covered upper deck over the lake", "Lakefront Estate — a two-level dock with its own upper deck."),
+            castaway: photo("lake/compcompare/castaway/hottub-dock-winter.jpeg", "Hot tub in the foreground with a simple single-level dock and pontoon boat visible on the lake behind it, bare winter trees", "Castaway Cove — hot tub and a functional single-level dock, winter trees."),
+          },
+          {
+            note: "<strong>Lakefront's bunk room is purpose-built</strong> — three built-in bunks, six real beds, its own design identity. <strong>Castaway's is one add-on bunk unit</strong> in an otherwise ordinary bedroom. \"Sleeps 16\" and \"sleeps 14\" undersell how differently that capacity is actually delivered.",
+            lakefront: photo("lake/compcompare/lakefront/bunk-room-builtin.jpeg", "Custom built-in bunk room with three sets of bunk beds along the walls, six beds total, a round rug in the center", "Lakefront Estate — a purpose-built 6-bed bunk room."),
+            castaway: photo("lake/compcompare/castaway/bunk-room-single.jpeg", "Bedroom with a single metal bunk bed frame against the wall, otherwise a plain guest room", "Castaway Cove — a single bunk unit added to an ordinary bedroom."),
           },
         ],
       },

@@ -296,6 +296,20 @@ img { max-width: 100%; display: block; }
 .photo-figure--wide .photo-figure__trigger { aspect-ratio: auto; }
 .photo-figure--wide .photo-figure__trigger img { width: 100%; height: auto; object-fit: contain; }
 
+/* Lakefront vs. Castaway comp-set comparison: a stats table, then a photo
+   row per point (label + image for each property side by side, reusing
+   .bb2-grid-2, so it collapses to stacked on mobile). */
+.comp-stats-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92rem; text-align: left; }
+.comp-stats-table th, .comp-stats-table td { padding: 8px 12px; border-bottom: var(--hairline); }
+.comp-stats-table th { color: var(--color-text-muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.comp-stats-table td:not(:first-child), .comp-stats-table th:not(:first-child) { text-align: right; }
+.comp-stats-table tr:last-child td { border-bottom: none; }
+.comp-photo-rows > * { padding: 16px 0; border-bottom: var(--hairline); }
+.comp-photo-rows > *:last-child { border-bottom: none; padding-bottom: 0; }
+.comp-photo-row__note { margin: 0 0 10px; text-align: left; }
+.comp-photo-row__col { text-align: center; }
+.comp-photo-row__label { margin: 0 0 6px; font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--color-primary); }
+
 /* Analyst Notes: each note's own image(s) sit directly beside its text
    (reuses .bb2-grid-2's two-column grid, already collapses to 1 column
    under 960px), instead of one bulleted list with a separate photo

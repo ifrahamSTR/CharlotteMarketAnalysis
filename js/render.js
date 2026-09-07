@@ -825,6 +825,44 @@ function analystNotePairsBlock(notes) {
   return wrap;
 }
 
+// Lakefront vs. Castaway comp-set comparison -- a plain HTML stats table
+// (verified against Compset.csv, not re-derived here) plus a photo row per
+// point: the same real point illustrated with one photo from each listing,
+// side by side, captioned with the actual visual difference rather than a
+// generic "reference example" line.
+function compStatsTable(rows) {
+  const table = el("table", "comp-stats-table");
+  let html = "<thead><tr><th></th><th>Lakefront Estate</th><th>Castaway Cove</th></tr></thead><tbody>";
+  rows.forEach((r) => {
+    html += "<tr><td>" + r.label + "</td><td>" + r.lakefront + "</td><td>" + r.castaway + "</td></tr>";
+  });
+  html += "</tbody>";
+  table.innerHTML = html;
+  return table;
+}
+
+function compPhotoRow(row) {
+  const wrap = el("div", "comp-photo-row");
+  wrap.appendChild(el("p", "comp-photo-row__note", row.note));
+  const grid = el("div", "bb2-grid-2");
+  const left = el("div", "comp-photo-row__col");
+  left.appendChild(el("p", "comp-photo-row__label", "Lakefront Estate"));
+  left.appendChild(renderImage(row.lakefront, { wide: true }));
+  const right = el("div", "comp-photo-row__col");
+  right.appendChild(el("p", "comp-photo-row__label", "Castaway Cove"));
+  right.appendChild(renderImage(row.castaway, { wide: true }));
+  grid.appendChild(left);
+  grid.appendChild(right);
+  wrap.appendChild(grid);
+  return wrap;
+}
+
+function compPhotoRowsBlock(rows) {
+  const wrap = el("div", "comp-photo-rows");
+  (rows || []).forEach((row) => wrap.appendChild(compPhotoRow(row)));
+  return wrap;
+}
+
 function executionStandardsBlock(box) {
   const e = box.executionStandards;
   const wrap = el("div", "dd-block");
@@ -1130,6 +1168,8 @@ function renderPendingSection(section) {
   }
   if (section.ranked) wrap.appendChild(niceToHaveRankedBlock(section.ranked));
   if (section.notes) wrap.appendChild(analystNotePairsBlock(section.notes));
+  if (section.compStats) wrap.appendChild(compStatsTable(section.compStats));
+  if (section.compPhotoRows) wrap.appendChild(compPhotoRowsBlock(section.compPhotoRows));
   // Inline map embed -- replaces prose in Geo Considerations / Property
   // Locations with the same interactive map from Section 3 (already marks
   // landmarks, properties, and is region/tier filterable) per explicit
