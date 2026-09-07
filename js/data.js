@@ -678,57 +678,68 @@ const BUY_BOXES = [
       {
         title: "Amenity Prevalence By Tier",
         body:
-          "<p>Fire Pit, Waterfront, and Lake Access sit at 100% among Lakeside's Top 10% and fall off sharply outside it — that gap is the Must-Have list below. Everything else either stays flat across tiers (no signal) or only partially separates Top 10% from the rest (a nice-to-have, ranked further down). The heatmap shows the same data at the individual-listing level, sorted Top 10% → Top 25% → Other 75%.</p>",
+          "<p><strong>Must-Have rule (updated):</strong> an amenity is a Must-Have if it clears <em>either</em> bar — ≥40% penetration among Lakeside's Top 10% listings (N=8), or ≥60% presence across the whole Lakeside market (N=39). Six amenities clear at least one: Fire Pit (100% Top 10% / 61.5% whole), Waterfront (100% / 46.2%), Lake Access (100% / 46.2%), Hot Tub (87.5% / 23.1%), Outdoor Dining Area (87.5% / 61.5%), and Pack 'N Play / Travel Crib (62.5% / 33.3%). <strong>Crib</strong> falls just short of both bars (37.5% Top 10% / 12.8% whole) despite being a related amenity to Pack 'N Play — it's ranked as the top Nice-to-Have below instead of a Must-Have. Everything else stays too flat across tiers to separate Top 10% from the rest. The heatmap shows the same data at the individual-listing level, sorted Top 10% → Top 25% → Other 75%.</p>",
         chartsRow: [
-          photo("lake/charts/amenity_prevalence.png", "Grouped bar chart of amenity prevalence by revenue tier for Lakeside listings", "Amenity prevalence by tier (N=39)."),
+          photo("lake/charts/amenity_prevalence.png", "Grouped bar chart of amenity prevalence by revenue tier for Lakeside listings, Top 10% drawn on top of each group", "Amenity prevalence by tier (N=39) — Top 10% (green) drawn on top of each group, then Top 25%, then Other 75%."),
           photo("lake/charts/amenity_heatmap.png", "Heatmap of amenity presence per listing, sorted Top 10% to Other 75%", "Amenity presence by individual listing (N=39)."),
         ],
       },
       {
         title: "Must-Have's",
-        body: "<p>The only amenities present in 100% of Lakeside's Top 10% listings (N=8) — everything else is a nice-to-have, ranked below.</p>",
-        items: ["Fire Pit", "Waterfront", "Lake Access"],
+        body: "<p>Clears the ≥40%-of-Top-10%-or-≥60%-of-whole-market bar above (N=8 Top 10% / N=39 whole).</p>",
+        items: ["Fire Pit", "Outdoor Dining Area", "Waterfront", "Lake Access", "Pack 'N Play / Travel Crib", "Hot Tub"],
         images: [
           photo("lake/firepit/beach-firepit-dock.avif", "Small fire bowl on a sandy lake beach with a dock in the background", "A fire pit set up right at the water's edge — Fire Pit and Waterfront together, not two separate features here."),
           photo("lake/firepit/beach-firepit-chairs.avif", "Adirondack chairs around a fire pit on a sandy beach facing the lake and a dock", "Adirondack-chair fire pit seating on the beach, facing the dock."),
+          photo("lake/porch/screened-porch-firepit-table.avif", "Screened porch with a wicker sectional and a fire-pit dining table, lake visible through the windows", "Reference example: a screened porch combining outdoor dining and lounge seating."),
+          photo("lake/hottub/covered-porch-lake-view.avif", "Hot tub on a covered porch overlooking a lake and dock", "Reference example: a covered-porch hot tub facing the lake."),
+          photo("lake/hottub/night-lit.avif", "Hot tub lit blue at night in a backyard setting", "Reference example: a nighttime hot tub setup."),
+        ],
+      },
+      // Amenity Evidence -- Clearwater's "Amenity Combination Evidence"
+      // pattern (5BR buy box), ported to Lake per direct request: a median
+      // with-vs-without revenue comparison per amenity, "where necessary" --
+      // i.e. for the ambiguous Nice-to-Have candidates only, not the
+      // Must-Haves above (already covered by the prevalence chart). This is
+      // also what settles the open "Pickleball?" question: N=1 in all of
+      // Lakeside, and that one listing underperforms -- excluded below.
+      {
+        title: "Amenity Evidence: With vs. Without",
+        body:
+          "<p>For each Nice-to-Have candidate below, Lakeside's median Revenue Potential with vs. without that amenity (N=39). Every \"with\" group is 1-5 listings — directional evidence only, not proof that the amenity itself causes the difference. This is also the evidence behind excluding Pickleball: its lone listing (N=1) actually earns less than the market without it.</p>",
+        charts: [
+          photo("lake/charts/amenity_with_without.png", "Six small bar charts, each comparing median Lakeside revenue with vs. without one amenity: Pool Table, Game Room, Pool, Crib, Gym, and Pickleball", "Pool Table (+280%), Game Room (+250%), Pool (+168%), and Crib (+173%) show the strongest separation; Gym (+24%) is marginal; Pickleball (-3%) is negative and N=1."),
         ],
       },
       // Nice-to-Have, Ranked -- Clearwater's 5BR structure (score / revenue
       // uplift / Top-10%-hit-rate uplift / N per item, thin-data items
       // flagged rather than dropped, no Auto-Add tier). Score here is our
-      // own transparent composite (revenue uplift + hit-rate uplift +
-      // sample size, each min-max normalized across the rankable amenities)
-      // since Clearwater's exact weights weren't supplied to us -- same
-      // shape, our own math. Photos pending for every item -- add via
-      // photo(relPath, alt, caption) into each item's `images` once supplied.
+      // own transparent composite (median revenue uplift + Top-10%-hit-rate
+      // uplift + sample size, each min-max normalized across the rankable
+      // amenities) since Clearwater's exact weights weren't supplied to us
+      // -- same shape, same math as before, just re-run with the new N≥2
+      // floor and Crib/Gym/Pool/Game Room/Pool Table now included (Hot Tub,
+      // Outdoor Dining Area, and Pack 'N Play moved up to Must-Have above).
       {
         // No outer `title` here -- niceToHaveRankedBlock() already renders
         // its own "Nice-to-Have, Ranked" <h4>, so an outer <h3> with the
         // same text would just duplicate the heading.
         ranked: {
-          note: "Ranked by composite score among amenities with N≥9 in Lakeside; everything thinner is flagged, not dropped, matching Clearwater's own treatment of its thin amenities (Movie Theater, Sauna, Golf Simulator). Photos pending for every item.",
+          note: "N≥2 is now the minimum to rank in Lakeside (was N≥9) — everything thinner (N≤1) is flagged, not dropped, matching Clearwater's own treatment of its thin amenities (Movie Theater, Sauna, Golf Simulator). Photos pending for Crib and Gym.",
           items: [
-            { name: "Hot Tub", score: 0.67, revenueUplift: "+191%", p90Uplift: "+74pp", n: 9, note: "By far the strongest signal in Lakeside — 78% of hot-tub-flagged listings reach the market's Top 10%, vs. 3% without. N=9 is still small; treat as directional, not proven.", images: [
-              photo("lake/hottub/covered-porch-lake-view.avif", "Hot tub on a covered porch overlooking a lake and dock", "Reference example: a covered-porch hot tub facing the lake."),
-              photo("lake/hottub/night-lit.avif", "Hot tub lit blue at night in a backyard setting", "Reference example: a nighttime hot tub setup."),
-            ] },
-            { name: "Outdoor Dining Area", score: 0.37, revenueUplift: "+40%", p90Uplift: "+23pp", n: 24, note: "Already the region's most common non-must-have amenity (24 of 39) — a real but smaller relative lift than Hot Tub.", images: [
-              photo("lake/porch/screened-porch-firepit-table.avif", "Screened porch with a wicker sectional and a fire-pit dining table, lake visible through the windows", "Reference example: a screened porch combining outdoor dining and lounge seating."),
-            ] },
-            { name: "Pack 'N Play / Travel Crib", score: 0.12, revenueUplift: "+24%", p90Uplift: "+27pp", n: 13, note: "Weakest of the rankable amenities — present, but not a strong differentiator here.", images: [] },
-            { name: "Crib", n: 5, thinData: true, note: "N=5, too thin to rank reliably.", images: [] },
-            { name: "Gym", n: 4, thinData: true, note: "N=4, too thin to rank reliably.", images: [] },
-            { name: "Pool", n: 3, thinData: true, note: "N=3, too thin to rank reliably.", images: [
-              photo("lake/pool/aerial-kidney-pool.avif", "Aerial view of a kidney-shaped pool with a screened porch and brick patio", "Reference example: a kidney-shaped pool and brick patio."),
-            ] },
-            { name: "Game Room", n: 3, thinData: true, note: "N=3, too thin to rank reliably.", images: [
-              photo("lake/gameroom/game-room-sign.avif", "Game room with a pool table, sectional sofa, and arcade cabinet under a GAME ROOM sign", "Reference example: a dedicated game room with a pool table and arcade cabinet."),
-            ] },
-            { name: "Pool Table", n: 2, thinData: true, note: "N=2, too thin to rank reliably.", images: [
+            { name: "Crib", score: 0.70, revenueUplift: "+173%", p90Uplift: "+45pp", n: 5, note: "Highest score of any Nice-to-Have — falls just short of the Must-Have bars above (37.5% of Top 10%, 12.8% of the whole market) but shows the strongest revenue signal.", images: [] },
+            { name: "Pool Table", score: 0.67, revenueUplift: "+280%", p90Uplift: "+84pp", n: 2, note: "Smallest sample of any ranked item (N=2), but both pool-table listings reach the market's Top 10% — the highest hit-rate uplift here.", images: [
               photo("lake/pooltable/lake-view-room.avif", "Living room with a pool table and sectional sofa, sliding doors opening to a lake and dock view", "Reference example: a pool table room opening directly onto a lake/dock view."),
             ] },
-            { name: "Pickleball", n: 1, thinData: true, note: "N=1, too thin to rank reliably.", images: [] },
-            { name: "Playground", n: 1, thinData: true, note: "N=1, too thin to rank reliably.", images: [] },
+            { name: "Game Room", score: 0.60, revenueUplift: "+250%", p90Uplift: "+50pp", n: 3, note: "Second-highest revenue uplift of any Nice-to-Have, on N=3.", images: [
+              photo("lake/gameroom/game-room-sign.avif", "Game room with a pool table, sectional sofa, and arcade cabinet under a GAME ROOM sign", "Reference example: a dedicated game room with a pool table and arcade cabinet."),
+            ] },
+            { name: "Pool", score: 0.49, revenueUplift: "+168%", p90Uplift: "+50pp", n: 3, note: "Strong revenue signal, same hit-rate uplift as Game Room, on N=3.", images: [
+              photo("lake/pool/aerial-kidney-pool.avif", "Aerial view of a kidney-shaped pool with a screened porch and brick patio", "Reference example: a kidney-shaped pool and brick patio."),
+            ] },
+            { name: "Gym", score: 0.22, revenueUplift: "+24%", p90Uplift: "+5pp", n: 4, note: "Weakest signal of the rankable amenities — present, but a marginal differentiator here.", images: [] },
+            { name: "Pickleball", n: 1, thinData: true, note: "N=1 in all of Lakeside — below even the new N≥2 minimum, and that one listing has lower revenue than the market without it (see Amenity Evidence chart above). Not recommended, despite being a common ask.", images: [] },
+            { name: "Playground", n: 1, thinData: true, note: "N=1, below the new N≥2 minimum.", images: [] },
             { name: "Sauna", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
             { name: "Mini Golf", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
             { name: "Movie Theater", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
