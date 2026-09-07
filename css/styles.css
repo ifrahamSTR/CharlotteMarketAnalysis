@@ -149,7 +149,7 @@ img { max-width: 100%; display: block; }
 .deep-dive--pending { padding: 32px; background: var(--color-surface); border-radius: var(--radius); text-align: center; color: var(--color-text-muted); }
 /* Substantive pending content (bullet lists, links) reads badly centered --
    left-align it; a short one-line pendingNote still looks fine left-aligned. */
-.deep-dive--pending .dd-block__body { text-align: left; }
+.deep-dive--pending .dd-block__body, .deep-dive--pending .bb2-details { text-align: left; }
 .deep-dive--pending .dd-block__body ul { padding-left: 1.2em; }
 
 /* ==== dd-block system (generic labeled-row card) ==== */
@@ -166,6 +166,31 @@ img { max-width: 100%; display: block; }
 .dd-block__images--geo-compact { grid-template-columns: repeat(auto-fit, minmax(220px, 360px)); justify-content: start; }
 .dd-note { font-size: 0.88rem; color: var(--color-text-muted); }
 .dd-note-block { padding: 12px 16px; border-radius: var(--radius); background: color-mix(in srgb, var(--color-danger) 6%, white); margin: 4px 0 20px; }
+
+/* Collapsed-by-default accordion (Clearwater's own STR Regulations
+   treatment) -- keeps a section's real content off the page by default,
+   one summary line, so a thorough writeup doesn't cost permanent scroll
+   space. Ported verbatim from the reference site's own .bb2-details. */
+.bb2-details { margin-top: 12px; border: var(--hairline); border-radius: var(--radius); padding: 2px 20px; background: var(--surface-tint); }
+.bb2-details__summary { cursor: pointer; font-weight: 700; color: var(--color-primary); padding: 14px 0; list-style: none; font-size: 1.02rem; }
+.bb2-details__summary::-webkit-details-marker { display: none; }
+.bb2-details__summary::before { content: "▸  "; }
+.bb2-details[open] .bb2-details__summary::before { content: "▾  "; }
+.bb2-details > *:not(summary) { padding-bottom: 14px; }
+
+/* STR Regulations card -- tier badge + checkmark-chip highlights + a
+   compact two-column key/value grid, all bullet-driven rather than prose,
+   per explicit "visually attractive, bullet points, minimize text" ask. */
+.regs-card__tier { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1.05rem; padding: 6px 16px; border-radius: 999px; margin-bottom: 10px; background: color-mix(in srgb, var(--brand-forest) 12%, white); color: var(--brand-forest-dark); }
+.regs-card__tier-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--brand-forest); flex-shrink: 0; }
+.regs-card__summary { margin: 0 0 4px; }
+.regs-card__highlights { margin: 12px 0 4px; }
+.regs-card__highlight-chip { background: var(--surface-tint-strong); }
+.regs-card__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; margin-top: 16px; }
+.regs-card__col-title { margin: 0 0 8px; font-size: 0.88rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); }
+.regs-card .dd-row { grid-template-columns: 150px 1fr; gap: 2px 12px; }
+.regs-card .dd-rows { gap: 8px; }
+.regs-card__sources { margin-top: 16px; padding-top: 12px; border-top: var(--hairline); }
 
 /* ==== BuyBox V.2-style components (scoped under .bb2) ==== */
 .bb2 { font-size: 1.02rem; }
@@ -326,7 +351,7 @@ img { max-width: 100%; display: block; }
 
 /* ==== Responsive ==== */
 @media (max-width: 960px) {
-  .declarations-grid, .map-layout, .chart-row, .intro-grid, .bb2-hero, .bb2-grid-2, .bb2-amenity-panels, .bb2-tier-compare__grid { grid-template-columns: 1fr; }
+  .declarations-grid, .map-layout, .chart-row, .intro-grid, .bb2-hero, .bb2-grid-2, .bb2-amenity-panels, .bb2-tier-compare__grid, .regs-card__grid { grid-template-columns: 1fr; }
   .dd-row { grid-template-columns: 1fr; }
   .bb2-stat-row { grid-template-columns: repeat(2, 1fr); }
   .bb2-hero__media { min-height: 220px; }

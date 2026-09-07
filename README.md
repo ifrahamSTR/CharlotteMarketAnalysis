@@ -363,6 +363,30 @@ optional:
   replaced]` so it's never mistaken for real analysis — swap it for the
   real write-up once supplied, the same way a `pendingPhoto()` gets swapped
   for a real `photo()` once that property's image arrives.
+- **`regulations`** — `true` renders `CHARLOTTE_STR_REGULATIONS` (a
+  city/county-wide fact from a supplied PDF, "Charlotte, NC Overview.pdf",
+  not buy-box-specific — the same object is reused verbatim by every box
+  that sets this) via `regulationsBlock()`, Clearwater's own collapsed-by-
+  default `<details>`/`.bb2-details` accordion (ported CSS included) so a
+  thorough regulatory writeup costs one summary line by default, not
+  permanent scroll space — "minimize text usage" as a real space mechanic,
+  not just terse prose. Inside: a tier badge, checkmark-chip highlights
+  (short phrases, not paragraphs), and a compact two-column key/value grid
+  for the specific numbers (safety/occupancy on the left, taxes on the
+  right) — bullet-driven throughout, per explicit "visually attractive,
+  bullet points, minimize text" instruction. No outer `title` here either,
+  same reason as `ranked`/`compSetComparison` — `regulationsBlock()`
+  renders its own summary line ("STR Regulations — Investor-Friendly").
+  Currently set on Outskirts and Lake, right after Traveler ICP, before
+  Comp Set (as asked) — not yet on Downtown/Uptown, which has no
+  `pendingSections` at all yet (only a flat `pendingNote`) and so has no
+  "after Traveler ICP" anchor point to place it at.
+- Fixed while building this: `.deep-dive--pending`'s `text-align: center`
+  base rule (see `pendingNote` note below) was also centering
+  `regulationsBlock()`'s bullet/grid content, since it isn't wrapped in
+  `.dd-block__body` the way ordinary section bodies are — added
+  `.deep-dive--pending .bb2-details` to the same left-align override
+  rather than wrapping the accordion in an unrelated class.
 
 **2. The older flat fields** — `pendingIntro`, `pendingImages`,
 `pendingCharts`, `niceToHaveRanked` set directly on the box (not nested in

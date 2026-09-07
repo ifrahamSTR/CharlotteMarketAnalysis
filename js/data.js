@@ -184,6 +184,44 @@ const MAP_CONFIG = {
 // an empty stub so map.js's shared code has something defined to reference.
 const ONE_TWO_BR_MAP_CONFIG = { tierColors: {}, tierLabelPrefix: {}, compStyle: {} };
 
+// ---------------------------------------------------------------------------
+// STR Regulations — a city/county-wide fact, not buy-box-specific, so this
+// one object is shared verbatim across every buy box's `{ regulations: true }`
+// pendingSections entry (see regulationsBlock() in render.js). Source:
+// "Charlotte, NC Overview.pdf" (Short-Term Rental Regulatory Due Diligence
+// Report: Charlotte, North Carolina), supplied directly by the team.
+// `sources` are the report's named official resources; their hyperlink
+// targets weren't extractable from the PDF text, so they're listed as
+// plain labels, not linked, rather than guessing at a URL.
+// ---------------------------------------------------------------------------
+const CHARLOTTE_STR_REGULATIONS = {
+  tier: "Investor-Friendly",
+  summary:
+    "One of the most open STR regulatory environments among major U.S. cities — following North Carolina court precedent, Charlotte removed STR-specific restrictions from its Unified Development Ordinance (UDO). STRs are treated as standard residential use.",
+  highlights: [
+    "No permit or license — $0 to apply, $0/year",
+    "No citywide caps, quotas, or distance/radius buffers",
+    "Rent up to 365 nights/year, no nightly cap",
+    "Investor-owned (non-owner-occupied) STRs fully permitted",
+    "Allowed by-right in every residential/commercial zoning district — no CUP or public hearing",
+    "No moratorium, waitlist, or permit-transfer process (none is issued to begin with)",
+  ],
+  requirements: [
+    { label: "Smoke alarms", value: "Required, every unit" },
+    { label: "CO alarm", value: "≥1 per level/unit" },
+    { label: "Safety equipment", value: "Inspected/verified every 6 months" },
+    { label: "Occupancy", value: "No explicit STR guest cap; UDO defines a dwelling as serving \"no more than one family\" — implies a ceiling around 6 unrelated adults regardless of bed count" },
+    { label: "Parking", value: "Standard residential minimums only, no STR-specific rule" },
+  ],
+  taxes: [
+    { label: "Mecklenburg County Room Occupancy Tax", value: "8%" },
+    { label: "NC Sales Tax", value: "7.25%" },
+  ],
+  caveat:
+    "Airbnb/Vrbo auto-collect and remit both taxes on platform bookings; direct bookings need a NC DOR Certificate of Registration + a county tax account. Private restrictions (HOA covenants, condo bylaws, master leases) still apply even though the city itself imposes none.",
+  sources: ["Charlotte UDO Portal", "Charlotte Municipal Code (Municode)", "Mecklenburg County Room Occupancy Tax Office"],
+};
+
 // BUY_BOXES — ordered by Top 10% hit rate, weakest to strongest: Downtown /
 // Uptown, Outskirts, Lake. Region classification is Walid's (see the file
 // header comment); hit rates are the OVERALL market's Top 10% threshold
@@ -412,6 +450,14 @@ const BUY_BOXES = [
           photo("outskirts/charts/traveler_icp_pie_chart.png", "Pie chart of average review composition across all Outskirts listings: 49.2% group trip, 24.8% stayed with kids, 7.8% stayed with a pet, 18.1% other", "Average review composition, all Outskirts listings (not Top-10%-segmented) — 49.2% group trip, the largest single share. From Walid's own analysis."),
         ],
       },
+
+      { groupTitle: "STR Regulations" },
+      // City/county-wide, not buy-box-specific -- see CHARLOTTE_STR_
+      // REGULATIONS above for the shared content and its PDF source. No
+      // outer `title` here: regulationsBlock() renders its own summary
+      // line ("STR Regulations — <tier>"), same reason niceToHaveRanked
+      // sections omit `title` -- an outer <h3> would just duplicate it.
+      { regulations: true },
 
       { groupTitle: "Comp Set" },
       {
@@ -710,6 +756,13 @@ const BUY_BOXES = [
         icpCharts: true,
       },
 
+      { groupTitle: "STR Regulations" },
+      // City/county-wide, not buy-box-specific -- see CHARLOTTE_STR_
+      // REGULATIONS above for the shared content and its PDF source. No
+      // outer `title` here: regulationsBlock() renders its own summary
+      // line ("STR Regulations — <tier>"), same reason niceToHaveRanked
+      // sections omit `title` -- an outer <h3> would just duplicate it.
+      { regulations: true },
 
       { groupTitle: "Comp Set" },
       // Comp-Set Visual Comparison -- Clearwater's exact structure (Top/Mid/
