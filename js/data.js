@@ -928,30 +928,52 @@ const BUY_BOXES = [
       { groupTitle: "Analyst Notes" },
       {
         title: "Notes / Insights",
-        body:
-          "<ul>" +
-          "<li><strong>Waterfront is a must, and it effectively requires lake access too</strong> — properties without one reportedly underperform. Consistent with Lake Access already being a Must-Have above (100% of Top 10%, 46.2% of the whole market).</li>" +
-          "<li><strong>Patios and sitting lounges</strong> are a recurring theme across top listings.</li>" +
-          "<li><strong>Indoor sitting areas show up everywhere, styled with clean colors.</strong></li>" +
-          "<li><strong>Outdoor sitting areas are distinctive in this dataset</strong> — sofas and soft cushions turn up outdoors, not just inside.</li>" +
-          "<li><strong>Lake-activity imagery and accessories</strong> (kayaks, docks) are worth featuring.</li>" +
-          "<li><strong>Balconies function as group chill areas</strong> — almost like open-air living rooms, not just a deck.</li>" +
-          "</ul>",
-        images: [
-          photo("lake/pool/pool-6-beside-lake.avif", "Swimming pool positioned directly beside the lake", "Reference example: a property combining direct lake access with a pool right at the water's edge."),
-          photo("lake/balcony/lakeside-dining.avif", "Dining room with a long table set for eight, glass doors opening onto a lake-view patio", "Reference example: a patio/dining area opening straight onto the lake view."),
-          photo("lake/balcony/outdoor-dining-1.avif", "Outdoor dining table and chairs on a patio", "Reference example: outdoor dining setup."),
-          photo("lake/balcony/outdoor-dining-2.jpeg", "Outdoor dining area", "Reference example: another outdoor dining setup."),
-          photo("lake/balcony/outdoor-dining-3.avif", "Outdoor dining table on a deck", "Reference example: a third outdoor dining setup."),
-          photo("lake/indoor/indoor-living-1.jpg", "Indoor living/sitting area with colorful decor", "Reference example: an indoor sitting area with clean, bright colors."),
-          photo("lake/indoor/indoor-living-2.avif", "Indoor living area", "Reference example: another indoor sitting area."),
-          photo("lake/indoor/indoor-living-5.avif", "Indoor living area", "Reference example: another indoor sitting area."),
-          photo("lake/indoor/indoor-living-8.avif", "Indoor living area", "Reference example: another indoor sitting area."),
-          photo("lake/indoor/bathroom-2.avif", "Bathroom", "Reference example: a bathroom, styled consistently with the rest of the interior."),
-          photo("lake/indoor/kitchen-1.avif", "Kitchen", "Reference example: a kitchen."),
-          photo("lake/indoor/kitchen-2.avif", "Kitchen", "Reference example: another kitchen."),
-          photo("lake/indoor/kitchen-5.avif", "Kitchen", "Reference example: a third kitchen."),
-          photo("lake/balcony/outdoor-activities.webp", "Two people in a small boat on the lake at golden hour, near a dock", "Reference example: lake-activity imagery (kayak/small boat) — the kind of accessory shot the analyst notes flag as worth featuring."),
+        // Each note paired with its own image(s), instead of one bulleted
+        // list followed by a disconnected photo gallery -- rendered by
+        // analystNotePairsBlock()/analystNotePairItem() in render.js.
+        notes: [
+          {
+            text: "<strong>Waterfront is a must, and it effectively requires lake access too</strong> — properties without one reportedly underperform. Consistent with Lake Access already being a Must-Have above (100% of Top 10%, 46.2% of the whole market).",
+            images: [
+              photo("lake/pool/pool-6-beside-lake.avif", "Swimming pool positioned directly beside the lake", "Reference example: a property combining direct lake access with a pool right at the water's edge."),
+            ],
+          },
+          {
+            text: "<strong>Patios and sitting lounges</strong> are a recurring theme across top listings.",
+            images: [
+              photo("lake/balcony/lakeside-dining.avif", "Dining room with a long table set for eight, glass doors opening onto a lake-view patio", "Reference example: a patio/dining area opening straight onto the lake view."),
+              photo("lake/balcony/outdoor-dining-1.avif", "Outdoor dining table and chairs on a patio", "Reference example: outdoor dining setup."),
+              photo("lake/balcony/outdoor-dining-2.jpeg", "Outdoor dining area", "Reference example: another outdoor dining setup."),
+              photo("lake/balcony/outdoor-dining-3.avif", "Outdoor dining table on a deck", "Reference example: a third outdoor dining setup."),
+            ],
+          },
+          {
+            text: "<strong>Indoor sitting areas show up everywhere, styled with clean colors.</strong>",
+            images: [
+              photo("lake/indoor/indoor-living-1.jpg", "Indoor living/sitting area with colorful decor", "Reference example: an indoor sitting area with clean, bright colors."),
+              photo("lake/indoor/indoor-living-2.avif", "Indoor living area", "Reference example: another indoor sitting area."),
+              photo("lake/indoor/indoor-living-5.avif", "Indoor living area", "Reference example: another indoor sitting area."),
+              photo("lake/indoor/indoor-living-8.avif", "Indoor living area", "Reference example: another indoor sitting area."),
+              photo("lake/indoor/bathroom-2.avif", "Bathroom", "Reference example: a bathroom, styled consistently with the rest of the interior."),
+              photo("lake/indoor/kitchen-1.avif", "Kitchen", "Reference example: a kitchen."),
+              photo("lake/indoor/kitchen-2.avif", "Kitchen", "Reference example: another kitchen."),
+              photo("lake/indoor/kitchen-5.avif", "Kitchen", "Reference example: a third kitchen."),
+            ],
+          },
+          {
+            text: "<strong>Outdoor sitting areas are distinctive in this dataset</strong> — sofas and soft cushions turn up outdoors, not just inside (see Backyard Size above for examples).",
+            images: [],
+          },
+          {
+            text: "<strong>Lake-activity imagery and accessories</strong> (kayaks, docks) are worth featuring.",
+            images: [
+              photo("lake/balcony/outdoor-activities.webp", "Two people in a small boat on the lake at golden hour, near a dock", "Reference example: lake-activity imagery (kayak/small boat) — the kind of accessory shot the analyst notes flag as worth featuring."),
+            ],
+          },
+          {
+            text: "<strong>Balconies function as group chill areas</strong> — almost like open-air living rooms, not just a deck (see Backyard Size above for examples).",
+            images: [],
+          },
         ],
       },
 

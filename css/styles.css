@@ -296,6 +296,16 @@ img { max-width: 100%; display: block; }
 .photo-figure--wide .photo-figure__trigger { aspect-ratio: auto; }
 .photo-figure--wide .photo-figure__trigger img { width: 100%; height: auto; object-fit: contain; }
 
+/* Analyst Notes: each note's own image(s) sit directly beside its text
+   (reuses .bb2-grid-2's two-column grid, already collapses to 1 column
+   under 960px), instead of one bulleted list with a separate photo
+   gallery below it. A note with no images renders as plain text. */
+.analyst-notes > * { padding: 14px 0; border-bottom: var(--hairline); margin: 0; }
+.analyst-notes > *:last-child { border-bottom: none; padding-bottom: 0; }
+.analyst-note { align-items: start; }
+.analyst-note__text, .analyst-note__text-only { margin: 0; text-align: left; }
+.analyst-note__images { margin: 0; }
+
 /* Nice-to-Have, Ranked (Clearwater's 5BR structure): a scored, ordered list. */
 .nice-ranked { margin-top: 20px; }
 .nice-ranked__item { background: var(--color-surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px 18px; margin-top: 12px; }

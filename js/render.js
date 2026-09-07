@@ -805,6 +805,26 @@ function niceToHaveRankedBlock(data) {
   return wrap;
 }
 
+// Analyst Notes -- each note paired with its own image(s) directly beside
+// it (two-column row, reusing .bb2-grid-2), instead of one bulleted list
+// followed by a disconnected photo gallery at the bottom of the section.
+// A note with no images of its own renders as plain text, full width.
+function analystNotePairItem(note) {
+  if (!note.images || !note.images.length) {
+    return el("p", "analyst-note__text-only", note.text);
+  }
+  const wrap = el("div", "bb2-grid-2 analyst-note");
+  wrap.appendChild(el("p", "analyst-note__text", note.text));
+  wrap.appendChild(renderImageGrid(note.images, { small: true, className: "dd-block__images--geo-compact analyst-note__images" }));
+  return wrap;
+}
+
+function analystNotePairsBlock(notes) {
+  const wrap = el("div", "analyst-notes");
+  (notes || []).forEach((note) => wrap.appendChild(analystNotePairItem(note)));
+  return wrap;
+}
+
 function executionStandardsBlock(box) {
   const e = box.executionStandards;
   const wrap = el("div", "dd-block");
@@ -1109,6 +1129,7 @@ function renderPendingSection(section) {
     wrap.appendChild(row);
   }
   if (section.ranked) wrap.appendChild(niceToHaveRankedBlock(section.ranked));
+  if (section.notes) wrap.appendChild(analystNotePairsBlock(section.notes));
   // Inline map embed -- replaces prose in Geo Considerations / Property
   // Locations with the same interactive map from Section 3 (already marks
   // landmarks, properties, and is region/tier filterable) per explicit
