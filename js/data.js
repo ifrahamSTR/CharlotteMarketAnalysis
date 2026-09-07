@@ -1005,12 +1005,22 @@ const BUY_BOXES = [
       {
         title: "Same Amenity, Different Asset — In Photos",
         body:
-          "<p>Real photos from each listing's own gallery, not reference/stock images. Neither listing's actual hot-tub photo turned up in what we could pull — so this uses the same pattern on what we do have: color and daylight vs. a pretty sky that hides the water.</p>",
+          "<p>Real photos from each listing's own gallery (Airbnb + Vrbo), not reference/stock images. Neither listing's actual hot-tub photo turned up in what we could pull — every point below uses what we actually retrieved and verified.</p>",
         compPhotoRows: [
           {
-            note: "<strong>Lakefront sells daylight and color</strong> — bright water, kayaks staged in the foreground, the lake fills the frame. <strong>Castaway's best water shot is dusk</strong> — a striking sky, but the lake itself goes dark and undersaturated. Good photo, wrong subject: the lake is the expensive amenity, and this shot hides it.",
-            lakefront: photo("lake/compcompare/lakefront/beach-kayaks-daylight.jpeg", "Sandy beach with two kayaks and Adirondack chairs around a fire pit, bright blue lake and sky", "Lakefront Estate — beach, kayaks, dock, full color, full sun."),
-            castaway: photo("lake/compcompare/castaway/deck-sunset.jpeg", "Two people in Adirondack chairs facing a dark lake under a dramatic orange and pink sunset sky", "Castaway Cove — a striking sky, but the lake itself is nearly black."),
+            note: "<strong>Lakefront's kitchen is built for a crowd</strong> — two islands, a wine fridge, a wine-glass rack, subway tile, waterfall marble. <strong>Castaway's kitchen is a normal house kitchen</strong> — one run of cabinets, granite, a single sink. Competent, not an amenity in itself.",
+            lakefront: photo("lake/compcompare/lakefront/kitchen.jpg", "Large kitchen with two islands, one painted blue, marble waterfall countertops, glass-front cabinets, and a built-in wine rack", "Lakefront Estate — two islands, wine fridge, waterfall marble."),
+            castaway: photo("lake/compcompare/castaway/kitchen.jpg", "Compact galley kitchen with granite countertops, white cabinets, a single sink, and a window over the sink", "Castaway Cove — a single run of cabinets, one sink, no island."),
+          },
+          {
+            note: "<strong>Lakefront's great room is a vaulted, two-chandelier space</strong> with a round architectural window and a table seating 8+. <strong>Castaway's living room is a normal, low-ceilinged den</strong> with a sectional and a TV. Both comfortable — very different scale.",
+            lakefront: photo("lake/compcompare/lakefront/living-room.jpg", "Vaulted great room with two ring chandeliers, a round oval window, an open kitchen beyond, and a long farmhouse dining table seating eight", "Lakefront Estate — vaulted great room, two chandeliers, table for 8+."),
+            castaway: photo("lake/compcompare/castaway/living-room.jpeg", "Low-ceilinged living room with wood paneling, a beige sectional sofa, and a wall-mounted TV", "Castaway Cove — a normal den: sectional, TV, low pine-paneled ceiling."),
+          },
+          {
+            note: "<strong>Lakefront's outdoor living is a grand covered porch</strong> — brick columns, poured concrete, rocking chairs, framed lake views. <strong>Castaway's is a plain wood deck</strong> with a patio table. Both genuinely nice — one reads as \"designed,\" the other as \"a deck.\"",
+            lakefront: photo("lake/compcompare/lakefront/covered-porch.jpeg", "Covered porch with brick columns, poured concrete floor, and rocking chairs overlooking a lake and dock", "Lakefront Estate — a columned covered porch, framed lake views."),
+            castaway: photo("lake/compcompare/castaway/deck.jpg", "Plain wood deck with a patio dining table and chairs, shaded by trees, lake visible beyond the railing", "Castaway Cove — a wood deck with a dining table, trees framing the lake."),
           },
           {
             note: "Both listings flag Waterfront + Dock identically — the data can't see this gap. <strong>Lakefront's dock is a two-level structure</strong> with its own stairs and upper deck, a destination in itself. <strong>Castaway's dock is a single-level slip</strong> for the boat, shot in bare winter trees. Same checkbox, different asset.",
