@@ -57,15 +57,11 @@ function pendingPhoto(url, label) {
 // ---------------------------------------------------------------------------
 const MARKET_OVERVIEW = {
   heading: "What Charlotte is",
-  // Aerial skyline/stadium photo the user supplied directly in chat -- it
-  // could not be extracted from the conversation and saved to disk by any
-  // available tool, so this is left null (rendered single-column via
-  // .bb2-hero--no-media, same graceful-omission pattern the per-buy-box
-  // overview cards use) until the file is dropped at the path below.
-  // TODO: save the supplied aerial Charlotte skyline/Bank of America Stadium
-  // photo to assets/overview/charlotte-skyline-stadium.jpg, then set:
-  //   heroImage: photo("overview/charlotte-skyline-stadium.jpg", "Aerial dusk view of Bank of America Stadium and the Uptown Charlotte skyline under a pink and purple sky", "Uptown Charlotte at dusk, with Bank of America Stadium in the foreground."),
-  heroImage: null,
+  heroImage: photo(
+    "overview/charlotte-skyline-stadium.jpg",
+    "Aerial dusk view of Bank of America Stadium and the Uptown Charlotte skyline under a pink and purple sky",
+    "Uptown Charlotte at dusk, with Bank of America Stadium in the foreground."
+  ),
   paragraphs: [
     "Charlotte — the \"Queen City\" — is North Carolina's largest city, the country's second-largest banking center, and a self-styled \"Energy Capital\": the National Center for the energy industry is based here alongside Bank of America's headquarters.",
     "Charlotte anchors a metro area of roughly 2.8 million people, sitting inside the \"Charlanta\" megaregion that stretches from Atlanta to Raleigh — Charlotte's skyline, corporate travel demand, and weekday business-trip base are all downstream of its banking core.",
