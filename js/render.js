@@ -215,13 +215,26 @@ function renderMarketOverview() {
     const media = el("div", "bb2-hero__media");
     media.appendChild(renderImage(MARKET_OVERVIEW.heroImage));
     hero.appendChild(media);
+  } else {
+    hero.classList.add("bb2-hero--no-media");
   }
   const body = el("div", "bb2-hero__body");
   MARKET_OVERVIEW.paragraphs.forEach((p) => body.appendChild(el("p", null, p)));
+  if (MARKET_OVERVIEW.attractions && MARKET_OVERVIEW.attractions.length) {
+    body.appendChild(el("h3", "subsection-title", "Top Attractions"));
+    body.appendChild(el("div", null, listHtml(MARKET_OVERVIEW.attractions)));
+  }
+  if (MARKET_OVERVIEW.visitorStats) {
+    body.appendChild(el("h3", "subsection-title", "Why People Visit"));
+    body.appendChild(el("p", null, "<strong>" + MARKET_OVERVIEW.visitorStats.headline + "</strong>"));
+    body.appendChild(el("div", null, listHtml(MARKET_OVERVIEW.visitorStats.breakdown)));
+  }
   const sources = el("p", "market-sources");
   sources.innerHTML =
     "Sources: " +
-    MARKET_OVERVIEW.sources.map((s) => '<a href="' + s.url + '" target="_blank" rel="noopener">' + s.label + "</a>").join(" · ");
+    MARKET_OVERVIEW.sources
+      .map((s) => (s.url ? '<a href="' + s.url + '" target="_blank" rel="noopener">' + s.label + "</a>" : s.label))
+      .join(" · ");
   body.appendChild(sources);
   hero.appendChild(body);
   host.appendChild(hero);
