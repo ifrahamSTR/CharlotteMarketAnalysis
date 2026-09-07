@@ -165,47 +165,8 @@ function renderDemographicsStackedBarChart() {
   });
 }
 
-// ---------------------------------------------------------------------------
-// Lake buy box -- Traveler ICP mini charts. Two small bars replacing prose
-// per explicit "traveller icp also, use the two charts... too many words"
-// feedback: same review-derived signal as the Section 4 charts above, scoped
-// to LAKE_ICP_DEMOGRAPHICS's three populations (data.js). Colors reuse the
-// site's existing revenue-tier palette (gray/green/amber) rather than a new
-// one, applied here to "how much more this signal shows up as you narrow
-// from the whole market down to Lakeside's own Top 10%."
-// ---------------------------------------------------------------------------
-function renderLakeIcpMiniChart(canvasId, title, values) {
-  const ctx = document.getElementById(canvasId);
-  if (!ctx) return;
-  const data = [values.marketWide, values.lakesideWide, values.lakesideTop10];
-  new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: ["Market-wide", "Lakeside-wide", "Lakeside Top 10%"],
-      datasets: [
-        {
-          data: data,
-          backgroundColor: [CHART_PALETTE.bottom75, CHART_PALETTE.top25, CHART_PALETTE.top10],
-          borderWidth: 0,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        title: { display: true, text: title, font: { size: 13, weight: "600" } },
-        legend: { display: false },
-        tooltip: { callbacks: { label: (c) => c.parsed.y + "% of reviews" } },
-      },
-      scales: {
-        y: { beginAtZero: true, max: Math.max.apply(null, data) + 15, title: { display: true, text: "% of reviews" } },
-      },
-    },
-  });
-}
-
-function renderLakeIcpCharts() {
-  renderLakeIcpMiniChart("chart-lake-icp-group", "Group-trip share of reviews", LAKE_ICP_DEMOGRAPHICS.groupTrip);
-  renderLakeIcpMiniChart("chart-lake-icp-kids", "Stayed-with-kids share of reviews", LAKE_ICP_DEMOGRAPHICS.kids);
-}
+// Lake's Traveler ICP previously rendered two Chart.js mini bar charts here
+// (renderLakeIcpMiniChart/renderLakeIcpCharts, driven by
+// LAKE_ICP_DEMOGRAPHICS in data.js) -- replaced with a static pie chart
+// image matching Outskirts' own Traveler ICP treatment exactly (see Lake's
+// "Traveler ICP" pendingSection and assets/lake/charts/traveler_icp_pie_chart.png).

@@ -158,16 +158,6 @@ const DEMOGRAPHICS = {
   note: "These are review-derived guest-composition signals (share of reviews mentioning stays with kids, group trips, or pets), not verified traveler demographics. Group-trip share climbs steadily and sharply with size — from near-zero at 1-2BR to 72% at 6BR+ — while stayed-with-kids share rises from 1BR through 5BR then dips slightly at 6BR+. Charlotte's larger-bedroom inventory is overwhelmingly a group-trip product, not a family-vacation-first one.",
 };
 
-// Lake buy box's Traveler ICP, as two market-wide/Lakeside-wide/Lakeside-Top-
-// 10% comparison bars (charlotte_overview.ipynb's Lakeside region review-
-// composition breakout) instead of prose -- reuses DEMOGRAPHICS.marketWide
-// as the baseline and adds the two Lakeside-specific populations. Rendered
-// by renderLakeIcpCharts() in charts.js.
-const LAKE_ICP_DEMOGRAPHICS = {
-  groupTrip: { marketWide: DEMOGRAPHICS.marketWide.group, lakesideWide: 26, lakesideTop10: 46 },
-  kids: { marketWide: DEMOGRAPHICS.marketWide.kids, lakesideWide: 21, lakesideTop10: 25 },
-};
-
 // ---------------------------------------------------------------------------
 // Section 3 — Location analysis (map)
 // ---------------------------------------------------------------------------
@@ -638,19 +628,14 @@ const BUY_BOXES = [
       {
         title: "Bedrooms & Bathrooms",
         body:
-          "<p><strong>Target range:</strong> 4+ bedrooms; 2 bathrooms minimum.</p>" +
+          "<p><strong>Target range:</strong> 3+ bedrooms (4-5 ideal); 2+ bathrooms (3+ ideal).</p>" +
           "<p><strong>Bathrooms:</strong> 2 is a hard floor, not just a preference — 0% of Lakeside listings below 2 baths have ever reached the market's Top 10%. 3+ is the real \"nice to have\" above that floor; 2.5 does not show a clean improvement over 2.0 in this sample.</p>" +
-          "<p><strong>Bedrooms:</strong> 1-3BR essentially never reach the market's Top 10% within Lakeside (0-8% hit rate); 4BR/5BR do (50-60%). Top 10% listings also sleep further (avg. 12.1) and have more beds/baths (7.0 beds, 3.1 baths) than Top 25% or the rest of the market — see the capacity-by-tier evidence below.</p>",
-        chartsRow: [
-          photo("lake/charts/capacity_4panel.png", "Four-panel chart: median revenue and Top 25%/10% hit rate, by sleeps and by bathroom count, for Lakeside listings", "Lakeside (N=39): capacity thresholds, not straight lines — median revenue and Top 25%/10% hit rate, by sleeps and by bathroom count."),
-          photo("lake/charts/capacity_by_tier.png", "Grouped bar chart of average sleeps, beds, and baths for Lakeside's Top 10%, Top 25%, and Other 75% tiers", "Lakeside: average sleeps/beds/baths by market revenue tier (Top 10% vs. Top 25% vs. Other 75%)."),
-        ],
-      },
-      {
-        title: "Ideal Sleep Count",
-        body:
-          "<p><strong>Comfortable capacity:</strong> 8+ required — every Lakeside listing that has ever reached the market's Top 10% sleeps 8 or more, none below it.</p>" +
+          "<p><strong>Bedrooms:</strong> 1-2BR never reach the market's Top 10% within Lakeside (0% hit rate, N=8 and N=5); 3BR is technically possible but rare (7.7%, 1 of 13); 4BR/5BR is where it reliably happens (50-60%).</p>" +
+          "<p><strong>Comfortable capacity:</strong> 8+ sleeps required — every Lakeside listing that has ever reached the market's Top 10% sleeps 8 or more, none below it.</p>" +
           "<p><strong>Beds per bedroom:</strong> no requirement — bunk density doesn't predict revenue on its own here (r=0.03); a real bunk room is still a legitimate way to reach the sleeps floor, it just isn't what separates high and low performers.</p>",
+        charts: [
+          photo("lake/charts/bedroom_count_analysis.png", "Six charts: median revenue and Top 10% hit rate, each by bedroom count, sleeps, and bathroom count, for Lakeside listings", "Lakeside (N=39): median revenue and Top 10% hit rate, by bedroom count, sleeps, and bathroom count — all three show the same pattern, a threshold rather than a straight line."),
+        ],
         images: [
           photo("lake/rooms/bunk-room.avif", "Built-in dual bunk room with four beds and access ladders", "A built-in bunk room — one legitimate way to clear the sleeps 8+ floor above."),
           photo("lake/rooms/comp-primary-bedroom.avif", "Spacious primary bedroom suite with a sitting area and ensuite bathroom", "The primary bedroom from the first property in this buy box's comp set."),
@@ -659,7 +644,7 @@ const BUY_BOXES = [
       },
       {
         title: "Architectural Style",
-        body: "<p>No architectural style has been tied to performance yet — these are reference photos of the market's product type (a mix of ranch and split-level lake houses with an open interior layout), not a claim that this exact style outperforms others.</p>",
+        body: "<p><strong>Normal houses work.</strong> Style isn't mandatory as long as the property has lake access and waterfront — no architectural style has been tied to performance here. These are reference photos of the market's product type (a mix of ranch and split-level lake houses with an open interior layout), not a claim that this exact style outperforms others.</p>",
         images: [
           photo("lake/exterior/aerial-wide.avif", "Aerial view of a single-story lake house with a pool, dock, and mature trees", "Reference example: a ranch-style lake house with pool and private dock."),
           photo("lake/exterior/aerial-close.avif", "Close aerial view of a lake house with a screened porch, pool, and landscaped terraces", "Reference example: a screened-porch, split-level layout stepping down toward the water."),
@@ -668,26 +653,32 @@ const BUY_BOXES = [
       },
       {
         title: "Backyard Size",
-        body: "<p>No backyard size or usability metric has been analyzed yet — these are reference photos showing the pool-and-dock outdoor program typical of this market's product, not a stated size requirement.</p>",
+        body: "<p><strong>Outdoor lounges, sofas, fire pits, lakeside hot tubs, and sitting areas</strong> — no numeric size or usability metric has been analyzed, but this is the outdoor program that's consistently present. Balconies double as lounges here, not just a pass-through to the yard.</p>",
         images: [
           photo("lake/exterior/pool-dock-view.avif", "Pool deck with lounge chairs overlooking a private dock and the lake", "Reference example: pool deck stepping down to a private dock."),
           photo("lake/porch/covered-porch-dock-view.avif", "Covered porch with string lights and wicker seating overlooking a lake and dock", "Reference example: a covered porch overlooking the dock, sized for a full outdoor living/dining setup."),
+          photo("lake/balcony/balcony-sitting-1.avif", "Screened porch with rocking chairs, a coffee table, and a wicker sofa overlooking a lake and dock", "Reference example: a screened porch furnished as a full lounge, not just a pass-through — rocking chairs, a sofa, and a coffee table."),
+          photo("lake/balcony/outdoor-sitting-4.avif", "Outdoor sitting area with cushioned furniture overlooking the water", "Reference example: a dedicated outdoor sitting area."),
+          photo("lake/firepit/firepit-5.avif", "Fire pit seating area", "Reference example: another fire pit setup."),
+          photo("lake/firepit/firepit-7-beside-lake.avif", "Fire pit positioned right beside the lake", "Reference example: a fire pit positioned directly beside the water."),
+          photo("lake/hottub/hottub-5.avif", "Lakeside hot tub", "Reference example: another lakeside hot tub setup."),
+          photo("lake/hottub/hottub-8.avif", "Hot tub on an outdoor deck", "Reference example: a hot tub on an outdoor deck."),
         ],
       },
       { groupTitle: "Amenities" },
       {
         title: "Amenity Prevalence By Tier",
         body:
-          "<p><strong>Must-Have rule (updated):</strong> an amenity is a Must-Have if it clears <em>either</em> bar — ≥40% penetration among Lakeside's Top 10% listings (N=8), or ≥60% presence across the whole Lakeside market (N=39). Six amenities clear at least one: Fire Pit (100% Top 10% / 61.5% whole), Waterfront (100% / 46.2%), Lake Access (100% / 46.2%), Hot Tub (87.5% / 23.1%), Outdoor Dining Area (87.5% / 61.5%), and Pack 'N Play / Travel Crib (62.5% / 33.3%). <strong>Crib</strong> falls just short of both bars (37.5% Top 10% / 12.8% whole) despite being a related amenity to Pack 'N Play — it's ranked as the top Nice-to-Have below instead of a Must-Have. Everything else stays too flat across tiers to separate Top 10% from the rest. The heatmap shows the same data at the individual-listing level, sorted Top 10% → Top 25% → Other 75%.</p>",
+          "<p>Prevalence by revenue tier for every tracked amenity (N=39), and presence per listing across Lakeside's Top 10% comp set (N=8).</p>",
         chartsRow: [
           photo("lake/charts/amenity_prevalence.png", "Grouped bar chart of amenity prevalence by revenue tier for Lakeside listings, Top 10% drawn on top of each group", "Amenity prevalence by tier (N=39) — Top 10% (green) drawn on top of each group, then Top 25%, then Other 75%."),
-          photo("lake/charts/amenity_heatmap.png", "Heatmap of amenity presence per listing, sorted Top 10% to Other 75%", "Amenity presence by individual listing (N=39)."),
+          photo("lake/charts/amenity_presence_compset.png", "Heatmap of amenity presence per listing across Lakeside's 8 Top 10% comp-set listings", "Amenity presence, Lakeside's Top 10% comp set only (N=8)."),
         ],
       },
       {
         title: "Must-Have's",
-        body: "<p>Clears the ≥40%-of-Top-10%-or-≥60%-of-whole-market bar above (N=8 Top 10% / N=39 whole).</p>",
-        items: ["Fire Pit", "Outdoor Dining Area", "Waterfront", "Lake Access", "Pack 'N Play / Travel Crib", "Hot Tub"],
+        body: "<p>Clears the ≥40%-of-Top-10%-or-≥60%-of-whole-market bar (N=8 Top 10% / N=39 whole) — plus Crib, added regardless: it's a cheap amenity to provide either way.</p>",
+        items: ["Fire Pit", "Outdoor Dining Area", "Waterfront", "Lake Access", "Pack 'N Play / Travel Crib", "Hot Tub", "Crib"],
         images: [
           photo("lake/firepit/beach-firepit-dock.avif", "Small fire bowl on a sandy lake beach with a dock in the background", "A fire pit set up right at the water's edge — Fire Pit and Waterfront together, not two separate features here."),
           photo("lake/firepit/beach-firepit-chairs.avif", "Adirondack chairs around a fire pit on a sandy beach facing the lake and a dock", "Adirondack-chair fire pit seating on the beach, facing the dock."),
@@ -696,55 +687,37 @@ const BUY_BOXES = [
           photo("lake/hottub/night-lit.avif", "Hot tub lit blue at night in a backyard setting", "Reference example: a nighttime hot tub setup."),
         ],
       },
-      // Amenity Evidence -- Clearwater's "Amenity Combination Evidence"
-      // pattern (5BR buy box), ported to Lake per direct request: a median
-      // with-vs-without revenue comparison per amenity, "where necessary" --
-      // i.e. for the ambiguous Nice-to-Have candidates only, not the
-      // Must-Haves above (already covered by the prevalence chart). This is
-      // also what settles the open "Pickleball?" question: N=1 in all of
-      // Lakeside, and that one listing underperforms -- excluded below.
-      {
-        title: "Amenity Evidence: With vs. Without",
-        body:
-          "<p>For each Nice-to-Have candidate below, Lakeside's median Revenue Potential with vs. without that amenity (N=39). Every \"with\" group is 1-5 listings — directional evidence only, not proof that the amenity itself causes the difference. This is also the evidence behind excluding Pickleball: its lone listing (N=1) actually earns less than the market without it.</p>",
-        charts: [
-          photo("lake/charts/amenity_with_without.png", "Six small bar charts, each comparing median Lakeside revenue with vs. without one amenity: Pool Table, Game Room, Pool, Crib, Gym, and Pickleball", "Pool Table (+280%), Game Room (+250%), Pool (+168%), and Crib (+173%) show the strongest separation; Gym (+24%) is marginal; Pickleball (-3%) is negative and N=1."),
-        ],
-      },
       // Nice-to-Have, Ranked -- Clearwater's 5BR structure (score / revenue
       // uplift / Top-10%-hit-rate uplift / N per item, thin-data items
       // flagged rather than dropped, no Auto-Add tier). Score here is our
       // own transparent composite (median revenue uplift + Top-10%-hit-rate
       // uplift + sample size, each min-max normalized across the rankable
-      // amenities) since Clearwater's exact weights weren't supplied to us
-      // -- same shape, same math as before, just re-run with the new N≥2
-      // floor and Crib/Gym/Pool/Game Room/Pool Table now included (Hot Tub,
-      // Outdoor Dining Area, and Pack 'N Play moved up to Must-Have above).
+      // amenities) since Clearwater's exact weights weren't supplied to us.
+      // N=0 ("never observed") amenities are dropped entirely rather than
+      // flagged -- there's nothing to say about an amenity Lakeside has
+      // zero examples of.
       {
         // No outer `title` here -- niceToHaveRankedBlock() already renders
         // its own "Nice-to-Have, Ranked" <h4>, so an outer <h3> with the
         // same text would just duplicate the heading.
         ranked: {
-          note: "N≥2 is now the minimum to rank in Lakeside (was N≥9) — everything thinner (N≤1) is flagged, not dropped, matching Clearwater's own treatment of its thin amenities (Movie Theater, Sauna, Golf Simulator). Photos pending for Crib and Gym.",
+          note: "N≥2 is the minimum to rank in Lakeside (was N≥9). Pickleball and Playground are N=1 -- flagged, not dropped, but below even that floor.",
           items: [
-            { name: "Crib", score: 0.70, revenueUplift: "+173%", p90Uplift: "+45pp", n: 5, note: "Highest score of any Nice-to-Have — falls just short of the Must-Have bars above (37.5% of Top 10%, 12.8% of the whole market) but shows the strongest revenue signal.", images: [] },
             { name: "Pool Table", score: 0.67, revenueUplift: "+280%", p90Uplift: "+84pp", n: 2, note: "Smallest sample of any ranked item (N=2), but both pool-table listings reach the market's Top 10% — the highest hit-rate uplift here.", images: [
               photo("lake/pooltable/lake-view-room.avif", "Living room with a pool table and sectional sofa, sliding doors opening to a lake and dock view", "Reference example: a pool table room opening directly onto a lake/dock view."),
             ] },
             { name: "Game Room", score: 0.60, revenueUplift: "+250%", p90Uplift: "+50pp", n: 3, note: "Second-highest revenue uplift of any Nice-to-Have, on N=3.", images: [
               photo("lake/gameroom/game-room-sign.avif", "Game room with a pool table, sectional sofa, and arcade cabinet under a GAME ROOM sign", "Reference example: a dedicated game room with a pool table and arcade cabinet."),
+              photo("lake/gameroom/game-room-1.avif", "Game room with arcade cabinets and seating", "Reference example: another dedicated game room."),
+              photo("lake/gameroom/game-room-3-sitting.avif", "Game room combined with a lounge seating area", "Reference example: a game room doubling as a lounge area."),
+              photo("lake/gameroom/property-6-child-game-room.jpeg", "Colorful kids' playroom with a patterned area rug and toy storage", "Property 6 (Mid tier) — its kids'/family playroom, a different flavor of \"game room\" than the pool-table version above."),
             ] },
             { name: "Pool", score: 0.49, revenueUplift: "+168%", p90Uplift: "+50pp", n: 3, note: "Strong revenue signal, same hit-rate uplift as Game Room, on N=3.", images: [
               photo("lake/pool/aerial-kidney-pool.avif", "Aerial view of a kidney-shaped pool with a screened porch and brick patio", "Reference example: a kidney-shaped pool and brick patio."),
             ] },
             { name: "Gym", score: 0.22, revenueUplift: "+24%", p90Uplift: "+5pp", n: 4, note: "Weakest signal of the rankable amenities — present, but a marginal differentiator here.", images: [] },
-            { name: "Pickleball", n: 1, thinData: true, note: "N=1 in all of Lakeside — below even the new N≥2 minimum, and that one listing has lower revenue than the market without it (see Amenity Evidence chart above). Not recommended, despite being a common ask.", images: [] },
-            { name: "Playground", n: 1, thinData: true, note: "N=1, below the new N≥2 minimum.", images: [] },
-            { name: "Sauna", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
-            { name: "Mini Golf", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
-            { name: "Movie Theater", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
-            { name: "Golf Simulator", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
-            { name: "Pool Heater", n: 0, thinData: true, note: "Never observed in Lakeside (N=0).", images: [] },
+            { name: "Pickleball", n: 1, thinData: true, note: "N=1 in all of Lakeside — below even the N≥2 minimum, and that one listing has lower revenue than the market without it. Not recommended, despite being a common ask.", images: [] },
+            { name: "Playground", n: 1, thinData: true, note: "N=1, below the N≥2 minimum.", images: [] },
           ],
         },
       },
@@ -753,13 +726,16 @@ const BUY_BOXES = [
       {
         title: "Waterfront, View & Privacy",
         body:
-          "<p><strong>Waterfront is effectively required</strong> — 100% of Lakeside's Top 10% (N=8) are flagged waterfront + lake-access (see Must-Have above); 20 of 39 Lakeside listings have neither flag, real room to add one. The lake itself is the view; privacy/seclusion isn't separately analyzed yet. Map below: toggle Lakeside + Top 10% to see exactly which properties this describes, alongside the region's landmarks.</p>",
+          "<p><strong>Waterfront: absolutely mandatory.</strong> 100% of Lakeside's Top 10% (N=8) are flagged waterfront + lake-access (see Must-Have above); 20 of 39 Lakeside listings have neither flag, real room to add one. <strong>View:</strong> a lake view is what matters, preferably from a front deck. <strong>Privacy / seclusion:</strong> not necessary — not a factor here the way it might be in other markets. Map below: toggle Lakeside + Top 10% to see exactly which properties this describes, alongside the region's landmarks.</p>",
         mapEmbed: {
           url: "assets/overview/charlotte_overview_map.html",
           title: "Interactive map — Lakeside properties, revenue tiers, and demand-driver landmarks",
         },
         images: [
           photo("lake/firepit/sunset-firepit-lake.avif", "Adirondack chairs around a fire pit on a beach at sunset, facing a lake with a dock", "Reference example: direct lake-edge access at sunset."),
+          photo("lake/view/property-6-twilight.avif", "Twilight view over the lake from a property, with a boat dock visible below", "Property 6 — the lake view from a front deck at twilight."),
+          photo("lake/view/property-5-aerial.avif", "Aerial view of a lake property with a pool and dock along a wooded shoreline", "Property 5 — aerial view of the lake frontage."),
+          photo("lake/view/lake-aerial-wide.avif", "Aerial view of a lake house with a pool and dock surrounded by mature trees", "Reference example: a lake-house lot with pool and private dock, aerial view."),
         ],
       },
 
@@ -774,8 +750,10 @@ const BUY_BOXES = [
       {
         title: "Traveler ICP",
         body:
-          "<p><strong>Group trip, primary; families, secondary.</strong> Not supported: a couples-first positioning.</p>",
-        icpCharts: true,
+          "<p><strong>Large groups and families with kids.</strong> Not supported: a couples-first positioning.</p>",
+        charts: [
+          photo("lake/charts/traveler_icp_pie_chart.png", "Pie chart of average review composition across all Lakeside listings: 26.3% group trip, 20.8% stayed with kids, 12.3% stayed with a pet, 40.5% other", "Average review composition, all Lakeside listings (not Top-10%-segmented) — Group Trip is the largest named share, ahead of Stayed with Kids and Stayed with a Pet."),
+        ],
       },
 
       { groupTitle: "Comp Set" },
@@ -842,7 +820,10 @@ const BUY_BOXES = [
                     title: "Mid-Century Modern Lake House with Stunning Views",
                     url: "https://www.airbnb.com/rooms/1405992491060136013",
                     stats: "$115,911 · $677.60 ADR · 52.22% occ · 4BR/3.5BA, sleeps 8 · 4.95★ (33)",
-                    images: [pendingPhoto("https://www.airbnb.com/rooms/1405992491060136013", "Exterior photo")],
+                    images: [
+                      photo("lake/compset/exterior/property-6-exterior.avif", "Dusk exterior of a mid-century modern lake house with a tall gabled glass facade and a covered lower deck", "Property 6 (Mid tier, #6 by revenue) — exterior at dusk."),
+                      photo("lake/compset/exterior/property-6-exterior-2.avif", "Fire pit patio with Adirondack chairs, the lit house visible on the hill behind it at dusk", "Property 6 — the backyard fire pit patio, house visible behind."),
+                    ],
                   },
                 ],
                 low: [
@@ -850,13 +831,16 @@ const BUY_BOXES = [
                     title: "Castaway Cove— 5Bed Lake Retreat—Fire Pit—Hot Tub!",
                     url: "https://www.airbnb.com/rooms/52281872",
                     stats: "$99,613 · $466.33 ADR · 57.71% occ · 5BR/2BA, sleeps 14 · 4.9★ (97)",
-                    images: [pendingPhoto("https://www.airbnb.com/rooms/52281872", "Exterior photo")],
+                    images: [
+                      photo("lake/compset/exterior/property-7-exterior.jpeg", "Aerial view of a wooded lakefront peninsula with several docks along the shoreline", "Property 7 (Low tier, #7 by revenue) — aerial exterior/grounds view."),
+                      photo("lake/compset/exterior/property-7-exterior-2.avif", "Lake house exterior at twilight", "Property 7 — a second, twilight exterior view."),
+                    ],
                   },
                   {
                     title: "Your Lake House Awaits!",
                     url: "https://www.airbnb.com/rooms/1294906461944120744",
                     stats: "$87,852 · $360.50 ADR · 67.04% occ · 3BR/2BA, sleeps 8 · 4.95★ (104)",
-                    images: [pendingPhoto("https://www.airbnb.com/rooms/1294906461944120744", "Exterior photo")],
+                    images: [photo("lake/compset/exterior/property-8-exterior.avif", "Ranch-style lake house exterior with a wraparound covered porch, lit up at dusk", "Property 8 (Low tier, #8 by revenue) — exterior at dusk.")],
                   },
                 ],
               },
@@ -937,10 +921,63 @@ const BUY_BOXES = [
         body:
           "<p><a href=\"https://alexandria.strsearch.com/compsets?market=8&tag=7759fdb2-77e7-4e4c-8f3a-0bff87b79569&tab=view\" target=\"_blank\" rel=\"noopener\">View the live comp set on Alexandria ↗</a>.</p>",
       },
+
+      // Analyst Notes -- from the team's own filled-in buy-box template
+      // (../LakeBuyBox/BuyBoxLakesideCharlotte.docx, "Analyst Notes ->
+      // Notes/Insights"), same group Outskirts has. These are qualitative
+      // observations, not re-derivations of the quantitative Must-Have/
+      // Nice-to-Have rule above -- see the bracketed note on the first
+      // bullet where the two genuinely disagree (Pool is data-thin, N=3).
+      { groupTitle: "Analyst Notes" },
+      {
+        title: "Notes / Insights",
+        body:
+          "<ul>" +
+          "<li><strong>Waterfront is a must, and the analyst view is that it effectively requires pool access too</strong> — properties without one reportedly underperform. [Flagged: pool itself is still data-thin in this sample — N=3, a Nice-to-Have by the numbers above, not a quantified Must-Have. Both are true: pool may matter more than N=3 alone can prove, but it hasn't cleared the Must-Have bar yet.]</li>" +
+          "<li><strong>Patios and sitting lounges</strong> are a recurring theme across top listings.</li>" +
+          "<li><strong>Indoor sitting areas show up everywhere, styled with clean colors.</strong></li>" +
+          "<li><strong>Outdoor sitting areas are distinctive in this dataset</strong> — sofas and soft cushions turn up outdoors, not just inside.</li>" +
+          "<li><strong>Lake-activity imagery and accessories</strong> (kayaks, docks) are worth featuring.</li>" +
+          "<li><strong>Balconies function as group chill areas</strong> — almost like open-air living rooms, not just a deck.</li>" +
+          "</ul>",
+        images: [
+          photo("lake/pool/pool-6-beside-lake.avif", "Swimming pool positioned directly beside the lake", "Pool positioned right at the water's edge — the analyst's \"waterfront implies pool\" observation."),
+          photo("lake/balcony/lakeside-dining.avif", "Dining room with a long table set for eight, glass doors opening onto a lake-view patio", "Reference example: a patio/dining area opening straight onto the lake view."),
+          photo("lake/balcony/outdoor-dining-1.avif", "Outdoor dining table and chairs on a patio", "Reference example: outdoor dining setup."),
+          photo("lake/balcony/outdoor-dining-2.jpeg", "Outdoor dining area", "Reference example: another outdoor dining setup."),
+          photo("lake/balcony/outdoor-dining-3.avif", "Outdoor dining table on a deck", "Reference example: a third outdoor dining setup."),
+          photo("lake/indoor/indoor-living-1.jpg", "Indoor living/sitting area with colorful decor", "Reference example: an indoor sitting area with clean, bright colors."),
+          photo("lake/indoor/indoor-living-2.avif", "Indoor living area", "Reference example: another indoor sitting area."),
+          photo("lake/indoor/indoor-living-5.avif", "Indoor living area", "Reference example: another indoor sitting area."),
+          photo("lake/indoor/indoor-living-8.avif", "Indoor living area", "Reference example: another indoor sitting area."),
+          photo("lake/indoor/bathroom-2.avif", "Bathroom", "Reference example: a bathroom, styled consistently with the rest of the interior."),
+          photo("lake/indoor/kitchen-1.avif", "Kitchen", "Reference example: a kitchen."),
+          photo("lake/indoor/kitchen-2.avif", "Kitchen", "Reference example: another kitchen."),
+          photo("lake/indoor/kitchen-5.avif", "Kitchen", "Reference example: a third kitchen."),
+          photo("lake/balcony/outdoor-activities.webp", "Two people in a small boat on the lake at golden hour, near a dock", "Reference example: lake-activity imagery (kayak/small boat) — the kind of accessory shot the analyst notes flag as worth featuring."),
+        ],
+      },
+
+      // Projections -- from the same filled-in template ("Projections ->
+      // Revenue Potential" / "Purchase Price"). The three linked listings
+      // are existing comp-set properties (High/Mid/Low tier, one each) used
+      // as representative examples across the revenue range, not new
+      // acquisition candidates the way Outskirts' Zillow addresses are.
+      { groupTitle: "Projections" },
+      {
+        title: "Revenue Potential & Representative Listings",
+        body:
+          "<p><strong>Revenue Potential:</strong> Lower $93k · Median $124k · Upper $160k. <strong>Purchase Price:</strong> ~$750k.</p>" +
+          "<p><strong>Representative comp-set listings across the range</strong> (one per tier, not new acquisition candidates):</p><ul>" +
+          "<li><a href=\"https://www.airbnb.com/rooms/47855845\" target=\"_blank\" rel=\"noopener\">Lakefront Estate with Beach + Dock + Hot Tub ↗</a> — High tier, $182,749</li>" +
+          "<li><a href=\"https://www.airbnb.com/rooms/1142965470924412498\" target=\"_blank\" rel=\"noopener\">Modern 4BR Lakefront Home w/Pool, Patio & Pets OK ↗</a> — Mid tier, $138,235</li>" +
+          "<li><a href=\"https://www.airbnb.com/rooms/52281872\" target=\"_blank\" rel=\"noopener\">Castaway Cove— 5Bed Lake Retreat—Fire Pit—Hot Tub! ↗</a> — Low tier, $99,613</li>" +
+          "</ul>",
+      },
     ],
 
     pendingNote:
-      "Full chart-based analysis, including capacity by bedroom/bathroom/tier (not shown above): <code>../notebooks/charlotte_lake_buybox.ipynb</code>.",
+      "Source notebook for the full underlying analysis: <code>../notebooks/charlotte_lake_buybox.ipynb</code>. Analyst notes and projections above are from the team's own filled-in template, <code>../LakeBuyBox/BuyBoxLakesideCharlotte.docx</code>.",
   },
 ];
 

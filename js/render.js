@@ -1121,28 +1121,6 @@ function renderPendingSection(section) {
       })
     );
   }
-  // Two small comparison bar charts replacing Traveler ICP's prose, per the
-  // same feedback ("traveller icp also, use the two charts"). Deferred to
-  // pendingChartJobs -- Chart.js needs the <canvas> already attached to the
-  // live document before it can size/draw itself, and this section's wrap
-  // isn't attached to `host` yet at the point renderPendingSection runs.
-  if (section.icpCharts) {
-    const row = el("div", "chart-row");
-    const wrap1 = el("div", "chart-card");
-    const canvas1 = document.createElement("canvas");
-    canvas1.id = "chart-lake-icp-group";
-    wrap1.appendChild(canvas1);
-    const wrap2 = el("div", "chart-card");
-    const canvas2 = document.createElement("canvas");
-    canvas2.id = "chart-lake-icp-kids";
-    wrap2.appendChild(canvas2);
-    row.appendChild(wrap1);
-    row.appendChild(wrap2);
-    wrap.appendChild(row);
-    pendingChartJobs.push(function () {
-      if (typeof renderLakeIcpCharts === "function") renderLakeIcpCharts();
-    });
-  }
   // Comp-Set Visual Comparison (Clearwater's 5BR structure): one or more
   // named photo categories, each split into Top (High) / Mid / Low tier
   // columns side by side -- see compSetComparisonBlock() below.
@@ -1233,8 +1211,9 @@ function renderRegulationsSection() {
 }
 
 // Queue of chart-instantiation callbacks collected while building a pending
-// box's sections (see icpCharts above), drained by renderDeepDive right
-// after the whole section tree is attached to the live document.
+// box's sections (for any Chart.js canvas that needs to be attached to the
+// live document before it can size/draw itself), drained by renderDeepDive
+// right after the whole section tree is attached to the live document.
 let pendingChartJobs = [];
 
 function renderDeepDive(box) {
