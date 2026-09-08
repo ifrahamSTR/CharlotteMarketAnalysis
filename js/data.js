@@ -278,7 +278,7 @@ const BUY_BOXES = [
       thesis: "The market's largest region by inventory (51% of all listings), but the weakest by Top 10% hit rate — capped mostly by a smaller-bedroom product mix.",
       whyItWorks:
         "This region wins on inventory scale, not amenity/product fit — 51% of the market's listings sit here, but the same small-unit mix that drives that scale (51% are 1-2BR) also caps its Top 10% hit rate at 8%, the lowest of the three regions.",
-      heroImage: photo("downtown/abnb_1217644555390940891/front_view.avif", "Two-story urban farmhouse with a full-width front porch", "Urban Farmhouse — Two-Story, Full-Width Porch. One of five approved Downtown architectural-style exteriors — see Property Profile below."),
+      heroImage: photo("downtown/abnb_1108803702700685352/front_exterior.avif", "Cedar-and-black-panel modern infill home in NoDa", "Modern Infill — Cedar/Black Panel, NoDa. The fanciest true exterior in the Downtown comp set — see Property Profile below."),
       chips: [
         { label: "51% of market inventory (N=368)" },
         { label: "51% are 1-2BR" },
