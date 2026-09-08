@@ -1005,7 +1005,7 @@ const BUY_BOXES = [
       {
         title: "Same Amenity, Different Asset — In Photos",
         body:
-          "<p>Real photos from each listing's own gallery (Airbnb + Vrbo), not reference/stock images. Neither listing's actual hot-tub photo turned up in what we could pull — every point below uses what we actually retrieved and verified.</p>",
+          "<p>Real photos from each listing's own gallery (Airbnb + Vrbo), not reference/stock images — every photo below was pulled from the listing's full photo set and viewed directly before writing its caption.</p>",
         compPhotoRows: [
           {
             note: "<strong>Lakefront's kitchen is built for a crowd</strong> — two islands, a wine fridge, a wine-glass rack, subway tile, waterfall marble. <strong>Castaway's kitchen is a normal house kitchen</strong> — one run of cabinets, granite, a single sink. Competent, not an amenity in itself.",
@@ -1021,6 +1021,11 @@ const BUY_BOXES = [
             note: "<strong>Lakefront's outdoor living is a grand covered porch</strong> — brick columns, poured concrete, rocking chairs, framed lake views. <strong>Castaway's is a plain wood deck</strong> with a patio table. Both genuinely nice — one reads as \"designed,\" the other as \"a deck.\"",
             lakefront: photo("lake/compcompare/lakefront/covered-porch.jpeg", "Covered porch with brick columns, poured concrete floor, and rocking chairs overlooking a lake and dock", "Lakefront Estate — a columned covered porch, framed lake views."),
             castaway: photo("lake/compcompare/castaway/deck.jpg", "Plain wood deck with a patio dining table and chairs, shaded by trees, lake visible beyond the railing", "Castaway Cove — a wood deck with a dining table, trees framing the lake."),
+          },
+          {
+            note: "Checked every photo in both galleries: <strong>Lakefront has exactly one hot-tub photo</strong>, and it's a wide porch shot where the tub is barely visible at the far end past the rocking chairs — the listing's own caption sells the coffee-and-lake-view first, \"don't forget to soak in the hot tub\" second. <strong>Castaway runs four dedicated hot-tub photos.</strong> Same amenity, opposite marketing instinct: Lakefront sells the lake as the whole experience; Castaway sells each amenity on its own.",
+            lakefront: photo("lake/compcompare/lakefront/hottub-porch.jpeg", "Long covered porch with rocking chairs and porch swings; a hot tub is barely visible as a small dark shape at the far end", "Lakefront Estate — the only hot-tub photo in the whole gallery; the tub is the small shape at the far right."),
+            castaway: photo("lake/compcompare/castaway/hottub.jpeg", "Bubbling hot tub in the foreground with a calm lake, a dock, and a pontoon boat visible behind it, bare winter trees", "Castaway Cove — one of four dedicated hot-tub photos."),
           },
           {
             note: "Both listings flag Waterfront + Dock identically — the data can't see this gap. <strong>Lakefront's dock is a two-level structure</strong> with its own stairs and upper deck, a destination in itself. <strong>Castaway's dock is a single-level slip</strong> for the boat, shot in bare winter trees. Same checkbox, different asset.",
