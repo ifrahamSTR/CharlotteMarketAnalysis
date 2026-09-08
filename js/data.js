@@ -1084,6 +1084,7 @@ const BUY_BOXES = [
           "<tr><td>Ideal Location(s)</td><td>28278 (Steele Creek / Lake Wylie) — priority ZIP, 7 of 8 Top 10% listings</td></tr>" +
           "<tr><td>Traveler ICP</td><td>Large groups and families with kids</td></tr>" +
           "<tr><td>Property Comp Sets</td><td>Lakefront Estate ($182,749) vs. Castaway Cove ($99,613): bathrooms (3.5 vs. 2), kitchen/living-room scale, and hot-tub/dock execution explain most of the 83% gap</td></tr>" +
+          "<tr><td>Analyst Notes</td><td>Lakefront validates a repeatable \"Lake Wylie Large-Group Waterfront\" archetype (4-5BR, 3.5+ baths, 14-16 guests, true waterfront + dock, walkout basement) — don't buy it finished; buy a 4BR waterfront house with good bones (walkout basement, 3 baths, real kitchen/shoreline/dock) and manufacture the bunk room, extra bath, hot tub/firepit, and dock upgrade ourselves</td></tr>" +
           "<tr><td>Revenue Potential</td><td>Lower $93k · Median $124k · Upper $160k</td></tr>" +
           "<tr><td>Purchase Price</td><td>~$750k</td></tr>" +
           "</table>",
