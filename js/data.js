@@ -471,6 +471,7 @@ const BUY_BOXES = [
       {
         title: "Design Comp Set",
         body:
+          "<p><a href=\"https://alexandria.strsearch.com/compsets?market=8&type=design&tag=077bba61-c5c5-4a47-930d-55291aff853f&tab=view\" target=\"_blank\" rel=\"noopener\">View the Downtown design comp set on Alexandria ↗</a>.</p>" +
           "<p>The Design Comp Set is not a revenue-tier ranking. It shows the design language Downtown buyers should study: statement dining rooms, finished entertainment rooms, premium kitchen/bath finishes, work/lounge zones, and distinctive details that make a large urban STR feel intentional rather than generic. Front exteriors are not used here — exterior style is already covered in Property Profile / Architectural Style.</p>",
         images: [
           photo("downtown/abnb_1409730515899310183/indoor_dining_table.avif", "Long dining table under a saturated pink ceiling", "Statement Group Dining — Pink Ceiling, Long Table. Long dining table under a saturated pink ceiling, showing the kind of memorable group-meal room that makes a Downtown STR feel designed for celebrations, not just furnished."),
@@ -489,6 +490,7 @@ const BUY_BOXES = [
       {
         title: "Revenue Comp Set — High Tier",
         body:
+          "<p><a href=\"https://alexandria.strsearch.com/compsets?market=8&tag=b1804cdc-9c52-4f7e-a7ad-a35faaa53ea9&tab=view\" target=\"_blank\" rel=\"noopener\">View the Downtown revenue comp set on Alexandria ↗</a>.</p>" +
           "<p>The High Tier revenue gallery shows ceiling-level product execution without reusing the strongest images already assigned to Property Profile, Amenities, Geo, Nice-to-Have's, or Design Comp Set. No front exteriors here; the gallery is still product-led, but through interiors, outdoor living, bedrooms, baths, fitness, and dining support.</p>",
         images: [
           photo("downtown/abnb_1217644555390940891/living_room.avif", "Open living/kitchen great-room view from a ceiling comp", "Ceiling Interior Scale. Open living/kitchen great-room view from a ceiling comp, showing the interior scale and finish baseline expected before a Downtown property can underwrite to the high tier."),
