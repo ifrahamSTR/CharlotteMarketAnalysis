@@ -805,11 +805,29 @@ function niceToHaveRankedBlock(data) {
   return wrap;
 }
 
+// Renders a plain {label, value} list as a two-column table (reuses the
+// One-Page Recap summary sheet's own styling) -- used for a note that's
+// really a reference table (e.g. an acquisition target profile) rather
+// than a bulleted point.
+function attributeTable(rows) {
+  const table = el("table", "summary-sheet-table");
+  table.innerHTML = (rows || []).map((r) => "<tr><td>" + r.label + "</td><td>" + r.value + "</td></tr>").join("");
+  return table;
+}
+
 // Analyst Notes -- each note paired with its own image(s) directly beside
 // it (two-column row, reusing .bb2-grid-2), instead of one bulleted list
 // followed by a disconnected photo gallery at the bottom of the section.
 // A note with no images of its own renders as plain text, full width.
+// A note with a `table` (array of {label, value}) renders that table
+// beneath its text instead of/alongside images.
 function analystNotePairItem(note) {
+  if (note.table) {
+    const wrap = el("div", "analyst-note__text-only");
+    wrap.appendChild(el("p", null, note.text));
+    wrap.appendChild(attributeTable(note.table));
+    return wrap;
+  }
   if (!note.images || !note.images.length) {
     return el("p", "analyst-note__text-only", note.text);
   }
