@@ -1028,6 +1028,12 @@ const BUY_BOXES = [
             castaway: photo("lake/compcompare/castaway/hottub-closeup.avif", "Hot tub beside the house with a dock and pontoon boat visible on the lake just beyond it, bare winter trees", "Castaway Cove — a freestanding hot tub facing straight down to the dock."),
           },
           {
+            note: "Lakefront also runs this photo — the hot tub reduced to a small dark shape at the far end of the porch, past the rocking chairs. <strong>That's not bad photography — it's the point.</strong> They aren't selling the hot tub, they're selling the lake, the most expensive amenity in the frame. <strong>Castaway does the opposite</strong>: a tight, dedicated shot with no lake in view at all — here, the hot tub itself is the entire pitch.",
+            quote: "&ldquo;The rocking chairs are a great way to enjoy your morning coffee with a view of the lake, don't forget to have a nice soak in the hot tub!&rdquo;<cite>— Lakefront Estate's own Airbnb caption for this exact photo.</cite>",
+            lakefront: photo("lake/compcompare/lakefront/hottub-wide-porch.jpeg", "Long covered porch with rocking chairs and porch swings; a hot tub is barely visible as a small dark shape at the far end", "Lakefront Estate — the hot tub as an afterthought at the far end of the porch."),
+            castaway: photo("lake/compcompare/castaway/hottub-closeup2.jpeg", "Close-up of a hot tub beside the house, no lake visible in frame, bare winter trees", "Castaway Cove — a second dedicated hot-tub shot; the amenity alone is the subject."),
+          },
+          {
             note: "Both listings flag Waterfront + Dock identically — the data can't see the scale gap. <strong>Lakefront's dock is a two-tier structure with its own stairs</strong>, visible past the beach and kayaks. <strong>Castaway's is a simple T-shaped floating dock</strong> for the pontoon boat, aerial view showing how modest the surrounding lot is by comparison.",
             lakefront: photo("lake/compcompare/lakefront/beach-dock-daylight.avif", "Sandy beach with kayaks and Adirondack chairs around a fire pit; a two-tier dock with stairs is visible in the distance", "Lakefront Estate — beach and kayaks in the foreground, the two-tier dock visible beyond."),
             castaway: photo("lake/compcompare/castaway/aerial-dock.avif", "Aerial view of a modest house and yard beside the lake, with a simple T-shaped floating dock and a pontoon boat", "Castaway Cove — aerial view of the property and its simple T-dock."),
