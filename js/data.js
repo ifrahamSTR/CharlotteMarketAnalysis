@@ -966,27 +966,6 @@ const BUY_BOXES = [
               photo("lake/balcony/outdoor-activities.webp", "Two people in a small boat on the lake at golden hour, near a dock", "Reference example: lake-activity imagery (kayak/small boat) — the kind of accessory shot the analyst notes flag as worth featuring."),
             ],
           },
-          {
-            text: "<strong>Acquisition target profile</strong> — turning Lakefront Estate's formula into a repeatable \"Lake Wylie Large-Group Waterfront\" buy box. Buy the bones (waterfront, dock, walkout basement, good bathrooms/kitchen), not an already-finished 5BR — manufacture the bunk room, entertainment space, and outdoor product ourselves.",
-            table: [
-              { label: "Geography", value: "Charlotte side of Lake Wylie, preferably the same 28278 / western Charlotte orbit as Lakefront Estate" },
-              { label: "Bedrooms", value: "4-5BR at acquisition, with a realistic path to 5BR" },
-              { label: "Bathrooms", value: "3.5+ finished target" },
-              { label: "STR capacity", value: "14-16 guests" },
-              { label: "Size", value: "Roughly 3,500-5,000+ sqft preferred" },
-              { label: "Waterfront", value: "True Lake Wylie frontage, not just lake access" },
-              { label: "Dock", value: "Existing dock strongly preferred; otherwise confirmed dockability before acquisition" },
-              { label: "Shoreline", value: "Usable shoreline; private/sandy beach potential is a major plus" },
-              { label: "Lot", value: "Enough land for several independent outdoor zones" },
-              { label: "Interior", value: "Large kitchen/island + large great room + second social space" },
-              { label: "Basement", value: "Walkout lower level is extremely attractive" },
-              { label: "Sleeping layout", value: "Adult bedrooms + purpose-built 4-6 person bunk room" },
-              { label: "Outdoor product", value: "Deck + covered area + hot tub + firepit + waterfront seating + kayaks/paddleboards" },
-              { label: "Entertainment", value: "Proper game/lounge space: billiards, shuffleboard, arcade, bar, big TV etc." },
-              { label: "Pool", value: "Nice to have, not required" },
-              { label: "Design", value: "Good architectural bones; design can be improved after acquisition" },
-            ],
-          },
         ],
       },
 
@@ -1105,7 +1084,27 @@ const BUY_BOXES = [
           "<tr><td>Ideal Location(s)</td><td>28278 (Steele Creek / Lake Wylie) — priority ZIP, 7 of 8 Top 10% listings</td></tr>" +
           "<tr><td>Traveler ICP</td><td>Large groups and families with kids</td></tr>" +
           "<tr><td>Property Comp Sets</td><td>Lakefront Estate ($182,749) vs. Castaway Cove ($99,613): bathrooms (3.5 vs. 2), kitchen/living-room scale, and hot-tub/dock execution explain most of the 83% gap</td></tr>" +
-          "<tr><td>Analyst Notes</td><td>Lakefront validates a repeatable \"Lake Wylie Large-Group Waterfront\" archetype (4-5BR, 3.5+ baths, 14-16 guests, true waterfront + dock, walkout basement) — don't buy it finished; buy a 4BR waterfront house with good bones (walkout basement, 3 baths, real kitchen/shoreline/dock) and manufacture the bunk room, extra bath, hot tub/firepit, and dock upgrade ourselves</td></tr>" +
+          "</table>" +
+          "<p style=\"margin:16px 0 4px;\"><strong>Analyst Notes — Acquisition Target Profile:</strong> turning Lakefront Estate's formula into a repeatable \"Lake Wylie Large-Group Waterfront\" buy box. Buy the bones, not an already-finished 5BR — manufacture the bunk room, entertainment space, and outdoor product ourselves.</p>" +
+          "<table class=\"summary-sheet-table\">" +
+          "<tr><td>Geography</td><td>Charlotte side of Lake Wylie, preferably the same 28278 / western Charlotte orbit as Lakefront Estate</td></tr>" +
+          "<tr><td>Bedrooms</td><td>4-5BR at acquisition, with a realistic path to 5BR</td></tr>" +
+          "<tr><td>Bathrooms</td><td>3.5+ finished target</td></tr>" +
+          "<tr><td>STR capacity</td><td>14-16 guests</td></tr>" +
+          "<tr><td>Size</td><td>Roughly 3,500-5,000+ sqft preferred</td></tr>" +
+          "<tr><td>Waterfront</td><td>True Lake Wylie frontage, not just lake access</td></tr>" +
+          "<tr><td>Dock</td><td>Existing dock strongly preferred; otherwise confirmed dockability before acquisition</td></tr>" +
+          "<tr><td>Shoreline</td><td>Usable shoreline; private/sandy beach potential is a major plus</td></tr>" +
+          "<tr><td>Lot</td><td>Enough land for several independent outdoor zones</td></tr>" +
+          "<tr><td>Interior</td><td>Large kitchen/island + large great room + second social space</td></tr>" +
+          "<tr><td>Basement</td><td>Walkout lower level is extremely attractive</td></tr>" +
+          "<tr><td>Sleeping layout</td><td>Adult bedrooms + purpose-built 4-6 person bunk room</td></tr>" +
+          "<tr><td>Outdoor product</td><td>Deck + covered area + hot tub + firepit + waterfront seating + kayaks/paddleboards</td></tr>" +
+          "<tr><td>Entertainment</td><td>Proper game/lounge space: billiards, shuffleboard, arcade, bar, big TV etc.</td></tr>" +
+          "<tr><td>Pool</td><td>Nice to have, not required</td></tr>" +
+          "<tr><td>Design</td><td>Good architectural bones; design can be improved after acquisition</td></tr>" +
+          "</table>" +
+          "<table class=\"summary-sheet-table\">" +
           "<tr><td>Revenue Potential</td><td>Lower $93k · Median $124k · Upper $160k</td></tr>" +
           "<tr><td>Purchase Price</td><td>~$750k</td></tr>" +
           "</table>",
