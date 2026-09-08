@@ -1109,49 +1109,6 @@ const BUY_BOXES = [
           "<tr><td>Purchase Price</td><td>~$750k</td></tr>" +
           "</table>",
       },
-
-      // Underwriting -- a real candidate screened against the Acquisition
-      // Target Profile above. Facts below are what could actually be
-      // verified: Redfin itself blocked direct fetching (bot-challenge, HTTP
-      // 202/empty body), so figures are cross-corroborated from
-      // carolinarealtysearch.com (direct fetch, has the MLS# and price) and
-      // search-engine-aggregated Zillow figures (sqft, lot size) -- both
-      // independently landed on the same numbers. Year built, exact bath
-      // count (sources split 2.5 vs. 3), basement/walkout status, and
-      // interior photos could not be verified through any available
-      // source -- marked "Not verified" rather than guessed.
-      { groupTitle: "Underwriting" },
-      {
-        title: "Candidate: 3015 Point Clear Dr, Tega Cay, SC 29708",
-        body:
-          "<p><strong>$775,000</strong> · 4BR / 2.5-3BA (sources split) · <strong>2,796 sqft</strong> · 0.25-acre lot · MLS #4421189 · Active, listed by Nick May (Compass). <strong>Waterfront on Lake Wylie with a private floating dock</strong> and an expansive wraparound deck; No HOA.</p>" +
-          "<p><strong>Not verified</strong> (no source available confirmed these): year built, basement/walkout status, interior layout, guest sleeping capacity, garage, price history/days on market.</p>" +
-          "<p><a href=\"https://www.redfin.com/SC/Tega-Cay/3015-Point-Clear-Dr-29708/home/52121872\" target=\"_blank\" rel=\"noopener\">View on Redfin ↗</a></p>",
-      },
-      {
-        title: "Fit vs. the Acquisition Target Profile",
-        body:
-          "<table class=\"underwriting-table\">" +
-          "<tr><th>Attribute</th><th>Target</th><th>Lakefront Estate</th><th>3015 Point Clear Dr</th></tr>" +
-          "<tr><td>Geography</td><td>Charlotte side / 28278 orbit</td><td>28278 (Dixie-Berryhill), NC</td><td class=\"uw-gap\">Tega Cay, York County, SC — different state</td></tr>" +
-          "<tr><td>Bedrooms</td><td>4-5BR</td><td>5BR</td><td>4BR</td></tr>" +
-          "<tr><td>Bathrooms</td><td>3.5+</td><td>3.5</td><td class=\"uw-gap\">2.5-3</td></tr>" +
-          "<tr><td>STR capacity</td><td>14-16 guests</td><td>16</td><td class=\"uw-gap\">Not verified — unlikely at this sqft without conversion</td></tr>" +
-          "<tr><td>Size</td><td>3,500-5,000+ sqft</td><td>Not verified</td><td class=\"uw-gap\">2,796 sqft</td></tr>" +
-          "<tr><td>Waterfront</td><td>True Lake Wylie frontage</td><td>Yes</td><td>Yes</td></tr>" +
-          "<tr><td>Dock</td><td>Existing strongly preferred</td><td>Two-level dock</td><td>Private floating dock</td></tr>" +
-          "<tr><td>Shoreline</td><td>Usable; beach a plus</td><td>Private beach</td><td>Not verified</td></tr>" +
-          "<tr><td>Lot</td><td>Several outdoor zones</td><td>Not verified (visually large)</td><td class=\"uw-gap\">0.25 acres</td></tr>" +
-          "<tr><td>Interior</td><td>Large kitchen + great room + 2nd social space</td><td>2-island chef kitchen, vaulted great room</td><td>Not verified</td></tr>" +
-          "<tr><td>Basement</td><td>Walkout very attractive</td><td>Yes — billiard/bar lower level</td><td>Not verified</td></tr>" +
-          "<tr><td>Sleeping layout</td><td>Adult rooms + 4-6 bunk room</td><td>2K/2Q + 6-bed custom bunk room</td><td>Not verified</td></tr>" +
-          "<tr><td>Outdoor product</td><td>Deck/hot tub/firepit/kayaks</td><td>Upper deck, covered porch, beach firepit</td><td>Wraparound deck only, confirmed</td></tr>" +
-          "<tr><td>Entertainment</td><td>Billiards/bar/big TV</td><td>Billiards, bar, big TV</td><td>Not verified</td></tr>" +
-          "<tr><td>Pool</td><td>Nice to have, not required</td><td>None</td><td>None mentioned</td></tr>" +
-          "<tr><td>Design</td><td>Good bones, improve later</td><td>Good bones</td><td>Not verified</td></tr>" +
-          "</table>" +
-          "<p><strong>Result: partial fit.</strong> Clears both hard floors — true Lake Wylie waterfront and an existing dock. But it undershoots the archetype on size (2,796 vs. 3,500-5,000+ target), bathrooms (2.5-3 vs. 3.5+), and lot (0.25 acres, tight for the \"several independent outdoor zones\" the profile calls for). More importantly, it sits in <strong>Tega Cay, York County, South Carolina</strong> — not the Charlotte-side / 28278 NC orbit the profile specifies. South Carolina regulates STRs under a local-control model with no statewide rule; Tega Cay's own ordinance is unresearched here. <strong>The Section 5 STR Regulations analysis on this site covers Charlotte/Mecklenburg County, NC only and does not apply to this candidate</strong> — a separate regulatory diligence pass on Tega Cay specifically would be required before underwriting this property further.</p>",
-      },
     ],
 
     pendingNote:

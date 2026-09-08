@@ -308,18 +308,6 @@ img { max-width: 100%; display: block; }
 .summary-sheet-table td { padding: 7px 12px; border-bottom: var(--hairline); vertical-align: top; text-align: left; }
 .summary-sheet-table tr:last-child td { border-bottom: none; }
 .summary-sheet-table td:first-child { width: 30%; font-weight: 700; color: var(--color-primary); white-space: nowrap; }
-.underwriting-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.86rem; }
-.underwriting-table th, .underwriting-table td { padding: 7px 10px; border-bottom: var(--hairline); text-align: left; vertical-align: top; }
-.underwriting-table th { color: var(--color-text-muted); font-weight: 600; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.02em; }
-.underwriting-table td:first-child, .underwriting-table th:first-child { font-weight: 700; color: var(--color-primary); white-space: nowrap; width: 16%; }
-.underwriting-table tr:last-child td { border-bottom: none; }
-.underwriting-table td.uw-gap { color: var(--brand-amber-dark); }
-@media (max-width: 700px) {
-  .underwriting-table, .underwriting-table thead, .underwriting-table tbody, .underwriting-table th, .underwriting-table td, .underwriting-table tr { display: block; }
-  .underwriting-table thead { display: none; }
-  .underwriting-table tr { border-bottom: var(--hairline); padding: 8px 0; }
-  .underwriting-table td:first-child { width: auto; }
-}
 .comp-photo-rows > * { padding: 16px 0; border-bottom: var(--hairline); }
 .comp-photo-rows > *:last-child { border-bottom: none; padding-bottom: 0; }
 .comp-photo-row__note { margin: 0 0 10px; text-align: left; }
