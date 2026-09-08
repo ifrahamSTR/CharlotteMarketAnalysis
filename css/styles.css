@@ -304,6 +304,10 @@ img { max-width: 100%; display: block; }
 .comp-stats-table th { color: var(--color-text-muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; }
 .comp-stats-table td:not(:first-child), .comp-stats-table th:not(:first-child) { text-align: right; }
 .comp-stats-table tr:last-child td { border-bottom: none; }
+.summary-sheet-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9rem; }
+.summary-sheet-table td { padding: 7px 12px; border-bottom: var(--hairline); vertical-align: top; text-align: left; }
+.summary-sheet-table tr:last-child td { border-bottom: none; }
+.summary-sheet-table td:first-child { width: 30%; font-weight: 700; color: var(--color-primary); white-space: nowrap; }
 .comp-photo-rows > * { padding: 16px 0; border-bottom: var(--hairline); }
 .comp-photo-rows > *:last-child { border-bottom: none; padding-bottom: 0; }
 .comp-photo-row__note { margin: 0 0 10px; text-align: left; }

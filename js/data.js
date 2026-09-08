@@ -1062,6 +1062,32 @@ const BUY_BOXES = [
           "<li><a href=\"https://www.airbnb.com/rooms/52281872\" target=\"_blank\" rel=\"noopener\">Castaway Cove— 5Bed Lake Retreat—Fire Pit—Hot Tub! ↗</a> — Low tier, $99,613</li>" +
           "</ul>",
       },
+
+      // Buy-Box Summary -- one-page recap of everything above, in the team's
+      // own buy-box template's category order (see BuyBoxLakesideCharlotte.docx).
+      // STR Regulations excluded here on request -- it's market-wide, not
+      // Lake-specific, and already covered once in Section 5.
+      { groupTitle: "Buy-Box Summary" },
+      {
+        title: "One-Page Recap",
+        body:
+          "<table class=\"summary-sheet-table\">" +
+          "<tr><td>Bedrooms / Baths</td><td>3+ bedrooms (4-5 ideal) · 2+ bathrooms (3+ ideal)</td></tr>" +
+          "<tr><td>Ideal Sleep Count</td><td>8+ required (16 preferred)</td></tr>" +
+          "<tr><td>Architectural Style</td><td>Normal houses work — not mandatory given lake access + waterfront</td></tr>" +
+          "<tr><td>Backyard Size</td><td>Outdoor lounges, sofas, fire pits, lakeside hot tubs, sitting areas; balconies double as lounges</td></tr>" +
+          "<tr><td>Must-Have's</td><td>Fire Pit, Outdoor Dining Area, Waterfront, Lake Access, Pack 'N Play / Travel Crib, Hot Tub, Crib</td></tr>" +
+          "<tr><td>Nice-to-Have's</td><td>Pool Table, Game Room, Pool, Gym (ranked by revenue lift) — Pickleball excluded (N=1, negative signal)</td></tr>" +
+          "<tr><td>View</td><td>Lake view, preferably from a front deck</td></tr>" +
+          "<tr><td>Waterfront</td><td>Absolutely mandatory</td></tr>" +
+          "<tr><td>Privacy / Seclusion</td><td>Not necessary</td></tr>" +
+          "<tr><td>Ideal Location(s)</td><td>28278 (Steele Creek / Lake Wylie) — priority ZIP, 7 of 8 Top 10% listings</td></tr>" +
+          "<tr><td>Traveler ICP</td><td>Large groups and families with kids</td></tr>" +
+          "<tr><td>Property Comp Sets</td><td>Lakefront Estate ($182,749) vs. Castaway Cove ($99,613): bathrooms (3.5 vs. 2), kitchen/living-room scale, and hot-tub/dock execution explain most of the 83% gap</td></tr>" +
+          "<tr><td>Revenue Potential</td><td>Lower $93k · Median $124k · Upper $160k</td></tr>" +
+          "<tr><td>Purchase Price</td><td>~$750k</td></tr>" +
+          "</table>",
+      },
     ],
 
     pendingNote:
