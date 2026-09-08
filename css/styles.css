@@ -309,6 +309,8 @@ img { max-width: 100%; display: block; }
 .comp-photo-row__note { margin: 0 0 10px; text-align: left; }
 .comp-photo-row__col { text-align: center; }
 .comp-photo-row__label { margin: 0 0 6px; font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--color-primary); }
+.comp-photo-row__quote { margin: 0 0 12px; padding: 8px 14px; border-left: 3px solid var(--brand-amber); background: var(--accent-tint); font-style: italic; color: var(--color-text); }
+.comp-photo-row__quote cite { display: block; margin-top: 4px; font-style: normal; font-size: 0.82rem; color: var(--color-text-muted); }
 
 /* Analyst Notes: each note's own image(s) sit directly beside its text
    (reuses .bb2-grid-2's two-column grid, already collapses to 1 column

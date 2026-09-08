@@ -844,6 +844,7 @@ function compStatsTable(rows) {
 function compPhotoRow(row) {
   const wrap = el("div", "comp-photo-row");
   wrap.appendChild(el("p", "comp-photo-row__note", row.note));
+  if (row.quote) wrap.appendChild(el("p", "comp-photo-row__quote", row.quote));
   const grid = el("div", "bb2-grid-2");
   const left = el("div", "comp-photo-row__col");
   left.appendChild(el("p", "comp-photo-row__label", "Lakefront Estate"));
