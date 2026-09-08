@@ -74,14 +74,14 @@ function drawZipOverlay(payload) {
     .then((r) => (r.ok ? r.json() : Promise.reject()))
     .then((geojson) => {
       L.geoJSON(geojson, {
-        style: { color: "#445752", weight: 1, opacity: 0.45, dashArray: "4 3", fillOpacity: 0.02 },
+        style: { color: "#485a55", weight: 1, opacity: 0.45, dashArray: "4 3", fillOpacity: 0.02 },
       }).addTo(ZIP_LAYER);
     })
     .catch(() => {
       (payload.zipApprox || []).forEach((z) => {
         const circle = L.circle([z.lat, z.lng], {
           radius: z.radiusDeg * 111000,
-          color: "#445752",
+          color: "#485a55",
           weight: 1,
           opacity: 0.35,
           dashArray: "4 4",
@@ -256,7 +256,7 @@ function drawFourBrCompMarkers(comps) {
     const latLng = [comp.listing.lat, comp.listing.lng];
     const marker = L.circleMarker(latLng, {
       radius: category.radius || 8,
-      color: category.stroke || "#16302a",
+      color: category.stroke || "#0b4b40",
       weight: 2,
       fillColor: category.color,
       fillOpacity: 0.92,

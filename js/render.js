@@ -193,14 +193,6 @@ function renderDeclarations() {
     card.appendChild(cta);
     host.appendChild(card);
   });
-
-  const pendingNote = el(
-    "div",
-    "declaration-card declaration-card--pending",
-    "<p class=\"declaration-card__eyebrow\">Additional buy boxes</p>" +
-      "<p>" + PENDING_BUY_BOXES_NOTE + " See the <a href=\"#pending\">Additional Buy Boxes Pending</a> section below.</p>"
-  );
-  host.appendChild(pendingNote);
 }
 
 // ---------------------------------------------------------------------------
@@ -1224,9 +1216,8 @@ function renderPendingSection(section) {
 
 // A single comp property inside one tier column: its photo(s) (or a
 // pendingPhoto() placeholder card if that property's photo hasn't been
-// supplied yet -- see LakeBuyBox/Compset.csv's Listing URL), title (linked
-// to the real listing when a url is given), one-line stats, and an
-// optional analyst note (lorem ipsum until the real write-up is supplied).
+// supplied yet), title (linked to the real listing when a url is given),
+// one-line stats, and an optional analyst note.
 function compSetPropertyCard(prop) {
   const card = el("div", "bb2-tier-compare__property");
   if (prop.images && prop.images.length) {

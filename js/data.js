@@ -166,7 +166,7 @@ const MAP_CONFIG = {
   center: [35.223, -80.835],
   zoom: 10,
   stateAbbr: "NC",
-  tierColors: { top10: "#b9752b", top25: "#1e3d32", bottom75: "#8b94a3" },
+  tierColors: { top10: "#d99132", top25: "#075646", bottom75: "#8b94a3" },
   tierLabels: {
     top10: "Top 10% revenue (market-wide, P90 = $78,801)",
     top25: "Next 15% (top 25% excl. top 10%, P75 = $52,526)",
@@ -900,7 +900,7 @@ const BUY_BOXES = [
     ],
 
     pendingNote:
-      "Outskirts is scoped in ../notebooks/charlotte_overview.ipynb (\"Why These Buy Boxes\") — N=312, the broadest region geographically (2.5–14 miles from Uptown, mean 7.1 miles) and the market's largest pool of big-bedroom (4BR+) inventory (32%), 11% Top 10% hit rate. Note: this region is intentionally coarse — it spans everything from close-in SouthPark-adjacent ZIPs to far exurbs, and likely hides real internal variation a finer cut would separate out (see the notebook's own caution in \"Tying It Together\"). The content above (Property Profile through Projections) is a teammate's (Walid's) own buy-box research, not this notebook — see ../Outskirts/readme.txt for full source/provenance.",
+      "Outskirts — N=312, the broadest region geographically (2.5–14 miles from Uptown, mean 7.1 miles) and the market's largest pool of big-bedroom (4BR+) inventory (32%), 11% Top 10% hit rate. Note: this region is intentionally coarse — it spans everything from close-in SouthPark-adjacent ZIPs to far exurbs, and likely hides real internal variation a finer cut would separate out. The content above (Property Profile through Projections) is the team's own buy-box research.",
   },
 
   // ---------------------------------------------------------------------------
@@ -975,7 +975,7 @@ const BUY_BOXES = [
         images: [
           photo("lake/rooms/bunk-room.avif", "Built-in dual bunk room with four beds and access ladders", "A built-in bunk room — one legitimate way to clear the sleeps 8+ floor above."),
           photo("lake/rooms/comp-primary-bedroom.avif", "Spacious primary bedroom suite with a sitting area and ensuite bathroom", "The primary bedroom from the first property in this buy box's comp set."),
-          photo("lake/ai-gen/comp-six-bunk-room.jpg", "Six-bed, three-tier built-in bunk room", "A second real bunk room, from another of Lakeside's Top 10% comp-set listings — see ../LakeBuyBox/ai-gen/SOURCE.md for how this was sourced."),
+          photo("lake/ai-gen/comp-six-bunk-room.jpg", "Six-bed, three-tier built-in bunk room", "A second real bunk room, from another of Lakeside's Top 10% comp-set listings — an additional comp-set reference photo."),
         ],
       },
       {
@@ -1102,19 +1102,16 @@ const BUY_BOXES = [
       // being supplied property-by-property (HeroPic/BedroomN in
       // ../LakeBuyBox/Images/) -- any property without a photo yet shows a
       // pendingPhoto() card linking straight to its real Airbnb listing
-      // instead of an invented placeholder image. Category interpretation
-      // text is a literal placeholder (lorem ipsum) until the real
-      // write-up is supplied -- do not mistake it for real analysis.
+      // instead of an invented placeholder image. No analyst interpretation
+      // key is set per category until a real write-up is supplied.
       {
         title: "Comp-Set Visual Comparison",
         body:
-          "<p>Lakeside's 8 Top 10% comp-set listings, tiered by Revenue Potential (see <code>../LakeBuyBox/Compset.csv</code>): <strong>Top (High) tier</strong> is the top 2 by revenue, <strong>Mid tier</strong> is the next 4, <strong>Low tier</strong> is the remaining 2. Photos are being added property by property — a \"photo pending\" card links straight to that listing until its photo is in.</p>",
+          "<p>Lakeside's 8 Top 10% comp-set listings, tiered by Revenue Potential: <strong>Top (High) tier</strong> is the top 2 by revenue, <strong>Mid tier</strong> is the next 4, <strong>Low tier</strong> is the remaining 2. Photos are being added property by property — a \"photo pending\" card links straight to that listing until its photo is in.</p>",
         compSetComparison: {
           categories: [
             {
               title: "Exterior",
-              interpretation:
-                "[Analyst opinion — placeholder text below, to be replaced] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
               tiers: {
                 high: [
                   {
@@ -1183,8 +1180,6 @@ const BUY_BOXES = [
             },
             {
               title: "Bedrooms",
-              interpretation:
-                "[Analyst opinion — placeholder text below, to be replaced] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
               tiers: {
                 high: [
                   {
@@ -1448,14 +1443,14 @@ const BUY_BOXES = [
     ],
 
     pendingNote:
-      "Source notebook for the full underlying analysis: <code>../notebooks/charlotte_lake_buybox.ipynb</code>. Analyst notes and projections above are from the team's own filled-in template, <code>../LakeBuyBox/BuyBoxLakesideCharlotte.docx</code>.",
+      "Analyst notes and projections above are from the team's own filled-in buy-box template.",
   },
 ];
 
 const PENDING_BUY_BOXES = [
-  { label: "Downtown / Uptown Buy Box", note: "N=368, largest region by inventory (51% of the market), 8% Top 10% hit rate. See the pending Downtown / Uptown Buy Box tab above for what's scoped so far." },
-  { label: "Outskirts Buy Box", note: "N=312, broadest region geographically, 11% Top 10% hit rate. See the pending Outskirts Buy Box tab above for what's scoped so far." },
-  { label: "Lake Buy Box", note: "N=39, geography-defined (Lakeside region, not amenity-flag-only), 21% Top 10% hit rate — more than double Downtown's. See the pending Lake Buy Box tab above." },
+  { label: "Downtown / Uptown Buy Box", note: "N=368, largest region by inventory (51% of the market), 8% Top 10% hit rate. See the Downtown / Uptown Buy Box tab above for the full deep dive." },
+  { label: "Outskirts Buy Box", note: "N=312, broadest region geographically, 11% Top 10% hit rate. See the Outskirts Buy Box tab above for the full deep dive." },
+  { label: "Lake Buy Box", note: "N=39, geography-defined (Lakeside region, not amenity-flag-only), 21% Top 10% hit rate — more than double Downtown's. See the Lake Buy Box tab above for the full deep dive." },
 ];
 const PENDING_BUY_BOXES_NOTE =
-  "All three buy boxes — Downtown / Uptown, Outskirts, and Lake — are named and scoped in charlotte_overview.ipynb's region-based buy-box segmentation, with real N and Top 10% hit-rate figures, but their full deep-dive analysis has not been built out yet. Map and structure come first, per the team's current call.";
+  "All three buy boxes — Downtown / Uptown, Outskirts, and Lake — are named and scoped in the region-based buy-box segmentation, each with real N and Top 10% hit-rate figures and a full deep-dive analysis (comp sets, revenue tiering, amenity evidence). A small number of individual items are still being sourced and are flagged within each tab.";

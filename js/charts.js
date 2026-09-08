@@ -6,23 +6,23 @@
  */
 const CHART_PALETTE = {
   bottom75: "#8b94a3",
-  top25: "#1e3d32",
-  top10: "#b9752b",
+  top25: "#075646",
+  top10: "#d99132",
 };
 
 // Demographics palette (Section 4) — kept within the site's own brand
 // palette rather than the raw teal/yellow/orange/slate colors in Walid's
 // example chart images.
 const DEMOGRAPHICS_PALETTE = {
-  kids: "#b9752b",
+  kids: "#d99132",
   group: "#e0b34c",
-  pet: "#1e3d32",
+  pet: "#075646",
   other: "#8b94a3",
 };
 
 Chart.defaults.font.family = "'Inter', 'Segoe UI', system-ui, sans-serif";
 Chart.defaults.font.size = 13;
-Chart.defaults.color = "#445752";
+Chart.defaults.color = "#485a55";
 
 function chartOptions(title) {
   return {
