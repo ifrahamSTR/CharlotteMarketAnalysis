@@ -563,7 +563,7 @@ const BUY_BOXES = [
       {
         title: "Revenue Potential & Candidate Listings",
         body:
-          "<p><strong>Revenue Potential</strong> throughout this section is modeled/directional (reconciles closely to ADR × Occupancy × 365), not trailing actual revenue, and should never be presented as confirmed historical earnings. Underwriting (target purchase price, target Revenue Potential range) for the Downtown buy box has not been decided yet and is not invented here.</p>" +
+          "<p><strong>Revenue Potential</strong> for the Downtown large-group buy box is modeled/directional, not confirmed historical earnings. For a clean 4–6BR Downtown acquisition with strong design, 10–14 real sleeps, and a complete outdoor amenity program, the practical target range is roughly $100k–$150k, with best-in-class single-home execution stretching toward ~$165k. The $199.7k market outlier is a structural-confound duplex and should not be treated as the clean ceiling. Target purchase price / full underwriting range still needs to be finalized separately.</p>" +
           "<p><strong>Candidate listing found (Zillow):</strong></p>" +
           "<ul>" +
           "<li><a href=\"https://www.zillow.com/homedetails/1416-Parkwood-Ave-Charlotte-NC-28205/6187855_zpid/\" target=\"_blank\" rel=\"noopener\">1416 Parkwood Ave, Charlotte, NC 28205 ↗</a></li>" +
