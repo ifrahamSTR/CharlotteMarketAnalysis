@@ -966,6 +966,14 @@ const BUY_BOXES = [
               photo("lake/balcony/outdoor-activities.webp", "Two people in a small boat on the lake at golden hour, near a dock", "Reference example: lake-activity imagery (kayak/small boat) — the kind of accessory shot the analyst notes flag as worth featuring."),
             ],
           },
+          {
+            text: "<strong>Lakefront Estate is a repeatable acquisition archetype</strong>, not just a comp — a \"Lake Wylie Large-Group Waterfront\" buy box: 4-5BR, 3.5+ baths, 14-16 guest capacity, true waterfront + dock (28278 orbit), walkout basement ideal for a bunk room + game/bar space.",
+            images: [],
+          },
+          {
+            text: "<strong>Don't buy it finished — buy the bones.</strong> A 4BR waterfront house with a walkout basement, 3 baths, and a real kitchen/shoreline/dock is more interesting than an already-built 5BR: convert the basement to a bunk room + bar, add a bath, upgrade the dock and add a hot tub/firepit ourselves. That's where we create the STR value, not pay the seller for it.",
+            images: [],
+          },
         ],
       },
 
