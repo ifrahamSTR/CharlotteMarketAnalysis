@@ -570,6 +570,46 @@ const BUY_BOXES = [
           "</ul>" +
           "<p>Current best internal tracking lead. Not offer-ready. Zillow facts live-pulled September 8, 2026 — reverify Zillow/MLS/county facts before any offer. Do not present as final underwriting.</p>",
       },
+
+      { groupTitle: "Buy-Box Summary" },
+      {
+        title: "One-Page Recap",
+        body:
+          "<table class=\"summary-sheet-table\">" +
+          "<tr><td>STR Regulation Tier</td><td>Charlotte is broadly investor-friendly; no city STR permit/licensing or owner-occupancy requirement found, but HOA, covenant, building-code, and parcel-level checks remain address-specific.</td></tr>" +
+          "<tr><td>Permit / Residency</td><td>No Charlotte STR-specific permit or primary-residence rule; confirm the specific property before acquisition.</td></tr>" +
+          "<tr><td>Operating Limits</td><td>No STR-specific citywide cap, minimum-stay rule, or parking mandate found; ordinary noise, nuisance, trash, parking, fire/building-code, and egress rules still apply.</td></tr>" +
+          "<tr><td>Investor Notes</td><td>Favorable regulatory posture, but not legal advice; confirm tax handling, HOA/private restrictions, insurance, occupancy, and egress during diligence.</td></tr>" +
+          "<tr><td>Bedrooms / Baths</td><td>Target 4-6BR; 3.5+ baths preferred for 10-12 guests; 3 baths workable; 2 baths caution only.</td></tr>" +
+          "<tr><td>Ideal Sleep Count</td><td>Sleeps 10-14; clean underwriting center sleeps 12; sleeps 16 only with real beds, enough baths, and no duplex/second-unit confound.</td></tr>" +
+          "<tr><td>Architectural Style</td><td>Detached, neighborhood-appropriate homes with clear identity: urban farmhouse, modern infill, renovated bungalow, or historic-with-upgrades.</td></tr>" +
+          "<tr><td>Backyard Size</td><td>Lot does not need to be huge, but must photograph as a complete outdoor group zone: spa/pool hook, fire, games, dining/lounge, lighting, and circulation.</td></tr>" +
+          "<tr><td>Must-Have's</td><td>Outdoor gathering area; outdoor dining/lounge seating; fire pit or equivalent anchor; hot tub/spa-style hook or substitute premium outdoor hook; game/entertainment feature; group-ready kitchen/dining.</td></tr>" +
+          "<tr><td>Nice-to-Have's</td><td>Pool/swim spa; rooftop/skyline feature; gym/fitness; sauna/cold-plunge wellness. Directional signals only, not causal proof.</td></tr>" +
+          "<tr><td>View</td><td>Skyline/rooftop views are bonus marketing upside, not required.</td></tr>" +
+          "<tr><td>Waterfront</td><td>Not relevant for Downtown; do not borrow the Lakeside thesis.</td></tr>" +
+          "<tr><td>Privacy / Seclusion</td><td>Urban privacy, not seclusion: contained yard/rooftop, neighbor/noise management, parking, and honest location context.</td></tr>" +
+          "<tr><td>Ideal Location(s)</td><td>Plaza Midwood, South End/Wilmore, NoDa, Dilworth, and select Uptown/Third-Fourth Ward-adjacent parcels; screen by address, not ZIP alone.</td></tr>" +
+          "<tr><td>Popular Places</td><td>Bank of America Stadium, Spectrum Center, Uptown/Center City, Convention Center, South End, NoDa, Plaza Midwood, Dilworth/Freedom Park, brewery/nightlife corridors, Optimist Hall, and Music Factory.</td></tr>" +
+          "<tr><td>Traveler ICP</td><td>Adult group trips first: bachelor/bachelorette, birthdays, sports/concert weekends, wedding-party lodging, and friend groups; family and wedding-adjacent groups secondary.</td></tr>" +
+          "<tr><td>Property Comp Sets</td><td>Alexandria design and revenue comp-set links are in the detailed sections; high/mid/low differences are driven by bath ratio, design depth, outdoor programming, and operator/structural caveats.</td></tr>" +
+          "<tr><td>Revenue Potential</td><td>Modeled/directional only; current Downtown large-group comp set frames the median around $78.6k, with stronger execution reaching six-figure potential. Not actual trailing revenue.</td></tr>" +
+          "<tr><td>Purchase Price / UW</td><td>Underwriting is not final. Current live candidate is 1416 Parkwood as an internal tracking lead only; reverify Zillow/MLS/county facts before any offer.</td></tr>" +
+          "</table>" +
+          "<p style=\"margin:16px 0 4px;\"><strong>Analyst Notes — Acquisition Target Profile:</strong> turn the Downtown comp evidence into a repeatable large-group urban STR buy box. Buy the location, bones, and lot usability; manufacture the amenity bundle, design identity, and photo-forward guest experience.</p>" +
+          "<table class=\"summary-sheet-table\">" +
+          "<tr><td>Geography</td><td>Plaza Midwood first; South End/Wilmore, NoDa, and Dilworth next; Uptown-adjacent only where single-family product and demand-driver story are real.</td></tr>" +
+          "<tr><td>Bedrooms</td><td>4-6BR target.</td></tr>" +
+          "<tr><td>Bathrooms</td><td>3.5+ finished target; 3 baths is the workable floor.</td></tr>" +
+          "<tr><td>STR Capacity</td><td>10-14 guests, centered on 12.</td></tr>" +
+          "<tr><td>Lot / Outdoor Product</td><td>Compact urban lot with credible private group zone; budget for spa/pool hook, fire, games, dining/lounge, and lighting.</td></tr>" +
+          "<tr><td>Interior</td><td>Group-ready kitchen, long dining, strong lounge, real bedrooms, and memorable design moments.</td></tr>" +
+          "<tr><td>Entertainment</td><td>Intentional game/arcade/lounge feature, not a token table.</td></tr>" +
+          "<tr><td>Parking</td><td>Off-street and multi-car practicality matter.</td></tr>" +
+          "<tr><td>Design</td><td>Can be louder and more photo-forward than suburban product; avoid generic \"luxury\" without specific execution.</td></tr>" +
+          "<tr><td>Deal Screen</td><td>Revenue-to-basis discipline beats \"cheap vs. nearby expensive homes.\"</td></tr>" +
+          "</table>",
+      },
     ],
 
     pendingNote:
