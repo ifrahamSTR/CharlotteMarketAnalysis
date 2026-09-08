@@ -62,25 +62,25 @@ const MARKET_OVERVIEW = {
     "Aerial dusk view of Bank of America Stadium and the Uptown Charlotte skyline under a pink and purple sky",
     "Uptown Charlotte at dusk, with Bank of America Stadium in the foreground."
   ),
-  paragraphs: [
-    "Charlotte — the \"Queen City\" — is North Carolina's largest city, the country's second-largest banking center, and a self-styled \"Energy Capital\": the National Center for the energy industry is based here alongside Bank of America's headquarters.",
-    "Charlotte anchors a metro area of roughly 2.8 million people, sitting inside the \"Charlanta\" megaregion that stretches from Atlanta to Raleigh — Charlotte's skyline, corporate travel demand, and weekday business-trip base are all downstream of its banking core.",
-    "Charlotte Douglas International Airport (CLT) is a major American Airlines hub, one of the busiest airports in the country by traffic — this is a fly-in market as much as a drive-in one, and short-term rental demand reflects both a corporate/business-travel base and event-driven leisure groups.",
-    "The market splits into three geography-defined regions — <strong>Downtown / Uptown</strong> (the walkable urban core plus Bank of America Stadium and Spectrum Center, largest inventory pool at 51% of the market), <strong>Outskirts</strong> (the broadest region geographically, 2.5–14 miles out, the largest pool of big group-oriented houses), and <strong>Lakeside</strong> (the Lake Wylie / Mountain Island pocket, smallest by count but the strongest revenue performer) — which is what the location analysis below is built around.",
+  chips: [
+    { label: "Largest City in NC" },
+    { label: "Known as \"Queen City\"" },
+    { label: "2nd-Largest Banking Sector in the U.S." },
+    { label: "\"Energy Capital\" — National Center for the Energy Industry" },
   ],
   attractions: [
-    "<strong>NASCAR Hall of Fame</strong> — celebrates the history and heritage of stock car racing.",
-    "<strong>Carowinds</strong> — a massive amusement park straddling the South Carolina border.",
-    "<strong>Discovery Place Science</strong> — an interactive science museum in Uptown Charlotte.",
-    "<strong>Uptown</strong> — the bustling downtown core of museums, restaurants, and entertainment venues.",
+    "<strong>NASCAR Hall of Fame</strong> — history and heritage of stock car racing.",
+    "<strong>Carowinds</strong> — massive amusement park on the SC border.",
+    "<strong>Discovery Place Science</strong> — interactive science museum, Uptown.",
+    "<strong>Uptown</strong> — museums, restaurants, entertainment venues.",
   ],
   visitorStats: {
-    headline: "33 million visitors a year, a $1.2 billion economic impact",
+    headline: "33M visitors a year · $1.2B economic impact",
     breakdown: [
-      "<strong>Leisure &amp; Neighborhood Tourism — $640.2M:</strong> visitors flock to distinct neighborhoods like South End, NoDa, and Plaza Midwood for the culinary scene, local breweries, and arts.",
-      "<strong>Sports Travel — $333.5M:</strong> Bank of America Stadium, Spectrum Center, Charlotte Motor Speedway, and the NASCAR Hall of Fame anchor a packed events calendar.",
-      "<strong>Business &amp; Conventions — $102.9M:</strong> the nation's second-largest banking hub; the expanded Charlotte Convention Center hosts 100+ major conferences a year, driving mid-week corporate demand.",
-      "<strong>Relocation &amp; VFR:</strong> roughly 157 people move to Charlotte every day — incoming residents and the friends/family visiting them are a steady, non-seasonal share of demand.",
+      { value: "$640.2M", label: "Leisure & Neighborhood Tourism" },
+      { value: "$333.5M", label: "Sports Travel" },
+      { value: "$102.9M", label: "Business & Conventions" },
+      { value: "~157/day", label: "Relocation & VFR" },
     ],
   },
   sources: [

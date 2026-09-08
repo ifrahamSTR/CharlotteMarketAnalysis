@@ -219,7 +219,12 @@ function renderMarketOverview() {
     hero.classList.add("bb2-hero--no-media");
   }
   const body = el("div", "bb2-hero__body");
-  MARKET_OVERVIEW.paragraphs.forEach((p) => body.appendChild(el("p", null, p)));
+  body.appendChild(el("h3", null, "Charlotte, NC"));
+  if (MARKET_OVERVIEW.chips && MARKET_OVERVIEW.chips.length) {
+    const chipRow = el("div", "bb2-chip-row");
+    MARKET_OVERVIEW.chips.forEach((c) => chipRow.appendChild(el("span", "bb2-chip", c.label)));
+    body.appendChild(chipRow);
+  }
   if (MARKET_OVERVIEW.attractions && MARKET_OVERVIEW.attractions.length) {
     body.appendChild(el("h3", "subsection-title", "Top Attractions"));
     body.appendChild(el("div", null, listHtml(MARKET_OVERVIEW.attractions)));
@@ -227,7 +232,14 @@ function renderMarketOverview() {
   if (MARKET_OVERVIEW.visitorStats) {
     body.appendChild(el("h3", "subsection-title", "Why People Visit"));
     body.appendChild(el("p", null, "<strong>" + MARKET_OVERVIEW.visitorStats.headline + "</strong>"));
-    body.appendChild(el("div", null, listHtml(MARKET_OVERVIEW.visitorStats.breakdown)));
+    const statRow = el("div", "bb2-stat-row");
+    MARKET_OVERVIEW.visitorStats.breakdown.forEach((s) => {
+      const card = el("div", "bb2-stat");
+      card.appendChild(el("div", "bb2-stat__value", s.value));
+      card.appendChild(el("div", "bb2-stat__label", s.label));
+      statRow.appendChild(card);
+    });
+    body.appendChild(statRow);
   }
   const sources = el("p", "market-sources");
   sources.innerHTML =
