@@ -241,31 +241,44 @@ const CHARLOTTE_STR_REGULATIONS = {
 const BUY_BOXES = [
   // ---------------------------------------------------------------------------
   // Downtown / Uptown — the largest region by inventory, the weakest by
-  // Top 10% hit rate. Scoped in charlotte_overview.ipynb's region-based
-  // buy-box segmentation.
+  // Top 10% hit rate at the region-wide level (atAGlance.revenue/overview
+  // below). Scoped in charlotte_overview.ipynb's region-based buy-box
+  // segmentation. The pendingSections below (Property Profile through
+  // Projections) are this team's own Downtown comp research, built from the
+  // large-group Downtown/Uptown population: 4+ bedrooms, sleeps 10+, n=39 --
+  // see
+  // ../docs/downtown_comp_review/DOWNTOWN_WEBPAGE_SECTION_DECISIONS.md for
+  // the full decisions memo this section is wired from, and
+  // ../docs/downtown_comp_review/downtown_map_dataset_REGION_AUDIT.csv for
+  // the underlying rows. Do not confuse this n=39 comp set with the
+  // region-wide N=368 stat in atAGlance/overview below (a different,
+  // region-level analysis, not comp-set-filtered) or with the legacy 47-row
+  // raw Region=Downtown set the team has since moved off of.
   // ---------------------------------------------------------------------------
   {
     id: "downtown",
     label: "Downtown / Uptown Buy Box",
     status: "pending",
     name: "Charlotte Downtown / Uptown",
-    thesis: "The market's largest region by inventory (51% of all listings), but the weakest by Top 10% hit rate — capped mostly by a smaller-bedroom product mix.",
+    thesis: "The market's largest region by inventory (51% of all listings), but the weakest by Top 10% hit rate overall. Within its large-group (4BR+, sleeps 10+) slice, the winning product is a detached, neighborhood-appropriate group-stay house with a fully programmed outdoor amenity zone — not simply a bigger bedroom count.",
     atAGlance: {
-      bedBath: "Any bedroom count (368 listings; 51% are 1-2BR, the highest small-unit share of the three regions)",
-      sleeps: "TBD",
-      heroMechanism: "TBD",
-      revenue: "N=368 listings · 8% reach market Top 10% ($78,801+)",
-      primaryRequirement: "TBD",
+      bedBath: "Target 4–6 bedrooms (7–8BR possible but treat with caution — thinner evidence, often confounded by duplex/two-structure products) · 3.5+ baths preferred for 10–12 guests · 3 baths is the workable floor · 2 baths is low-tier/caution only",
+      sleeps: "Sleeps 10–14, underwriting center 12 (sleeps 16 can work with real beds, enough bathrooms, and no duplex/second-unit confound — avoid underwriting to inflated sleeps 18–20+ marketing claims)",
+      heroMechanism: "Location (Uptown, South End/Wilmore, NoDa, Plaza Midwood) paired with a fully programmed outdoor/group-stay amenity bundle — hot tub/spa hook, fire pit, games, dining/lounge seating — driving adult group-trip demand (bachelor/bachelorette, birthday weekends, sports/concert weekends), not a couples-getaway or family-vacation-first ICP",
+      revenue: "Modeled/directional Revenue Potential across the Downtown large-group comp set (n=39): median $78,594, roughly $37,500–$165,000 excluding one structural-confound duplex outlier (itself modeling to $199,741) — directional evidence, not a confirmed underwriting range",
+      primaryRequirement: "A compact urban lot must photograph as a complete group-stay product — one fully programmed outdoor amenity zone — not just clear a bedroom-count threshold. See Property Profile / Amenities below",
     },
     // Clearwater's "1. Buy-Box Summary" hero card, reused for pending boxes
-    // too (see overviewBlock() in render.js) -- no heroImage yet since no
-    // photos have been supplied for this box (renders single-column, no
-    // blank media panel).
+    // too (see overviewBlock() in render.js). whyItWorks/chips/revenueChips
+    // describe the region-wide N=368 stat (charlotte_overview.ipynb) and are
+    // left as-is; heroImage/statusBadge are updated now that Property
+    // Profile through Projections below exist for this box.
     overview: {
-      statusBadge: "Named and scoped — no photos or deep-dive template supplied yet",
+      statusBadge: "Downtown large-group comp research complete (n=39) — Property Profile through Projections built out below; acquisition price/revenue underwriting targets still pending",
       thesis: "The market's largest region by inventory (51% of all listings), but the weakest by Top 10% hit rate — capped mostly by a smaller-bedroom product mix.",
       whyItWorks:
         "This region wins on inventory scale, not amenity/product fit — 51% of the market's listings sit here, but the same small-unit mix that drives that scale (51% are 1-2BR) also caps its Top 10% hit rate at 8%, the lowest of the three regions.",
+      heroImage: photo("downtown/abnb_1217644555390940891/front_view.avif", "Two-story urban farmhouse with a full-width front porch", "Urban Farmhouse — Two-Story, Full-Width Porch. One of five approved Downtown architectural-style exteriors — see Property Profile below."),
       chips: [
         { label: "51% of market inventory (N=368)" },
         { label: "51% are 1-2BR" },
@@ -276,8 +289,289 @@ const BUY_BOXES = [
         { label: "Highest single listing", value: "$199,741" },
       ],
     },
+
+    // Sourced from this team's own Downtown comp research (the large-group
+    // Downtown/Uptown population: 4+ bedrooms, sleeps 10+, n=39 -- see the
+    // decisions memo referenced above), not charlotte_overview.ipynb's
+    // region-level stats used in atAGlance/overview. Follows the same
+    // pendingSections vocabulary/grouping Walid's Outskirts section
+    // established (groupTitle/title/body/items/images/charts/chartsRow/
+    // ranked/mapEmbed). Airbnb/listing photos throughout are internal-use
+    // only unless rights are separately cleared -- do not present any of
+    // these images as public/client-safe. "Downtown large-group comp set" /
+    // "Downtown target comp set" / "Downtown large-format comps" is this
+    // section's client-readable name for the n=39 population; avoid the
+    // word "corrected" in any webpage-visible copy below.
+    pendingSections: [
+      { groupTitle: "Property Profile" },
+      {
+        title: "Bedrooms & Bathrooms",
+        body:
+          "<p><strong>Target: 4–6 bedrooms.</strong> 7–8BR is possible but should be treated with caution — the evidence is thinner and is often confounded by duplex/two-structure products (several of the largest-bedroom comps in this comp set are structural confounds, not clean single-home revenue proof).</p>" +
+          "<p><strong>Preferred bathroom target: 3.5+ baths for 10–12 guests.</strong> Workable floor: 3 baths. 2 baths is low-tier/caution only — not the main acquisition target.</p>",
+        chartsRow: [
+          photo("downtown/charts/downtown_size_distribution.png", "Bedroom, bathroom, and sleeps count histograms for the Downtown large-group comp set", "Bedroom/bathroom/sleeps distribution across the Downtown large-group comp set (n=39) — supports the bedroom/bathroom target and the ideal sleep count."),
+          photo("downtown/charts/downtown_revenue_by_size.png", "Box plots of modeled Revenue Potential by bedroom count and sleeps for the Downtown large-group comp set", "Modeled Revenue Potential by bedroom count / sleeps (n=39) — supports the size/revenue relationship."),
+        ],
+      },
+      {
+        title: "Ideal Sleep Count",
+        body:
+          "<p><strong>Target: sleeps 10–14.</strong> Clean underwriting center: sleeps 12. Sleeps 16 can work, but only with real beds, enough bathrooms, and no duplex/second-unit confound. Avoid underwriting to inflated sleeps 18–20+ marketing claims unless bed layout and structure are independently verified.</p>" +
+          "<p>Beds should be mostly real beds — sofa beds / air mattresses should only be a minority of overflow capacity, and must be clearly disclosed.</p>",
+      },
+      {
+        title: "Architectural Style",
+        body:
+          "<p>Downtown Charlotte does not require one exact architectural style. Winning comps are detached, neighborhood-appropriate homes with a clear visual identity: urban farmhouse, modern infill, renovated bungalow, or historic home with STR-ready upgrades. The common thread is that the exterior reads like a credible group-stay product and supports the location/amenity thesis.</p>",
+        images: [
+          photo("downtown/abnb_1217644555390940891/front_view.avif", "Two-story urban farmhouse with a full-width front porch", "Urban Farmhouse — Two-Story, Full-Width Porch. Two-story urban farmhouse with a full-width front porch, showing how a detached Downtown STR can lead with a clear, ownable exterior identity rather than generic rental curb appeal."),
+          photo("downtown/abnb_1409730515899310183/front_view.avif", "Contemporary infill home on a compact urban lot", "Modern Infill — Compact Lot, Contemporary Massing. Contemporary infill on a compact urban lot, showing the most reproducible Downtown build/renovation template when the buyer wants modern event-house positioning near the core."),
+          photo("downtown/abnb_1108803702700685352/front_exterior.avif", "Cedar-and-black-panel modern infill home in NoDa", "Modern Infill — Cedar/Black Panel, NoDa. Cedar-and-black-panel modern infill in NoDa, showing that a high-design exterior can support the location thesis when capacity is underwritten to real beds rather than headline sleeps. Caveat: revenue/sleep claim is capacity-adjusted to roughly 10 real sleeps — do not cite the listing's headline sleep count without this adjustment."),
+          photo("downtown/abnb_659409220270509844/front_view.avif", "Renovated bungalow with modest Craftsman massing", "Renovated Bungalow — Craftsman Massing, Modern Program. Renovated bungalow exterior with modest Craftsman massing, showing that a normal neighborhood facade can still work when the backyard and amenity program carry the STR identity."),
+          photo("downtown/abnb_1492847561370946959/exterior.avif", "Historic porch-front home on a streetcar-era block", "Historic Home — Victorian-Era Porch, Streetcar Block. Historic porch-front home on a streetcar-era block, showing the acceptable low-tier architecture floor and why character alone should not be mistaken for ceiling revenue. Present as floor-tier evidence, not a ceiling example."),
+        ],
+      },
+      {
+        title: "Backyard Size",
+        body:
+          "<p>For Downtown Charlotte, the winning lot does not need to be huge, but it must photograph as a complete outdoor group zone. The best comps show compact urban yards converted into full amenity bundles: hot tub/pool or swim spa, fire feature, games, dining/lounge space, lighting, and clear circulation.</p>",
+        images: [
+          photo("downtown/abnb_1409730515899310183/entire_backyard_containing_hottub_cornhole_minigolf_firepit_stringlights.avif", "Compact backyard programmed with hot tub, games, fire seating, and string lights", "Compact Yard, Full Amenity Bundle — Hot Tub, Games, Fire, Lighting. Compact backyard programmed with hot tub, games, fire seating, and string lights, showing that Downtown yard size matters less than whether the lot photographs as one complete group-entertainment zone."),
+          photo("downtown/abnb_659409220270509844/backyard_showing_swimspa_integrated_hot_tub_firepit_dining_area_under_pergola.avif", "Swim spa, fire pit, and pergola-covered dining in one backyard", "Swim Spa, Fire Pit, and Covered Dining in One Yard. Swim spa, fire pit, and pergola-covered dining in one backyard, showing the compact South End/Wilmore-style layout that turns a small urban lot into a full outdoor stay experience."),
+        ],
+      },
+
+      { groupTitle: "Amenities" },
+      {
+        title: "Amenity Prevalence",
+        body:
+          "<p>The Downtown amenity chart should be read as conservative directional evidence, not a full amenity survey: the source file has no dedicated amenity flags, so amenities are counted only when they appear explicitly in the title or analyst role fields. Even with that limitation, the pattern is useful. Game/arcade features are the most common text signal (8 of 39, 21%), fire pits are most concentrated in the High/Ceiling tier (7 of 39 overall, 3 of 6 in High/Ceiling — 50%), and hot tub/spa, outdoor lounge/dining (each 6 of 39, 15%), pool/swim-spa, rooftop/skyline (4 of 39, 10%), gym, and wellness features appear as selective differentiators rather than universal requirements.</p>",
+        charts: [
+          photo("downtown/charts/downtown_amenity_prevalence_by_tier.png", "Bar chart of text-derived amenity prevalence by revenue tier for the Downtown large-group comp set", "Amenity prevalence by revenue tier (n=39, Downtown large-group comp set) — text-derived from title/final_comp_role/design_role fields, not explicit amenity flags. Treat as a conservative floor on true prevalence, not a full amenity survey."),
+        ],
+      },
+      {
+        title: "Must-Have's",
+        body:
+          "<p>Must-have amenities are not a random checklist. The Downtown product needs a programmed outdoor gathering area with dining/lounge seating, a fire pit or equivalent group anchor, a hot tub/spa-style hook or substitute premium outdoor feature, at least one intentional game/entertainment element, and a kitchen/dining setup that supports group stays.</p>",
+        items: [
+          "Outdoor gathering area",
+          "Outdoor dining / lounge seating",
+          "Fire pit or equivalent gathering anchor",
+          "Hot tub / spa-style anchor, or a clear substitute premium outdoor hook",
+          "Game / entertainment feature",
+          "High-quality kitchen / group meal setup",
+        ],
+        images: [
+          photo("downtown/abnb_1409730515899310183/firepit.avif", "Dedicated dusk fire-pit area with grouped seating", "Fire Pit Gathering Anchor. Dedicated dusk fire-pit area with grouped seating, showing the gathering anchor that makes an outdoor zone usable for event-weekend and nightlife-driven groups. Fire pit is the strongest tier signal in the chart: 50% of High/Ceiling comps versus 18% overall."),
+          photo("downtown/abnb_1409730515899310183/hottub.avif", "Hot tub staged as an evening amenity", "Hot Tub / Spa-Style Hook. Hot tub staged as an evening amenity, showing the spa-style hook that helps a compact Downtown yard feel premium instead of merely functional."),
+          photo("downtown/abnb_1409730515899310183/gameroom_arcade_focus.avif", "Finished arcade room with multiple cabinets and a coherent theme", "Arcade / Game-Room Feature. Finished arcade room with multiple cabinets and a coherent theme, showing the intentional entertainment feature expected in a group-stay Downtown product. Game/arcade/putting green is the highest overall text-derived amenity signal at 21%."),
+          photo("downtown/abnb_659409220270509844/covered_patio_tv_skyline_view.avif", "Covered patio with lounge seating and TV", "Covered Lounge / Outdoor Living Zone. Covered patio with lounge seating and TV, showing how outdoor dining/lounge seating becomes a weather-protected second living room for groups."),
+          photo("downtown/abnb_659409220270509844/kitchen.avif", "Large kitchen with oversized island seating", "Group-Ready Kitchen. Large kitchen with oversized island seating, showing the group-meal setup needed for pregame, breakfast, and shared meals in a sleeps-10+ house."),
+          photo("downtown/abnb_1409730515899310183/indoor_dining_table.avif", "Long dining table staged for a large group meal", "Dedicated Group Dining Setup. Long dining table staged for a large group meal, showing why the Downtown product needs real dining capacity rather than only bar stools or scattered seating."),
+        ],
+      },
+      {
+        // No outer `title` here -- niceToHaveRankedBlock() already renders
+        // its own "Nice-to-Have, Ranked" <h4>, matching Lake's convention.
+        ranked: {
+          note: "Nice-to-have amenities are premium hooks, not baseline requirements. Pool / swim spa, rooftop or skyline features, a real gym, and sauna/cold-plunge wellness can improve the story when the property already clears the core buy box, but the Downtown evidence is directional rather than causal: amenity signals are text-derived, sample sizes are small, and Revenue Potential is modeled. The right move is to secure the must-have group-stay bundle first, then add one or two differentiators that fit the specific lot, structure, and neighborhood.",
+          items: [
+            {
+              name: "Pool / swim spa",
+              revenueUplift: "+30% avg / +49% median",
+              n: 3,
+              note: "Ceiling-tier hit-rate delta: -17pp. Strongest premium outdoor differentiator when the lot can support it — pool/swim-spa comps sit above the population on modeled revenue, but all three are Mid-tier rather than Ceiling. Treat as a premium visual hook, not a proven top-tier hit-rate driver.",
+              images: [
+                photo("downtown/abnb_659409220270509844/backyard_swim_spa_hot_tub.avif", "Focused swim-spa / hot-tub view in a compact yard", "Pool / Swim Spa as a Premium Outdoor Hook. Focused swim-spa / hot-tub view in a compact yard, showing pool/spa as a premium visual hook that can strengthen the story without being a proven ceiling-tier driver."),
+              ],
+            },
+            {
+              name: "Rooftop / skyline feature",
+              revenueUplift: "+25% avg / +48% median",
+              n: 4,
+              note: "Ceiling-tier hit-rate delta: +11pp. Best urban-specific differentiator — reinforces the Downtown/event thesis and shows a positive ceiling-tier signal, but the sample is thin and the best visual comp is downweighted for national-brand/platform effect.",
+              images: [
+                photo("downtown/abnb_708767588165071588/rooftop_deck_gazebo_lounge_wide.jpeg", "Rooftop deck with covered lounge seating", "Rooftop Lounge / Skyline-Oriented Outdoor Room. Rooftop deck with covered lounge seating, showing the urban-specific version of outdoor premium space. Caveat: this comp is downweighted for national-brand/platform effect."),
+              ],
+            },
+            {
+              name: "Gym / fitness feature",
+              revenueUplift: "+64% avg / +104% median",
+              n: 3,
+              note: "Ceiling-tier hit-rate delta: +56pp. Strongest statistical signal in the amenity set — two of three gym-flagged comps are Ceiling-tier, but the amenity is capital-intensive and should remain a high-end differentiator, not a baseline requirement.",
+              images: [
+                photo("downtown/abnb_1217644555390940891/gym.avif", "Dedicated gym-style room with real equipment and glass doors", "Gym / Fitness Feature. Dedicated gym-style room with real equipment and glass doors, showing the fitness feature as a capital-intensive differentiator rather than a baseline Downtown requirement."),
+              ],
+            },
+            {
+              name: "Sauna / cold plunge / wellness",
+              revenueUplift: "+1% avg / +21% median",
+              n: 2,
+              note: "Ceiling-tier hit-rate delta: -16pp. Emerging premium wellness layer — the photo value is strong, but the current Downtown sample is too thin to prove a revenue or ceiling-tier advantage.",
+              images: [
+                photo("downtown/abnb_1286598604898666052/barrel_sauna.avif", "Barrel sauna staged in the backyard", "Sauna / Wellness Add-On. Barrel sauna staged in the backyard, showing the wellness layer as a photo-forward add-on when the core group-stay buy box is already satisfied."),
+                photo("downtown/abnb_1286598604898666052/cold_plunge.png", "Standalone cold-plunge tub detail", "Cold Plunge Detail. Standalone cold-plunge tub detail, showing how the wellness thesis works best as a package with sauna/spa positioning rather than as an isolated item."),
+              ],
+            },
+          ],
+        },
+      },
+
+      { groupTitle: "Geo Considerations" },
+      {
+        title: "View / Waterfront / Privacy-Seclusion",
+        body:
+          "<p>Views and waterfront are not core requirements. Downtown Charlotte is not a lake or view-driven buy box. Skyline views can strengthen the marketing story when already present, but they should not substitute for verified proximity to named demand drivers. Waterfront is not relevant here. For privacy, the target is not seclusion; it is a contained, guest-ready outdoor environment where the hot tub, fire pit, dining/lounge, and games feel private enough to photograph and operate well in an urban neighborhood.</p>" +
+          "<p>This map should not be read as a ZIP-boundary map. Every marker is in the Downtown target comp set, but marker color reflects comp usability: clean reproducible revenue/design comps, caution cases, counterexamples, and structural confounds. The default view shows client-map-eligible comps first (16 of 39); use the filters to reveal the full internal evidence base before drawing acquisition conclusions.</p>",
+        images: [
+          photo("downtown/abnb_1108803702700685352/view_of_uptown_skyline.avif", "Clear Uptown skyline view from a NoDa-adjacent ceiling comp", "Skyline View as a Bonus, Not the Thesis. Clear Uptown skyline view from a NoDa-adjacent ceiling comp, showing view upside when it is already present while reinforcing that Downtown demand is still driven by location and product execution. Best available skyline image, and it comes from a Ceiling comp — use it to show upside when present, not as a requirement."),
+        ],
+        mapEmbed: {
+          url: "assets/downtown/downtown_comp_map.html",
+          title: "Interactive map — Downtown large-group comp set (n=39), filterable by revenue tier, comp status, and client-map eligibility",
+        },
+      },
+
+      { groupTitle: "Property Locations" },
+      {
+        title: "Ideal Location(s) & Popular Places",
+        body:
+          "<p>The target is not \"any house near Uptown.\" The strongest acquisition zones are Plaza Midwood, South End/Wilmore, NoDa, Dilworth, and select Uptown/Third-Fourth Ward adjacent parcels where the address has a specific demand-driver story. ZIP code alone is not enough: the same ZIPs contain clean comps, caution cases, and counterexamples. A candidate should be screened by named-neighborhood fit, walkability or short-drive proximity to a real demand driver, parking, safety, and whether the lot can support the outdoor amenity bundle.</p>" +
+          "<ol>" +
+          "<li><strong>Plaza Midwood</strong> — best-evidenced overall and the lead acquisition zone; the strongest existing acquisition-pricing support is here.</li>" +
+          "<li><strong>South End / Wilmore</strong> — strongest walkability and full-execution STR product signal.</li>" +
+          "<li><strong>NoDa</strong> — strong revenue/design support; promising if the acquisition basis is better than Plaza Midwood / South End.</li>" +
+          "<li><strong>Dilworth</strong> — valid target zone; walkable location plus host trust can win even with a sparse amenity stack, so price discipline matters.</li>" +
+          "<li><strong>Uptown / Third-Fourth Ward adjacent</strong> — strong demand-driver proximity, but the weakest literal acquisition target because single-family inventory is thin; best pursued through adjacent, walkably proximate parcels.</li>" +
+          "<li><strong>Secondary / verify-per-address zones</strong> — Belmont, Wesley Heights, Elizabeth, Fourth-Ward-adjacent pockets, and the LoSo brewery corridor can work only when the specific address proves the demand-driver connection.</li>" +
+          "</ol>" +
+          "<p>Popular-place logic should focus on named demand drivers, not generic proximity claims. The strongest Downtown comps tie themselves to Bank of America Stadium, Uptown/Center City, South End/Wilmore, NoDa, Plaza Midwood, Dilworth, brewery/nightlife corridors, parks, and event venues. Attractions like the Convention Center, Spectrum Center, NASCAR Hall of Fame, Camp North End, Optimist Hall, and Music Factory help the broader travel story, but the acquisition screen should still start with the specific neighborhood/corridor, not a citywide attractions list.</p>" +
+          "<table class=\"summary-sheet-table\">" +
+          "<tr><td>Event / urban core</td><td>Bank of America Stadium, Spectrum Center, Uptown / Center City, Charlotte Convention Center, NASCAR Hall of Fame — supports sports, concerts, conventions, and event-weekend group demand.</td></tr>" +
+          "<tr><td>Nightlife / dining corridors</td><td>South End, NoDa, Plaza Midwood, brewery corridors, Optimist Hall, Music Factory — supports bachelor/bachelorette, birthday, friend-group, and weekend leisure demand.</td></tr>" +
+          "<tr><td>Parks / neighborhood anchors</td><td>Dilworth, Freedom Park, Latta Park, Camp North End — supports neighborhood credibility, walkable-adjacent stays, and non-nightlife group trips.</td></tr>" +
+          "<tr><td>Transit support</td><td>LYNX Blue Line, CityLYNX Gold Line — a helpful access layer, but not the core thesis by itself.</td></tr>" +
+          "</table>",
+      },
+
+      { groupTitle: "Traveler Demographics" },
+      {
+        title: "Traveler ICP",
+        body:
+          "<p><strong>Primary: adult group trips.</strong> In the Downtown large-format comp set, group-trip review share averages 61.8%, far above family, pet, or other stay types. The target guest is not a couples getaway or generic family vacation; it is a large group choosing a house over hotels because they need shared gathering space, real beds, a kitchen/group-meal setup, outdoor amenities, and easier coordination around Uptown, South End, NoDa, Plaza Midwood, and event-weekend demand.</p>" +
+          "<p>Families and wedding-adjacent groups matter, but they are secondary. Pet-first and couples-first positioning should not drive the buy box.</p>",
+        charts: [
+          photo("downtown/charts/downtown_traveler_icp.png", "Pie chart of traveler ICP for the Downtown large-format comp set: 61.8% group trip, 15.1% stayed with kids, 3.6% stayed with pet, 19.5% other", "Traveler ICP — Downtown large-format comps. Group trip 61.8%, stayed with kids 15.1%, stayed with pet 3.6%, other 19.5% — workbook review-demographic fields, directional evidence, not a complete guest survey."),
+        ],
+      },
+
+      { groupTitle: "Comp Set" },
+      {
+        title: "Design Comp Set",
+        body:
+          "<p>The Design Comp Set is not a revenue-tier ranking. It shows the design language Downtown buyers should study: statement dining rooms, finished entertainment rooms, premium kitchen/bath finishes, work/lounge zones, and distinctive details that make a large urban STR feel intentional rather than generic. Front exteriors are not used here — exterior style is already covered in Property Profile / Architectural Style.</p>",
+        images: [
+          photo("downtown/abnb_1409730515899310183/indoor_dining_table.avif", "Long dining table under a saturated pink ceiling", "Statement Group Dining — Pink Ceiling, Long Table. Long dining table under a saturated pink ceiling, showing the kind of memorable group-meal room that makes a Downtown STR feel designed for celebrations, not just furnished."),
+          photo("downtown/abnb_1409730515899310183/interior_2.avif", "Bold lounge/living area with color, pattern, and styled seating", "Color-Forward Lounge / Living Room. Bold lounge/living area with color, pattern, and styled seating, showing how Downtown design can be louder and more event-oriented than a neutral suburban rental."),
+          photo("downtown/abnb_1409730515899310183/gameroom_interior_and_shuffleboard_table.avif", "Finished game room with shuffleboard and mural graphics", "Finished Game Room — Shuffleboard and Mural Wall. Finished game room with shuffleboard and mural graphics, showing the difference between a themed entertainment room and a random game table placed in spare space."),
+          photo("downtown/abnb_1217644555390940891/dining_area.avif", "Sculptural dining area with statement lighting, art, and wine-cart styling", "Sculptural Dining Moment. Sculptural dining area with statement lighting, art, and wine-cart styling, showing how furnishing details can give a group room a distinct design point of view."),
+          photo("downtown/abnb_1217644555390940891/wine_cellar.avif", "Dedicated wine-storage detail", "Wine Cellar / Premium Detail. Dedicated wine-storage detail, showing the kind of small premium moment that helps a listing photograph like a curated stay instead of a basic rental."),
+          photo("downtown/abnb_1108803702700685352/kitchen.avif", "Dark modern kitchen with stone counters and full-height cabinetry", "Modern Dark Kitchen — Stone and High-Contrast Finishes. Dark modern kitchen with stone counters and full-height cabinetry, showing the finish-level reference for a design-forward infill comp without making a revenue claim by itself."),
+          photo("downtown/abnb_1108803702700685352/bathroom.avif", "Bathroom with pink accent wall, black fixtures, and marble-look shower", "Design-Forward Bath — Pink Wall and Marble Shower. Bathroom with pink accent wall, black fixtures, and marble-look shower, showing that the design story should carry into secondary spaces guests will remember and photograph."),
+          photo("downtown/abnb_1108803702700685352/office.avif", "Moody workroom with dark walls, large windows, and a finished palette", "Moody Office / Workroom. Moody workroom with dark walls, large windows, and a finished palette, showing how flex rooms can become intentional design moments instead of leftover rooms."),
+          photo("downtown/abnb_1409730515899310183/living-room.png", "Styled living-room image from the strongest Downtown template", "Additional Styled Living Room. Styled living-room image from the strongest Downtown template, showing the lounge-side design language that supports an event-house product beyond the backyard."),
+          photo("downtown/abnb_708767588165071588/rooftop_cabana_daybed_design_detail.jpeg", "Rooftop cabana/daybed detail", "Rooftop Cabana / Daybed Detail. Rooftop cabana/daybed detail, showing the urban outdoor design moment that can make a Downtown stay feel photo-forward when rooftop space is available."),
+          photo("downtown/abnb_1286598604898666052/plunge_pool.avif", "Compact plunge-pool detail", "Plunge Pool / Wellness Design Detail. Compact plunge-pool detail, showing the wellness-design angle as a visual concept rather than treating it as a proven Mid-tier revenue driver."),
+        ],
+      },
+      {
+        title: "Revenue Comp Set — High Tier",
+        body:
+          "<p>The High Tier revenue gallery shows ceiling-level product execution without reusing the strongest images already assigned to Property Profile, Amenities, Geo, Nice-to-Have's, or Design Comp Set. No front exteriors here; the gallery is still product-led, but through interiors, outdoor living, bedrooms, baths, fitness, and dining support.</p>",
+        images: [
+          photo("downtown/abnb_1217644555390940891/living_room.avif", "Open living/kitchen great-room view from a ceiling comp", "Ceiling Interior Scale. Open living/kitchen great-room view from a ceiling comp, showing the interior scale and finish baseline expected before a Downtown property can underwrite to the high tier."),
+          photo("downtown/abnb_1217644555390940891/bathroom_1.avif", "Large bath with freestanding tub and walk-in shower", "Premium Bath Finish. Large bath with freestanding tub and walk-in shower, showing that high-tier execution depends on bathroom quality and capacity, not only headline outdoor amenities."),
+          photo("downtown/abnb_1217644555390940891/patio_with_sofa_tv.avif", "Covered outdoor lounge with sofa seating and TV", "Covered Outdoor Living. Covered outdoor lounge with sofa seating and TV, showing the kind of added living area that supports high-tier group stays without relying on bedroom count alone."),
+          photo("downtown/abnb_1108803702700685352/gym.avif", "Finished gym with real equipment", "Ceiling Fitness Amenity. Finished gym with real equipment, showing a ceiling-tier amenity that can lift the product when paired with strong location and design rather than standing alone."),
+          photo("downtown/abnb_1108803702700685352/bedroom.avif", "Large staged bedroom with modern finish quality and natural light", "Polished Bedroom / Sleep Product. Large staged bedroom with modern finish quality and natural light, showing that high-tier revenue still depends on real bedroom comfort, not inflated sleep claims."),
+          photo("downtown/abnb_1108803702700685352/dining_area.avif", "Dining area with visual separation and bar storage", "Group-Meal Support. Dining area with visual separation and bar storage, showing the group-meal infrastructure that supports ADR upside in a large-format Downtown comp."),
+          photo("downtown/abnb_1409730515899310183/interior.avif", "Alternate interior angle from the strongest urban/event template", "Fresh Interior Angle from Top Template. Alternate interior angle from the strongest urban/event template, showing that the high-tier product carries its design identity indoors as well as outdoors."),
+        ],
+      },
+      {
+        title: "Revenue Comp Set — Mid Tier",
+        body:
+          "<p>The Mid Tier gallery shows strong but more uneven execution: real amenities, useful outdoor programming, and some attractive product features, but not the most premium wellness/rooftop imagery that would blur into High Tier or Design Comp Set.</p>",
+        images: [
+          photo("downtown/abnb_659409220270509844/arcades.avif", "Dedicated arcade/game room with a bolder theme", "Mid-Tier Finished Arcade Room. Dedicated arcade/game room with a bolder theme than the floor examples, showing how Mid-tier homes can compete through focused entertainment without becoming full ceiling products."),
+          photo("downtown/abnb_659409220270509844/firepit.avif", "Backyard fire-pit area with grouped seating", "Mid-Tier Fire Pit Execution. Backyard fire-pit area with grouped seating, showing a real gathering anchor even when the scene is less comprehensive than the ceiling-tier backyard bundles."),
+          photo("downtown/abnb_659409220270509844/hottub.avif", "Focused hot-tub image from a Mid-tier comp", "Mid-Tier Hot Tub Hook. Focused hot-tub image from a Mid-tier comp, showing that a premium hook can appear below the ceiling tier when the broader product is more uneven."),
+          photo("downtown/abnb_659409220270509844/lounge_area.avif", "Compact outdoor lounge/pergola area", "Simple Lounge Zone. Compact outdoor lounge/pergola area, showing useful Mid-tier seating that supports groups without reading as a polished luxury scene."),
+          photo("downtown/abnb_659409220270509844/lawngames_cornhole.jpg", "Casual cornhole setup with outdoor circulation", "Lawn Games / Casual Group Use. Casual cornhole setup with outdoor circulation, showing the practical entertainment layer that helps Mid-tier group stays feel active without heavy build-out."),
+          photo("downtown/abnb_554940316762261190/fenced_backyard_artificial_turf_lawn.avif", "Fenced artificial-turf yard with simple outdoor usability", "Fenced Turf Yard. Fenced artificial-turf yard with simple outdoor usability, showing a functional Mid-tier yard that is organized but not a full premium amenity bundle."),
+          photo("downtown/abnb_554940316762261190/backyard_above_ground_pool_flamingo_float_umbrellas.avif", "Above-ground pool with playful staging in a fenced yard", "Casual Above-Ground Pool. Above-ground pool with playful staging in a fenced yard, showing a water amenity that adds booking appeal without reading like a luxury pool/spa product."),
+          photo("downtown/abnb_33718219/living_room.avif", "Clean, ordinary living-room view from a lower-mid clean comp", "Solid Normal Interior. Clean, ordinary living-room view from a lower-mid clean comp, showing the realistic interior standard below the more design-forward ceiling examples."),
+        ],
+      },
+      {
+        title: "Revenue Comp Set — Low / Below Floor",
+        body:
+          "<p>The Low / Below Floor gallery is educational, not aspirational. It shows that amenities can exist but still fail to create ceiling revenue when the product is thin, underprogrammed, basic, or capped by layout/bath ratio/condition.</p>",
+        images: [
+          photo("downtown/abnb_968427563297398451/minimal_interior.avif", "Clean but modest interior with limited premium finish signal", "Low-Tier Interior Baseline. Clean but modest interior with limited premium finish signal, showing the acceptable floor before the product starts to feel too thin for Downtown group pricing."),
+          photo("downtown/abnb_968427563297398451/gameroom_foosball_arcade.avif", "Small game area with foosball and an arcade feature", "Modest Game Feature. Small game area with foosball and an arcade feature, showing that simply having games does not create a higher-tier product if the execution is modest."),
+          photo("downtown/abnb_1057352920150323374/living_room.jpeg", "Tidy, ordinary living room with basic furnishings", "Clean But Basic Living Room. Tidy, ordinary living room with basic furnishings, showing the normal-buyer floor standard without the design depth needed for a stronger revenue tier."),
+          photo("downtown/abnb_1057352920150323374/tidy_basic_backyard_with_patchy_lawn_garden_bed_and_screened_gazebo.jpeg", "Plain backyard with patchy lawn and screened gazebo", "Basic Yard / Screened Gazebo. Plain backyard with patchy lawn and screened gazebo, showing usable outdoor space that still falls short of a programmed Downtown group zone."),
+          photo("downtown/abnb_1005261131730210520/gameroom_pooltable.webp", "Simple pool-table/game-room setup from a below-floor caution comp", "Amenity Present, Product Still Capped. Simple pool-table/game-room setup from a below-floor caution comp, showing that one amenity does not overcome broader product caps such as bath ratio or thin execution."),
+          photo("downtown/abnb_968762804004766798/bakyard_with_no_visible_amenities.avif", "Backyard with no visible programmed amenity zone", "No Outdoor Amenity Story. Backyard with no visible programmed amenity zone, showing the below-floor risk when outdoor space exists but gives guests no reason to gather or pay more."),
+          photo("downtown/abnb_51823657/backyard_mostly_empty.avif", "Mostly empty backyard with limited guest-use programming", "Underprogrammed Yard Space. Mostly empty backyard with limited guest-use programming, showing that yard size alone is not a revenue product unless it becomes a usable stay-defining zone."),
+        ],
+      },
+
+      { groupTitle: "Analyst Notes" },
+      {
+        title: "Notes / Insights",
+        body:
+          "<p>The Downtown notes are the practical rules behind the buy box: what makes the house convert, what caps it, and what should show up in photos before a buyer spends on more square footage or more amenities.</p>" +
+          "<ul>" +
+          "<li><strong>Bathroom ratio is the silent limiter.</strong> Downtown groups are getting ready for dinners, games, weddings, sports weekends, and nights out. Location and amenities do not fully rescue a house where 10-12 guests are sharing too few baths.</li>" +
+          "<li><strong>Outdoor lounge space is the conversion layer.</strong> The patio, deck, pergola, rooftop, or covered seating area is what turns the house from a place to sleep into a place to gather.</li>" +
+          "<li><strong>Amenities need to feel like one programmed zone.</strong> The best homes do not just have a hot tub, fire pit, games, and seating; those pieces photograph and operate as one group experience.</li>" +
+          "<li><strong>Downtown upside is ADR-driven.</strong> The winning play is charging more per night through location, design, group functionality, and event-weekend positioning, not simply assuming higher occupancy.</li>" +
+          "<li><strong>Design should photograph loud.</strong> Downtown can support stronger visual identity than a generic suburban family rental: statement dining, mural game rooms, rooftop/cabana moments, wine details, colored ceilings, and moody work/lounge rooms.</li>" +
+          "<li><strong>Kitchen + dining should read as group logistics.</strong> The photo should show island seating, serving space, dining nearby, and a layout where the group can gather before going out.</li>" +
+          "<li><strong>Game rooms need a theme.</strong> A pool table or arcade cabinet alone is not enough; stronger comps make the room feel intentional with a mural, lighting, multiple games, seating, and a reason guests would photograph it.</li>" +
+          "<li><strong>Evening staging matters.</strong> Downtown demand is event/nightlife-heavy, so fire pit, hot tub, string lights, skyline, TV lounge, and arcade photos should sell the start or end of a night out.</li>" +
+          "<li><strong>Do not overpack the house.</strong> Sleeps 12-14 with real beds and breathing room is cleaner than inflated sleeps 18-20 with air mattresses and cramped shared spaces.</li>" +
+          "<li><strong>Parking is part of the urban product.</strong> It is not the sexiest feature, but group trips often arrive in multiple cars; off-street parking reduces friction near Uptown, South End, NoDa, Plaza Midwood, and Dilworth.</li>" +
+          "</ul>",
+        images: [
+          photo("downtown/abnb_659409220270509844/covered_patio_tv_skyline_view.avif", "Covered patio with lounge seating, TV, and skyline-oriented evening feel", "Outdoor Lounge Space Is the Conversion Layer. Covered patio with lounge seating, TV, and skyline-oriented evening feel, showing why Downtown patios need to read as real group hangout rooms."),
+          photo("downtown/abnb_659409220270509844/backyard_showing_swimspa_integrated_hot_tub_firepit_dining_area_under_pergola.avif", "Swim spa, fire pit, covered dining, and lounge circulation in one yard", "Amenities as One Programmed Zone. Swim spa, fire pit, covered dining, and lounge circulation in one yard, showing how the strongest Downtown amenity stacks work as a single programmed scene."),
+          photo("downtown/abnb_1409730515899310183/entire_backyard_containing_hottub_cornhole_minigolf_firepit_stringlights.avif", "Compact yard staged with hot tub, games, fire pit, and lighting", "Sell the Hangout, Not Just the Amenity. Compact yard staged with hot tub, games, fire pit, and lighting, showing how one photo can sell the start or end of a Downtown group night."),
+          photo("downtown/abnb_708767588165071588/rooftop_deck_gazebo_lounge_wide.jpeg", "Rooftop deck with covered lounge seating", "Rooftop Lounge / Urban Photo-Op. Rooftop deck with covered lounge seating, showing the urban version of outdoor space: a polished photo-op and gathering layer, not secluded acreage."),
+          photo("downtown/abnb_1092979037109147151/plain_patchy_backyard_with_small_basic_deck_and_mismatched_seating.avif", "Patchy backyard with small basic deck and mismatched seating", "Yard Space Without a Cohesive Product. Patchy backyard with small basic deck and mismatched seating, showing the negative lesson that outdoor space does not convert when it feels unplanned."),
+          photo("downtown/abnb_51823657/backyard_mostly_empty.avif", "Mostly empty backyard with limited guest-use programming", "Empty Yard Space Is Not the Product. Mostly empty backyard with limited guest-use programming, showing why buyers should budget for an actual lounge/amenity plan instead of relying on lot size."),
+        ],
+      },
+
+      { groupTitle: "Projections" },
+      {
+        title: "Revenue Potential & Candidate Listings",
+        body:
+          "<p><strong>Revenue Potential</strong> throughout this section is modeled/directional (reconciles closely to ADR × Occupancy × 365), not trailing actual revenue, and should never be presented as confirmed historical earnings. Underwriting (target purchase price, target Revenue Potential range) for the Downtown buy box has not been decided yet and is not invented here.</p>" +
+          "<p><strong>Candidate listing found (Zillow):</strong></p>" +
+          "<ul>" +
+          "<li><a href=\"https://www.zillow.com/homedetails/1416-Parkwood-Ave-Charlotte-NC-28205/6187855_zpid/\" target=\"_blank\" rel=\"noopener\">1416 Parkwood Ave, Charlotte, NC 28205 ↗</a></li>" +
+          "</ul>" +
+          "<p>Current best internal tracking lead. Not offer-ready. Zillow facts live-pulled September 8, 2026 — reverify Zillow/MLS/county facts before any offer. Do not present as final underwriting.</p>",
+      },
+    ],
+
     pendingNote:
-      "Downtown / Uptown is scoped in ../notebooks/charlotte_overview.ipynb (\"Why These Buy Boxes\") — N=368, the market's largest single region (51% of all 719 listings), but the lowest Top 10% hit rate of the three (8%), driven mostly by a smaller-bedroom product mix (51% of Downtown listings are 1-2BR, vs. 27% in Outskirts and 33% in Lakeside). It still produces the single highest-revenue listing in the market (\"Spacious 8BR Duplex, Sleeps 20, Walk to Breweries,\" $199,741). Full deep-dive analysis (comp sets, revenue tiering, amenity evidence, buy-box template) has not been built yet.",
+      "Downtown / Uptown is the market's largest region by inventory (51% of all listings) and the weakest Top 10% hit-rate region overall (8%). The section above focuses specifically on the Downtown large-group buy box — 4+ bedrooms, sleeps 10+, n=39. The single highest-revenue listing in the market (\"Spacious 8BR Duplex, Sleeps 20, Walk to Breweries,\" $199,741) is a structural-confound duplex, so it should not be treated as a clean single-home ceiling proof. Revenue Potential throughout is modeled/directional, not confirmed historical earnings. Airbnb/listing photos throughout this section are internal-use only unless rights are separately cleared.",
   },
 
   // ---------------------------------------------------------------------------
