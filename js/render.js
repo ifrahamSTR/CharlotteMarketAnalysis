@@ -171,10 +171,19 @@ function renderDeclarations() {
   if (!host) return;
   host.innerHTML = "";
   BUY_BOXES.forEach((box) => {
-    const isDeveloped = box.status === "developed";
-    const card = el("div", "declaration-card declaration-card--lead" + (isDeveloped ? "" : " declaration-card--pending"));
-    card.appendChild(el("p", "declaration-card__eyebrow", box.label + (isDeveloped ? " — Developed" : " — Pending")));
+    // All three buy boxes now have a full deep dive built out (see the
+    // Deep Dive tabs below) -- none of them are "pending" in the sense
+    // this card styling/label originally meant, so every card renders
+    // with the same plain, non-tinted treatment and a "full deep dive" CTA.
+    const card = el("div", "declaration-card declaration-card--lead");
+    card.appendChild(el("p", "declaration-card__eyebrow", box.label));
     card.appendChild(el("h2", null, box.name));
+    if (box.atAGlance.revenueRange) {
+      const rev = el("div", "declaration-card__revenue");
+      rev.appendChild(el("span", "declaration-card__revenue-value", box.atAGlance.revenueRange));
+      rev.appendChild(el("span", "declaration-card__revenue-label", "Revenue Potential"));
+      card.appendChild(rev);
+    }
     card.appendChild(el("p", "declaration-card__thesis", box.thesis));
     const dl = el("dl", "declaration-card__specs");
     const rows = [
@@ -188,7 +197,7 @@ function renderDeclarations() {
       dl.appendChild(el("dd", null, v));
     });
     card.appendChild(dl);
-    const cta = el("a", "btn btn--primary", isDeveloped ? "See the full deep dive ↓" : "See what's scoped so far ↓");
+    const cta = el("a", "btn btn--primary", "See the full deep dive ↓");
     cta.href = "#deep-dive";
     card.appendChild(cta);
     host.appendChild(card);
@@ -657,8 +666,8 @@ function amenityExecutionTiersBlock(box) {
   (box.mustHaveExecutionTiers || []).forEach((item) => {
     wrap.appendChild(el("h4", "comp-tier-label", item.name + (item.tag ? " · " + item.tag : "")));
     const grid = el("div", "bb2-tier-compare__grid");
-    [["High", item.high], ["Mid", item.mid], ["Low", item.low]].forEach(([label, img]) => {
-      const col = el("div", "bb2-tier-compare__col");
+    [["High", "high", item.high], ["Mid", "mid", item.mid], ["Low", "low", item.low]].forEach(([label, tierKey, img]) => {
+      const col = el("div", "bb2-tier-compare__col bb2-tier-compare__col--" + tierKey);
       col.appendChild(el("div", "bb2-tier-compare__col-label", label));
       col.appendChild(renderImage(img, { small: true }));
       grid.appendChild(col);
@@ -1060,8 +1069,8 @@ function executionComparisonBlock(box) {
   wrap.appendChild(el("h3", "dd-block__title", "High / Mid / Low Execution Comparison"));
   wrap.appendChild(el("p", null, e.intro));
   const grid = el("div", "bb2-tier-compare__grid");
-  [e.high, e.mid, e.low].forEach((tier) => {
-    const col = el("div", "bb2-tier-compare__col");
+  [["high", e.high], ["mid", e.mid], ["low", e.low]].forEach(([tierKey, tier]) => {
+    const col = el("div", "bb2-tier-compare__col bb2-tier-compare__col--" + tierKey);
     col.appendChild(el("div", "bb2-tier-compare__col-label", tier.label));
     col.appendChild(el("p", null, tier.description));
     if (tier.images) col.appendChild(renderImageGrid(tier.images, { small: true }));
@@ -1232,7 +1241,7 @@ function compSetPropertyCard(prop) {
   return card;
 }
 function compSetTierColumn(tierKey, tierLabel, properties) {
-  const col = el("div", "bb2-tier-compare__col");
+  const col = el("div", "bb2-tier-compare__col bb2-tier-compare__col--" + tierKey);
   col.appendChild(el("div", "bb2-tier-compare__col-label", tierLabel));
   (properties || []).forEach((prop) => col.appendChild(compSetPropertyCard(prop)));
   return col;
